@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -34,6 +34,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YarpApiGateWay", "ApiGateWays\YarpApiGateWay\YarpApiGateWay.csproj", "{03F2EDB7-783F-477C-8C09-49ADF0D77250}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.API", "Services\User\User.API\User.API.csproj", "{BDDCA97D-3BEB-42FB-8FC5-34331439D44B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTCShop.AppHost", "Aspire\UTCShop.AppHost\UTCShop.AppHost.csproj", "{4696EADF-0C49-492D-A8A9-4361FDB67217}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTCShop.ServiceDefaults", "Aspire\UTCShop.ServiceDefaults\UTCShop.ServiceDefaults.csproj", "{C4C3CCCF-C2DE-97F0-D3D3-F4F1829A2A30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +85,14 @@ Global
 		{BDDCA97D-3BEB-42FB-8FC5-34331439D44B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDDCA97D-3BEB-42FB-8FC5-34331439D44B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDDCA97D-3BEB-42FB-8FC5-34331439D44B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4696EADF-0C49-492D-A8A9-4361FDB67217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4696EADF-0C49-492D-A8A9-4361FDB67217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4696EADF-0C49-492D-A8A9-4361FDB67217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4696EADF-0C49-492D-A8A9-4361FDB67217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4C3CCCF-C2DE-97F0-D3D3-F4F1829A2A30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4C3CCCF-C2DE-97F0-D3D3-F4F1829A2A30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4C3CCCF-C2DE-97F0-D3D3-F4F1829A2A30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4C3CCCF-C2DE-97F0-D3D3-F4F1829A2A30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

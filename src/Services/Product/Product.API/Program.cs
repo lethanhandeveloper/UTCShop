@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Product.API.Extensions;
@@ -6,6 +6,8 @@ using Product.Application;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddServiceDefaults();
 
 var assembly = typeof(Program).Assembly;
 
@@ -64,6 +66,8 @@ builder.Services.AddApplicationServices(builder.Configuration).AddInfrastructure
 
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())  // Đảm bảo chỉ chạy Swagger ở môi trường Development
