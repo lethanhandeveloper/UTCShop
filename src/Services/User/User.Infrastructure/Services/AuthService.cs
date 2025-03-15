@@ -3,7 +3,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using User.Application.Dtos;
 using User.Application.Interfaces;
 using User.Domain;
 using User.Domain.Data;
@@ -20,15 +19,8 @@ public class AuthService : IAuthService
         _configuration = configuration;
     }
 
-    public async Task<UserDto> Login(string email, string password)
+    public async Task<UserEntity> GenerateJwtToken(UserEntity user)
     {
-        UserEntity? user = await _dbContext.Users.FindAsync(email);
-
-        if (user == null || BCrypt.Net.BCrypt.Verify(password, user.Password) == false)
-        {
-            return null;
-        }
-
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_configuration["JWT:SecretKey"]);
 
@@ -38,7 +30,7 @@ public class AuthService : IAuthService
             {
                     new Claim(ClaimTypes.Name, user.Name),
                     new Claim(ClaimTypes.GivenName, user.Name),
-                    //new Claim(ClaimTypes.Role, user.)
+                    new Claim(ClaimTypes.Role, "User")
             }),
             IssuedAt = DateTime.UtcNow,
             Issuer = _configuration["JWT:Issuer"],
@@ -48,13 +40,14 @@ public class AuthService : IAuthService
         };
 
         var token = tokenHandler.CreateToken(tokenDescriptor);
-        user.Token = tokenHandler.WriteToken(token);
-        user.IsActive = true;
+        user.JwtToken = tokenHandler.WriteToken(token);
+        //user.Token = tokenHandler.WriteToken(token);
+        //user.IsActive = true;
 
         return user;
     }
 
-    public Task<UserDto> Register(UserDto user)
+    public Task<UserEntity> Register(UserEntity user)
     {
         throw new NotImplementedException();
     }

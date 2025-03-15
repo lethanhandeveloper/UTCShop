@@ -1,4 +1,4 @@
-﻿using User.Interfaces.Queries;
+﻿using User.Application.Interfaces.Repositories;
 
 namespace Product.Application.Interfaces;
 public interface IUnitOfWork

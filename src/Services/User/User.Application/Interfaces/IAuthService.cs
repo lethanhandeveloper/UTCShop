@@ -1,8 +1,8 @@
-﻿using User.Application.Dtos;
+﻿using User.Domain;
 
 namespace User.Application.Interfaces;
 public interface IAuthService
 {
-    public Task<UserDto> Login(string email, string password);
-    public Task<UserDto> Register(UserDto user);
+    public Task<UserEntity> GenerateJwtToken(UserEntity user);
+    public Task<UserEntity> Register(UserEntity user);
 }

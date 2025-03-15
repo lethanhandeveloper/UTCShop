@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.Pagination;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Product.Application.Dtos;
 using Product.Application.Modules.Commands;
@@ -6,6 +7,9 @@ using Product.Application.Modules.Commands.Create;
 using Product.Application.Modules.Queries.GetProducts;
 
 namespace Product.API.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
 public class ProductController : Controller
 {
     IMediator _mediator;
@@ -15,6 +19,7 @@ public class ProductController : Controller
         _mediator = mediator;
     }
 
+    [Authorize(Roles = "User")]
     [HttpPost("Get")]
     public async Task<PaginatedResult<ProductDto>> Get([FromBody] PaginationRequest request)
     {

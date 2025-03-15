@@ -7,6 +7,10 @@ namespace Product.Infrastructure;
 
 public class ProductDBContext : DbContext, IProductDbContext
 {
+    public ProductDBContext(DbContextOptions<ProductDBContext> options) : base(options)
+    {
+    }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);

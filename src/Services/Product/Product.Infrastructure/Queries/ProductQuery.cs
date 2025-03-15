@@ -13,6 +13,11 @@ public class ProductQuery : IProductQuery
         _dbContext = dbContext;
     }
 
+    public Task<ProductEntity> AddAsync(ProductEntity entity, CancellationToken cancellation)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<long> CountAsync()
     {
         return await _dbContext.Products.LongCountAsync();
@@ -24,6 +29,11 @@ public class ProductQuery : IProductQuery
     }
 
     public Task<ProductEntity> GetByIdAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<ProductEntity> GetByIdAsync(Guid Id)
     {
         throw new NotImplementedException();
     }
