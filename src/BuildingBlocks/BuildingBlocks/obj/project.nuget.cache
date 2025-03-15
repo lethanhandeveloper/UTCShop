@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "klKuMUzIJDs=",
+  "dgSpecHash": "CrdqGEEp4/E=",
   "success": true,
   "projectFilePath": "C:\\PProjects\\UTCShop\\src\\BuildingBlocks\\BuildingBlocks\\BuildingBlocks.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\riley.le\\.nuget\\packages\\mapster\\7.4.0\\mapster.7.4.0.nupkg.sha512",
+    "C:\\Users\\riley.le\\.nuget\\packages\\mapster.core\\1.2.1\\mapster.core.1.2.1.nupkg.sha512",
+    "C:\\Users\\riley.le\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
+    "C:\\Users\\riley.le\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\riley.le\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

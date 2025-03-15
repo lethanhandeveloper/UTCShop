@@ -1,0 +1,13 @@
+C:\PProjects\UTCShop\src\Services\User\User.Application\bin\Debug\net8.0\User.Application.deps.json
+C:\PProjects\UTCShop\src\Services\User\User.Application\bin\Debug\net8.0\User.Application.dll
+C:\PProjects\UTCShop\src\Services\User\User.Application\bin\Debug\net8.0\User.Application.pdb
+C:\PProjects\UTCShop\src\Services\User\User.Application\obj\Debug\net8.0\User.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\PProjects\UTCShop\src\Services\User\User.Application\obj\Debug\net8.0\User.Application.AssemblyInfoInputs.cache
+C:\PProjects\UTCShop\src\Services\User\User.Application\obj\Debug\net8.0\User.Application.AssemblyInfo.cs
+C:\PProjects\UTCShop\src\Services\User\User.Application\obj\Debug\net8.0\User.Application.csproj.CoreCompileInputs.cache
+C:\PProjects\UTCShop\src\Services\User\User.Application\obj\Debug\net8.0\User.Application.sourcelink.json
+C:\PProjects\UTCShop\src\Services\User\User.Application\obj\Debug\net8.0\User.Application.dll
+C:\PProjects\UTCShop\src\Services\User\User.Application\obj\Debug\net8.0\refint\User.Application.dll
+C:\PProjects\UTCShop\src\Services\User\User.Application\obj\Debug\net8.0\User.Application.pdb
+C:\PProjects\UTCShop\src\Services\User\User.Application\obj\Debug\net8.0\ref\User.Application.dll
+C:\PProjects\UTCShop\src\Services\User\User.Application\obj\Debug\net8.0\User.Application.csproj.AssemblyReference.cache

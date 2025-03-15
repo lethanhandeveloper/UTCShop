@@ -1,0 +1,16 @@
+C:\PProjects\UTCShop\src\Services\Product\Product.Domain\obj\Debug\net8.0\Product.Domain.csproj.AssemblyReference.cache
+C:\PProjects\UTCShop\src\Services\Product\Product.Domain\obj\Debug\net8.0\Product.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\PProjects\UTCShop\src\Services\Product\Product.Domain\obj\Debug\net8.0\Product.Domain.AssemblyInfoInputs.cache
+C:\PProjects\UTCShop\src\Services\Product\Product.Domain\obj\Debug\net8.0\Product.Domain.AssemblyInfo.cs
+C:\PProjects\UTCShop\src\Services\Product\Product.Domain\obj\Debug\net8.0\Product.Domain.csproj.CoreCompileInputs.cache
+C:\PProjects\UTCShop\src\Services\Product\Product.Domain\obj\Debug\net8.0\Product.Domain.sourcelink.json
+C:\PProjects\UTCShop\src\Services\Product\Product.Domain\bin\Debug\net8.0\Product.Domain.deps.json
+C:\PProjects\UTCShop\src\Services\Product\Product.Domain\bin\Debug\net8.0\Product.Domain.dll
+C:\PProjects\UTCShop\src\Services\Product\Product.Domain\bin\Debug\net8.0\Product.Domain.pdb
+C:\PProjects\UTCShop\src\Services\Product\Product.Domain\bin\Debug\net8.0\BuildingBlocks.dll
+C:\PProjects\UTCShop\src\Services\Product\Product.Domain\bin\Debug\net8.0\BuildingBlocks.pdb
+C:\PProjects\UTCShop\src\Services\Product\Product.Domain\obj\Debug\net8.0\Product..66AFAF57.Up2Date
+C:\PProjects\UTCShop\src\Services\Product\Product.Domain\obj\Debug\net8.0\Product.Domain.dll
+C:\PProjects\UTCShop\src\Services\Product\Product.Domain\obj\Debug\net8.0\refint\Product.Domain.dll
+C:\PProjects\UTCShop\src\Services\Product\Product.Domain\obj\Debug\net8.0\Product.Domain.pdb
+C:\PProjects\UTCShop\src\Services\Product\Product.Domain\obj\Debug\net8.0\ref\Product.Domain.dll
