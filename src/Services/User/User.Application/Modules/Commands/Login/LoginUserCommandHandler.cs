@@ -31,7 +31,6 @@ public class LoginUserCommandHandler : ICommandHandler<LoginUserCommand, ApiResp
                 StatusCode = HttpStatusCodeEnum.BadRequest
             };
         }
-
         user = await _authService.GenerateJwtToken(user);
 
         return new ApiResponse<UserDto>
