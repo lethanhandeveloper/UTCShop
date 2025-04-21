@@ -45,7 +45,7 @@ const AppSideBar = ({ isSideBarCollapsed }) => {
     
 
     return (
-        <Sider collapsed={isSideBarCollapsed} 
+        <Sider collapsed={isSideBarCollapsed}
           style={siderStyle}
         >
         <div className="demo-logo-vertical" />

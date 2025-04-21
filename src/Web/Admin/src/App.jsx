@@ -27,10 +27,6 @@ function getItem(label, key, icon, children) {
   };
 }
 
-
-
-
-
 function App() {
   const [isSideBarCollapsed, setIsSideBarCollapsed] = useState(false);
 

@@ -1,5 +1,6 @@
 import { Table } from "antd";
 import { theme } from 'antd';
+import CategoryForm from "./category.form";
 
 const dataSource = [
     {
@@ -90,7 +91,16 @@ const CategoryTable = () => {
               borderRadius: borderRadiusLG,
             }}
           >
-            <Table dataSource={dataSource} columns={columns} scroll={{ x: 'max-content' }}/>
+            <Table 
+              dataSource={dataSource} columns={columns} scroll={{ x: 'max-content' }}
+              pagination={{
+                current: 1,
+                pageSize: 10,
+                showSizeChanger: true,
+                total: 10,
+                showTotal: (total, range) => { return (<div> {range[0]}-{range[1]} trên {total} rows</div>) }
+              }}
+            />
         </div> 
     )
 }
