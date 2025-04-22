@@ -1,4 +1,4 @@
-import { AppstoreAddOutlined, DesktopOutlined, PieChartOutlined, UserOutlined } from '@ant-design/icons';
+import { AppstoreAddOutlined, DesktopOutlined, PieChartOutlined, ProductOutlined, UserOutlined } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -29,6 +29,7 @@ const AppSideBar = ({ isSideBarCollapsed }) => {
         getItem('Dashboard', '1', <Link to={"./dashboard"}><PieChartOutlined /></Link>),
         getItem('Option 2', '2', <DesktopOutlined />),
         getItem('Category', '3', <Link to={"./category"}><AppstoreAddOutlined /></Link>),
+        getItem('Product', '10', <Link to={"/product"}><ProductOutlined /></Link>),
         getItem('User', 'sub1', <UserOutlined />, [
           getItem('Tom', '4'),
           getItem('Bill', '5'),

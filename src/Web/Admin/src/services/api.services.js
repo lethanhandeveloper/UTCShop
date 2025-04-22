@@ -1,8 +1,45 @@
 import axios from "axios";
 
-const fetchAllCategoryAPI = () => {
-  const URL_BACKEND = "/api/v1/auth/logout";
-  return axios.get(URL_BACKEND);
+const fetchAllProductsAPI = () => {
+  const URL_BACKEND = "https://localhost:7099/api/Product/Get";
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  return axios.post(URL_BACKEND, {
+    "pageIndex": 1,
+    "pageSize": 10
+  } , config);
 };
 
-export { fetchAllCategoryAPI };
+const uploadFileAPI = (file) => {
+  const URL_BACKEND = "https://localhost:7099/api/Product/Upload";
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data"
+    }
+  };
+
+  const bodyFormData = new FormData();
+  bodyFormData.append("file", file);
+
+  return axios.post(URL_BACKEND, bodyFormData , config);
+}
+
+const createProductAPI = (name, price, imageUrl, description, categoryId) => {
+  const URL_BACKEND = "https://localhost:7099/api/Product/Create";
+  
+  const data = {
+    name, 
+    price, 
+    imageUrl, 
+    description, 
+    categoryId: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+  };
+
+  return axios.post(URL_BACKEND, data);
+}
+
+export { fetchAllProductsAPI, uploadFileAPI, createProductAPI };
