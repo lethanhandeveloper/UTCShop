@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BuildingBlocks.Pagination;
+using Microsoft.EntityFrameworkCore;
 using User.Application.Interfaces.Queries;
 using User.Domain;
 using User.Domain.Data;
@@ -35,7 +36,7 @@ public class UserQuery : IUserQuery
         return await _dbContext.Users.Where(u => u.Email == username).FirstOrDefaultAsync();
     }
 
-    public async Task<IEnumerable<UserEntity>> GetPagedAsync(int pageNumber = 1, int pageSize = 10)
+    public async Task<IEnumerable<UserEntity>> GetPagedAsync(List<FilterCreteria> filter, int pageNumber = 1, int pageSize = 10)
     {
         return await _dbContext.Users.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
     }

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const fetchAllProductsAPI = () => {
+const fetchAllProductsAPI = (pageIndex, pageSize) => {
   const URL_BACKEND = "https://localhost:7099/api/Product/Get";
   const config = {
     headers: {
@@ -9,8 +9,10 @@ const fetchAllProductsAPI = () => {
   };
 
   return axios.post(URL_BACKEND, {
-    "pageIndex": 1,
-    "pageSize": 10
+    "filters": [],
+    "sortings": [],
+    "pageIndex": pageIndex,
+    "pageSize": pageSize
   } , config);
 };
 

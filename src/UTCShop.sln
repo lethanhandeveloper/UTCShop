@@ -39,6 +39,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTCShop.AppHost", "Aspire\U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTCShop.ServiceDefaults", "Aspire\UTCShop.ServiceDefaults\UTCShop.ServiceDefaults.csproj", "{C4C3CCCF-C2DE-97F0-D3D3-F4F1829A2A30}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{8345846F-A6C5-46C4-BCB2-27F5D02BF5B3}"
+	ProjectSection(SolutionItems) = preProject
+		test.txt = test.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +116,7 @@ Global
 		{51F433AC-65D9-423C-AD1D-FF72E303EF47} = {754DDD82-E53E-4CD7-BE1A-6C7698601FC3}
 		{03F2EDB7-783F-477C-8C09-49ADF0D77250} = {A0EE1A88-D0B2-4B3F-9FAC-3DA64B54BC6D}
 		{BDDCA97D-3BEB-42FB-8FC5-34331439D44B} = {754DDD82-E53E-4CD7-BE1A-6C7698601FC3}
+		{8345846F-A6C5-46C4-BCB2-27F5D02BF5B3} = {26004ADA-4894-4379-B92A-D4304699DAB1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {394B6413-8BAF-44B5-8359-053DD7F70898}

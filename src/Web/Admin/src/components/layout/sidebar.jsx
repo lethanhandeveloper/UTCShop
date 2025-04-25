@@ -29,16 +29,16 @@ const AppSideBar = ({ isSideBarCollapsed }) => {
         getItem('Dashboard', '1', <Link to={"./dashboard"}><PieChartOutlined /></Link>),
         getItem('Option 2', '2', <DesktopOutlined />),
         getItem('Category', '3', <Link to={"./category"}><AppstoreAddOutlined /></Link>),
-        getItem('Product', '10', <Link to={"/product"}><ProductOutlined /></Link>),
+        getItem('Product', '4', <Link to={"/product"}><ProductOutlined /></Link>),
         getItem('User', 'sub1', <UserOutlined />, [
-          getItem('Tom', '4'),
-          getItem('Bill', '5'),
-          getItem('Alex', '6'),
+          getItem('Tom', '5'),
+          getItem('Bill', '6'),
+          getItem('Alex', '7'),
         ]),
         getItem('Settings', 'sub2', <UserOutlined />, [
-            getItem('Role', '7'),
-            getItem('Bill', '8'),
-            getItem('Alex', '9'),
+            getItem('Role', '8'),
+            getItem('Bill', '9'),
+            getItem('Alex', '10'),
           ]),
         // getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
         // getItem('Files', '9', <FileOutlined />),
@@ -49,7 +49,9 @@ const AppSideBar = ({ isSideBarCollapsed }) => {
         <Sider collapsed={isSideBarCollapsed}
           style={siderStyle}
         >
-        <div className="demo-logo-vertical" />
+        <div className="demo-logo-vertical" style={{ display: "flex", justifyContent: 'center' }}>
+          <img style={{width: "100px" }} src={`/images/logo.png`}></img>
+        </div>
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
       </Sider>
     )

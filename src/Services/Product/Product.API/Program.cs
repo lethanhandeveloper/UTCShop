@@ -7,6 +7,12 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+Console.WriteLine($"Current Directory: {Directory.GetCurrentDirectory()}");
+builder.Configuration
+    .SetBasePath("C:\\PProjects\\UTCShop\\src")
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
 builder.AddServiceDefaults();
 
 var assembly = typeof(Program).Assembly;
@@ -50,6 +56,7 @@ builder.Services.AddAuthentication(opt =>
 {   // for development only
     opt.RequireHttpsMetadata = false;
     opt.SaveToken = true;
+    var config = builder.Configuration["JWT:SecretKey"];
     opt.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
@@ -64,6 +71,17 @@ builder.Services.AddAuthentication(opt =>
 // Add services to the container.
 builder.Services.AddApplicationServices(builder.Configuration).AddInfrastructureServices(builder.Configuration);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
 
 var app = builder.Build();
 
@@ -82,5 +100,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.UseCors("AllowFrontend");
 
 app.Run();

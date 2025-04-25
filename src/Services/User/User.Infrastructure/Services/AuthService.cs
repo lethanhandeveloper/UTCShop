@@ -28,7 +28,7 @@ public class AuthService : IAuthService
         {
             Subject = new ClaimsIdentity(new Claim[]
             {
-                    ClaimsIdentity.Use
+                    //ClaimsIdentity.Use
                     new Claim(ClaimTypes.Name, user.Name),
                     new Claim(ClaimTypes.GivenName, user.Name),
                     new Claim(ClaimTypes.Role, "User")

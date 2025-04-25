@@ -1,102 +1,111 @@
-import { Table } from "antd";
+import { Image, Table } from "antd";
 import { theme } from 'antd';
 import { useEffect, useState } from "react";
 import { fetchAllProductsAPI } from "../../services/api.services";
-
-const dataSource = [
-    {
-      key: '1',
-      name: 'Mike',
-      age: 32,
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
-    },{
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
-    },
+import { render } from "nprogress";
+import ProductForm from "./product.form";
+import Checkbox from "antd/es/checkbox/Checkbox";
   
-  ];
-  
-  const columns = [
-    {
-      title: 'Ten san pham',
-      dataIndex: 'name'
-    }, 
-    {
-      title: 'Hinh anh',
-      dataIndex: 'image'
-    },
-    {
-      title: 'Gia',
-      dataIndex: 'price'
-    }, 
-    {
-      title: 'Mo ta',
-      dataIndex: 'description'
-    }, 
-    {
-      title: 'Thuoc danh muc',
-      dataIndex: 'description'
-    }, 
-  ];
-
-const ProductTable = ({ products, fetchProducts }) => {
+const ProductTable = ({ products, setProducts, isProductFormOpen, setIsProductFormOpen }) => {
     const [isTableLoading, setIsTableLoading] = useState(false);
+    
+    const [current, setCurrent] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+    const [total, setTotal] = useState(10);
+    const [selectedIds, setSelectedIds] = useState([]);
+    
+    const handleClickAllCheckBox = (e) => {
+      if(e.target.checked){
+        setSelectedIds(products.map(p => p.id));
+      }else{
+        setSelectedIds([]);
+      }
+    }
+
+    const handleClickSingleCheckBox = (id) => {
+      if(!selectedIds.includes(id)){
+        setSelectedIds([...selectedIds, id]);
+      }else{
+        setSelectedIds(selectedIds.filter(p => p.id === id));
+      }
+    }
+
+    const columns = [
+      {
+        title: <Checkbox onClick={(e) => handleClickAllCheckBox(e) }/>,
+        render: (_, record, index) => {
+          return(
+              <Checkbox checked={selectedIds.includes(record.id)} onClick={() => handleClickSingleCheckBox(record.id)}/>
+          )
+        }
+      }, 
+      {
+        title: 'STT',
+        render: (_, record, index) => {
+          return(
+            <>{(current-1)*pageSize + index + 1}</>
+          )
+        }
+      }, 
+      {
+        title: 'Ten san pham',
+        dataIndex: 'name'
+      }, 
+      {
+        title: 'Hinh anh',
+        dataIndex: 'image',
+        render: (_, record, index) => {
+          return(
+              <Image src={`/images/productthumbnail.jpg`} style={{width: "3em" }}/>
+          );
+        }
+      },
+      {
+        title: 'Gia',
+        dataIndex: 'price'
+      }, 
+      {
+        title: 'Mo ta',
+        dataIndex: 'description'
+      }, 
+      {
+        title: 'Thuoc danh muc',
+        dataIndex: 'description'
+      }, 
+    ];
 
     useEffect(() => {
-      setIsTableLoading(true);
       fetchProducts();
+    }, [current, pageSize])
+
+    const fetchProducts = async () => {
+      setIsTableLoading(true);
+      const result = await fetchAllProductsAPI(current, pageSize);
+      if(result.data){
+        console.log(result.data);
+        setCurrent(result.data.pageIndex);
+        setPageSize(result.data.pageSize);
+        setTotal(result.data.totalCount)
+      }
+
       setIsTableLoading(false);
-    }, [])
+      setProducts(result.data.data);
+      return result;
+    } 
+
+    const onChange = (pagination, filters, sorter, extra) => {
+      if(pagination && pagination.current){
+        if(+pagination.current !== +current){
+          setCurrent(+pagination.current)
+        }
+      }
+
+      if(pagination && pagination.pageSize){
+        if(+pagination.pageSize !== +pageSize){
+          setPageSize(+pagination.pageSize)
+        }
+      }
+    }
 
     const {
         token: { colorBgContainer, borderRadiusLG },
@@ -110,16 +119,19 @@ const ProductTable = ({ products, fetchProducts }) => {
               borderRadius: borderRadiusLG,
             }}
           >
+            <ProductForm isProductFormOpen={isProductFormOpen} setIsProductFormOpen={setIsProductFormOpen} fetchProducts={fetchProducts}/>
             <Table 
               dataSource={products} columns={columns} scroll={{ x: 'max-content' }}
               loading={isTableLoading}
               pagination={{
-                current: 1,
-                pageSize: 10,
+                current: current,
+                pageSize: pageSize,
                 showSizeChanger: true,
-                total: 10,
+                total: total,
                 showTotal: (total, range) => { return (<div> {range[0]}-{range[1]} trên {total} rows</div>) }
+
               }}
+              onChange={onChange}
             />
         </div> 
     )

@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BuildingBlocks.Pagination;
+using BuildingBlocks.Utils;
+using Microsoft.EntityFrameworkCore;
 using Product.Domain.Data;
 using Product.Domain.Modules.Product.Entities;
 using Product.Interfaces.Repositories;
@@ -38,8 +40,18 @@ public class ProductQuery : IProductQuery
         throw new NotImplementedException();
     }
 
-    public async Task<IEnumerable<ProductEntity>> GetPagedAsync(int pageNumber = 1, int pageSize = 10)
+    public async Task<IEnumerable<ProductEntity>> GetPagedAsync(List<FilterCreteria> filters, int pageNumber = 1, int pageSize = 10)
     {
-        return await _dbContext.Products.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+        var query = _dbContext.Products.AsQueryable();
+
+        query = query.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+
+        foreach (var filter in filters)
+        {
+            var expression = ExpressionBuilder.BuildPredicate<ProductEntity>(filter);
+            query = query.Where(expression);
+        }
+
+        return await query.ToListAsync();
     }
 }

@@ -2,6 +2,11 @@ import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { Input, Modal, notification, Upload } from "antd"
 import { useState } from "react";
 import { createProductAPI, uploadFileAPI } from "../../services/api.services";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import { ClassicEditor, Essentials, Paragraph, Bold, Italic } from 'ckeditor5';
+import { FormatPainter } from 'ckeditor5-premium-features';
+import 'ckeditor5/ckeditor5.css';
+import 'ckeditor5-premium-features/ckeditor5-premium-features.css';
 
 const ProductForm = ({ isProductFormOpen, setIsProductFormOpen, fetchProducts }) => {
     const [thumbnailUrl, setThumbnailUrl] = useState("https://images.unsplash.com/photo-1505740420928-5e560c06d30e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D");
@@ -93,6 +98,15 @@ const ProductForm = ({ isProductFormOpen, setIsProductFormOpen, fetchProducts })
                 <div>
                     <span>Mô tả</span>
                     <Input.TextArea onChange={(e) => setDescription(e.target.value)}/>
+                    <CKEditor
+                        editor={ ClassicEditor }
+                        config={ {
+                            licenseKey: '<YOUR_LICENSE_KEY>', // Or 'GPL'.
+                            plugins: [ Essentials, Paragraph, Bold, Italic, FormatPainter ],
+                            toolbar: [ 'undo', 'redo', '|', 'bold', 'italic', '|', 'formatPainter' ],
+                            initialData: '<p>Hello from CKEditor 5 in React!</p>',
+                        }}
+                    />
                 </div>
         </Modal>
     )
