@@ -1,80 +1,68 @@
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { Input, Modal, notification, Upload } from "antd"
 import { useState } from "react";
-import { createProductAPI, uploadFileAPI } from "../../services/api.services";
+import { createProductAPI, uploadFileAPI } from "../../services/api/api.services";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { ClassicEditor, Essentials, Paragraph, Bold, Italic } from 'ckeditor5';
 import { FormatPainter } from 'ckeditor5-premium-features';
 import 'ckeditor5/ckeditor5.css';
 import 'ckeditor5-premium-features/ckeditor5-premium-features.css';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts, toggleProductCreateForm, toggleProductUpdateForm } from "../../redux/product/product.slice";
 
-const ProductForm = ({ isProductFormOpen, setIsProductFormOpen, fetchProducts }) => {
-    const [thumbnailUrl, setThumbnailUrl] = useState("https://images.unsplash.com/photo-1505740420928-5e560c06d30e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D");
-    const [loading, setLoading] = useState(false);
-    const [thumbnail, setThumbnail] = useState(null);
-    const [name, setName] = useState("");
-    const [price, setPrice] = useState("");
-    const [description, setDescription] = useState("");
+const ProductUpdateForm = () => {
+    const productData = useSelector(state => state.product.productTableData.data);
+    const selectedId = useSelector(state => state.product.productTableData.selectedIds[0]);
+    const selectedProduct = productData.find(p => p.id === selectedId);
+
+    const [thumbnail, setThumbnail] = useState(selectedProduct.thumbnail);
+    const [name, setName] = useState(selectedProduct.name);
+    const [price, setPrice] = useState(selectedProduct.price);
+    const [description, setDescription] = useState(selectedProduct.description);
+    
+   
+    const isOpenedProductUpdateForm = useSelector(state => state.product.isOpenedProductUpdateForm);
+    const { pageIndex, pageSize } = useSelector(state => state.product.productTableData);
+    const dispatch = useDispatch();
 
     const handleChangeImage = (e) => {
         setThumbnail(e.target.files[0]);
     }
 
-    const handleChangeThumbnailImage = (info) => {
-       
-        if (info.file.status === 'uploading') {
-            setLoading(true);
-            return;
-          }
-          if (info.file.status === 'done') {
-            // URL.createObjectURL
-            // // Get this url from response in real world.
-            // getBase64(info.file.originFileObj, url => {
-            //   setLoading(false);
-            //   setThumbnailUrl(url);
-            //   console.log(url);
-            // });
-            
-            setLoading(false);
-            setThumbnailUrl(URL.createObjectURL(file))
-          }
-    }
 
-    const uploadButton = (
-        <button style={{ border: 0, background: 'none' }} type="button">
-          {loading ? <LoadingOutlined /> : <PlusOutlined />}
-          <div style={{ marginTop: 8 }}>Upload</div>
-        </button>
-      );
-    
     const handleSubmitForm = async () => {
         const res = await uploadFileAPI(thumbnail);
         await createProductAPI(
             name,
             price,
-            res.data.data,
+            res.data,
             description,
             ""
         );
 
-        await fetchProducts();
+        dispatch(fetchProducts({pageIndex, pageSize}))
+        
+        setName("");
+        setPrice("");
+        setDescription("");
+        setThumbnail(null);
 
         notification.success({
             title: "Success",
             message: "Success"
         })
 
-        setIsProductFormOpen(false);
+        dispatch(toggleProductCreateForm());
     }
 
     return(
-        <Modal title="Thêm danh mục mới" maskClosable={false}
-         open={isProductFormOpen} onOk={() => {handleSubmitForm();}} 
-         onClose={() => setIsProductFormOpen(false)}
-         onCancel={() => setIsProductFormOpen(false)}>
+        <Modal title="Chinh sua danh muc" maskClosable={false}
+         open={isOpenedProductUpdateForm} onOk={() => {handleSubmitForm();}} 
+         onClose={() => dispatch(toggleProductUpdateForm())}
+         onCancel={() => dispatch(toggleProductUpdateForm())}>
             <div>
                 <span>Tên san pham</span>
-                    <Input onChange={(e) => setName(e.target.value)}/>
+                    <Input value={name} onChange={(e) => setName(e.target.value)}/>
                 </div>
                 <div>
                     <span>Hinh anh</span>
@@ -93,11 +81,11 @@ const ProductForm = ({ isProductFormOpen, setIsProductFormOpen, fetchProducts })
                 </div>
                 <div>
                     <span>Gia</span>
-                    <Input type="number" onChange={(e) => setPrice(e.target.value)}/>
+                    <Input value={price} type="number" onChange={(e) => setPrice(e.target.value)}/>
                 </div>
                 <div>
                     <span>Mô tả</span>
-                    <Input.TextArea onChange={(e) => setDescription(e.target.value)}/>
+                    <Input.TextArea value={description} onChange={(e) => setDescription(e.target.value)}/>
                     <CKEditor
                         editor={ ClassicEditor }
                         config={ {
@@ -112,4 +100,4 @@ const ProductForm = ({ isProductFormOpen, setIsProductFormOpen, fetchProducts })
     )
 }
 
-export default ProductForm;
+export default ProductUpdateForm;

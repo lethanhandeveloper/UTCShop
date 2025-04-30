@@ -1,7 +1,7 @@
 import { theme } from 'antd';
 import { useState } from 'react';
 import { Avatar, Badge,Layout } from 'antd';
-import { BellOutlined, MenuFoldOutlined, MenuUnfoldOutlined, SearchOutlined } from '@ant-design/icons';
+import { BellOutlined, MenuFoldOutlined, MenuUnfoldOutlined, MoonFilled, SearchOutlined, SunFilled } from '@ant-design/icons';
 const { Header, Content, Footer, Sider } = Layout;
 
 const AppHeader = ({ isSideBarCollapsed, setIsSideBarCollapsed }) => {
@@ -25,6 +25,8 @@ const AppHeader = ({ isSideBarCollapsed, setIsSideBarCollapsed }) => {
                   <Badge count={5}>
                     <BellOutlined shape="square" size="large" style={{ fontSize: "1.5em" }}/>
                   </Badge>
+                  <SunFilled style={{ fontSize: "1.5em" }}/>
+                  <MoonFilled style={{ fontSize: "1.5em" }}/>
                   <div>
                     <Avatar style={{ fontSize: "0.5em" }}></Avatar>
                     <span style={{ marginLeft: "1em", fontFamily: "San Francisco", color: "#666666", fontSize: "1em" }}>Lê Thành An</span>

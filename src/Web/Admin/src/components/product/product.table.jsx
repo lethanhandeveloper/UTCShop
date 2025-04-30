@@ -1,20 +1,23 @@
 import { Image, Table } from "antd";
 import { theme } from 'antd';
 import { useEffect, useState } from "react";
-import { fetchAllProductsAPI } from "../../services/api.services";
+import { fetchAllProductsAPI } from "../../services/api/api.services";
 import { render } from "nprogress";
-import ProductForm from "./product.form";
+import ProductCreateForm from "./product.form";
 import Checkbox from "antd/es/checkbox/Checkbox";
   
-const ProductTable = ({ products, setProducts, isProductFormOpen, setIsProductFormOpen }) => {
+const ProductTable = (
+  { products, setProducts, isProductCreateFormOpen, setIsProductCreateFormOpen,
+    selectedIds, setSelectedIds, isCheckedClickAllCheckBox, setIsCheckedClickAllCheckBox
+  }) => {
     const [isTableLoading, setIsTableLoading] = useState(false);
     
     const [current, setCurrent] = useState(1);
     const [pageSize, setPageSize] = useState(10);
     const [total, setTotal] = useState(10);
-    const [selectedIds, setSelectedIds] = useState([]);
     
     const handleClickAllCheckBox = (e) => {
+      setIsCheckedClickAllCheckBox(!isCheckedClickAllCheckBox);
       if(e.target.checked){
         setSelectedIds(products.map(p => p.id));
       }else{
@@ -32,7 +35,7 @@ const ProductTable = ({ products, setProducts, isProductFormOpen, setIsProductFo
 
     const columns = [
       {
-        title: <Checkbox onClick={(e) => handleClickAllCheckBox(e) }/>,
+        title: <Checkbox onClick={(e) => handleClickAllCheckBox(e) } checked={isCheckedClickAllCheckBox}/>,
         render: (_, record, index) => {
           return(
               <Checkbox checked={selectedIds.includes(record.id)} onClick={() => handleClickSingleCheckBox(record.id)}/>
@@ -62,7 +65,12 @@ const ProductTable = ({ products, setProducts, isProductFormOpen, setIsProductFo
       },
       {
         title: 'Gia',
-        dataIndex: 'price'
+        dataIndex: 'price',
+        render: (_, record, index) => {
+          return(
+            <>{ new Intl.NumberFormat('vi-VN').format(record.price) }</>
+          );
+        }
       }, 
       {
         title: 'Mo ta',
@@ -81,19 +89,21 @@ const ProductTable = ({ products, setProducts, isProductFormOpen, setIsProductFo
     const fetchProducts = async () => {
       setIsTableLoading(true);
       const result = await fetchAllProductsAPI(current, pageSize);
-      if(result.data){
-        console.log(result.data);
-        setCurrent(result.data.pageIndex);
-        setPageSize(result.data.pageSize);
-        setTotal(result.data.totalCount)
+      console.log(result);
+      if(result){
+        setCurrent(result.pageIndex);
+        setPageSize(result.pageSize);
+        setTotal(result.totalCount)
       }
 
       setIsTableLoading(false);
-      setProducts(result.data.data);
+      setProducts(result.data);
       return result;
     } 
 
     const onChange = (pagination, filters, sorter, extra) => {
+      setSelectedIds([]);
+      setIsCheckedClickAllCheckBox(false);
       if(pagination && pagination.current){
         if(+pagination.current !== +current){
           setCurrent(+pagination.current)
@@ -119,7 +129,7 @@ const ProductTable = ({ products, setProducts, isProductFormOpen, setIsProductFo
               borderRadius: borderRadiusLG,
             }}
           >
-            <ProductForm isProductFormOpen={isProductFormOpen} setIsProductFormOpen={setIsProductFormOpen} fetchProducts={fetchProducts}/>
+            <ProductCreateForm isProductCreateFormOpen={isProductCreateFormOpen} setIsProductCreateFormOpen={setIsProductCreateFormOpen} fetchProducts={fetchProducts}/>
             <Table 
               dataSource={products} columns={columns} scroll={{ x: 'max-content' }}
               loading={isTableLoading}

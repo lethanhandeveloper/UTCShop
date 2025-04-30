@@ -1,29 +1,50 @@
 import { useState } from "react";
-import ProductForm from "../product/product.form";
-import ProductTable from "../product/product.table";
-import { Button, Drawer, Input } from "antd";
-import { fetchAllProductsAPI } from "../../services/api.services";
-import { CloseCircleOutlined, CompressOutlined, EditFilled, FilterFilled, FilterOutlined, FilterTwoTone, PlusOutlined } from "@ant-design/icons";
+import ProductCreateForm from "../product/product.create.form";
+import ProductTable from "../product/product.table2";
+import { Button, Drawer, Input, notification } from "antd";
+import { fetchAllProductsAPI, handleDeleteProductAPI } from "../../services/api/api.services";
+import { CloseCircleOutlined, CompressOutlined, DeleteFilled, EditFilled, FilterFilled, FilterOutlined, FilterTwoTone, PlusOutlined } from "@ant-design/icons";
 import Search from "antd/es/transfer/search";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts, toggleProductCreateForm, toggleProductUpdateForm } from "../../redux/product/product.slice";
+import { Typography } from 'antd';
+const { Text } = Typography;
 
 const Product = () => {
     const [products, setProducts] = useState([]);
-    const [isProductFormOpen, setIsProductFormOpen] = useState(false);
     const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
+    const [isCheckedClickAllCheckBox, setIsCheckedClickAllCheckBox] = useState(false);
+    const dispatch = useDispatch();
+    const { isDisabledEditButton, isDisabledDeleteButton } = useSelector(state => state.product);
+    const selectedIds = useSelector(state => state.product.productTableData.selectedIds);
+    const { pageIndex, pageSize } = useSelector(state => state.product.productTableData);
+
+    const handleDeleteProduct = async () => {
+        const res = await handleDeleteProductAPI(selectedIds);
+        debugger
+        if(res){
+            notification.success({
+                title: "Success",
+                message: "Xoa san pham thanh cong"
+            })
+
+            dispatch(fetchProducts({ pageIndex, pageSize }));
+        }
+    }
 
     return (
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
             <h3>Product List</h3>
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                 <div style={{ display: "flex", gap: "0.5em" }}>
-                    <Button type="primary" style={{ alignSelf: "flex-end" }} onClick={() => setIsProductFormOpen(true)}>
+                    <Button type="primary" style={{ alignSelf: "flex-end" }} onClick={() => dispatch(toggleProductCreateForm())}>
                         <PlusOutlined />Create
                     </Button>
-                    <Button type="primary" style={{ alignSelf: "flex-end" }} onClick={() => setIsProductFormOpen(true)}>
+                    <Button disabled={isDisabledEditButton} type="primary" style={{ alignSelf: "flex-end" }} onClick={() => dispatch(toggleProductUpdateForm())}>
                         <EditFilled />Edit
                     </Button>
-                    <Button danger style={{ alignSelf: "flex-end" }} onClick={() => setIsProductFormOpen(true)}>
-                        <CloseCircleOutlined /> Deactive
+                    <Button disabled={isDisabledDeleteButton} danger style={{ alignSelf: "flex-end" }} onClick={() => handleDeleteProduct()}>
+                        <DeleteFilled /> Delete
                     </Button>
                 </div>
                 <div style={{ width: "50%", display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "1em" }}>
@@ -36,8 +57,13 @@ const Product = () => {
                     <p>Some contents...</p>
                 </Drawer>
             </div>
+            { 
+                selectedIds.length > 0 &&
+                <Text code>{selectedIds.length} hang da chon</Text>
+            }
             <ProductTable products={products} setProducts={setProducts}
-                isProductFormOpen={isProductFormOpen} setIsProductFormOpen={setIsProductFormOpen}
+                isCheckedClickAllCheckBox={isCheckedClickAllCheckBox} setIsCheckedClickAllCheckBox={setIsCheckedClickAllCheckBox}
+                // selectedIds={selectedIds} setSelectedIds={setSelectedIds}
              />
         </div>
     )
