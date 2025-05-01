@@ -25,7 +25,7 @@ const AppHeader = ({ isSideBarCollapsed, setIsSideBarCollapsed }) => {
                   <Badge count={5}>
                     <BellOutlined shape="square" size="large" style={{ fontSize: "1.5em" }}/>
                   </Badge>
-                  <SunFilled style={{ fontSize: "1.5em" }}/>
+                  {/* <SunFilled style={{ fontSize: "1.5em" }}/> */}
                   <MoonFilled style={{ fontSize: "1.5em" }}/>
                   <div>
                     <Avatar style={{ fontSize: "0.5em" }}></Avatar>

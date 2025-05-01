@@ -1,7 +1,7 @@
 import { Image, Table } from "antd";
 import { theme } from 'antd';
 import { useEffect, useState } from "react";
-import { fetchAllProductsAPI } from "../../services/api/api.services";
+import productAPI from "../../services/api/productAPI";
 import { render } from "nprogress";
 import ProductCreateForm from "./product.form";
 import Checkbox from "antd/es/checkbox/Checkbox";
@@ -11,7 +11,6 @@ const ProductTable = (
     selectedIds, setSelectedIds, isCheckedClickAllCheckBox, setIsCheckedClickAllCheckBox
   }) => {
     const [isTableLoading, setIsTableLoading] = useState(false);
-    
     const [current, setCurrent] = useState(1);
     const [pageSize, setPageSize] = useState(10);
     const [total, setTotal] = useState(10);
@@ -88,8 +87,7 @@ const ProductTable = (
 
     const fetchProducts = async () => {
       setIsTableLoading(true);
-      const result = await fetchAllProductsAPI(current, pageSize);
-      console.log(result);
+      const result = await productAPI.fetchProducts(current, pageSize);
       if(result){
         setCurrent(result.pageIndex);
         setPageSize(result.pageSize);

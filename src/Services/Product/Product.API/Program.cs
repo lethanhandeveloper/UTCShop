@@ -1,3 +1,4 @@
+using BuildingBlocks.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -7,16 +8,15 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-Console.WriteLine($"Current Directory: {Directory.GetCurrentDirectory()}");
+
 builder.Configuration
-    .SetBasePath("C:\\PProjects\\UTCShop\\src")
+    .SetBasePath(SystemPathBuilder.GetBasePath())
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddEnvironmentVariables();
 
 builder.AddServiceDefaults();
 
 var assembly = typeof(Program).Assembly;
-
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -88,7 +88,7 @@ var app = builder.Build();
 app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())  // Đảm bảo chỉ chạy Swagger ở môi trường Development
+if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();

@@ -44,13 +44,15 @@ public class ProductQuery : IProductQuery
     {
         var query = _dbContext.Products.AsQueryable();
 
-        query = query.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+        query = query.Where(p => p.IsDeleted == false);
 
         foreach (var filter in filters)
         {
             var expression = ExpressionBuilder.BuildPredicate<ProductEntity>(filter);
             query = query.Where(expression);
         }
+
+        query = query.Skip((pageNumber - 1) * pageSize).Take(pageSize);
 
         return await query.ToListAsync();
     }

@@ -1,7 +1,7 @@
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { Input, Modal, notification, Upload } from "antd"
+import { Image, Input, Modal, notification, Upload } from "antd"
 import { useState } from "react";
-import { createProductAPI, uploadFileAPI } from "../../services/api/api.services";
+import productAPI from "../../services/api/productAPI";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { ClassicEditor, Essentials, Paragraph, Bold, Italic } from 'ckeditor5';
 import { FormatPainter } from 'ckeditor5-premium-features';
@@ -9,6 +9,9 @@ import 'ckeditor5/ckeditor5.css';
 import 'ckeditor5-premium-features/ckeditor5-premium-features.css';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, toggleProductCreateForm } from "../../redux/product/product.slice";
+import fileAPI from "../../services/api/fileAPI";
+import { NumberFormatBase } from "react-number-format";
+
 
 const ProductCreateForm = () => {
     const [thumbnailUrl, setThumbnailUrl] = useState("https://images.unsplash.com/photo-1505740420928-5e560c06d30e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D");
@@ -48,21 +51,10 @@ const ProductCreateForm = () => {
           }
     }
 
-    const uploadButton = (
-        <button style={{ border: 0, background: 'none' }} type="button">
-          {loading ? <LoadingOutlined /> : <PlusOutlined />}
-          <div style={{ marginTop: 8 }}>Upload</div>
-        </button>
-      );
-    
+  
     const handleSubmitForm = async () => {
-        setName("");
-        setPrice("");
-        setDescription("");
-        setThumbnail(null);
-
-        const res = await uploadFileAPI(thumbnail);
-        await createProductAPI(
+        const res = await fileAPI.upload(thumbnail);
+        await productAPI.createProduct(
             name,
             price,
             res.data,
@@ -76,6 +68,11 @@ const ProductCreateForm = () => {
             title: "Success",
             message: "Success"
         })
+
+        setName("");
+        setPrice("");
+        setDescription("");
+        setThumbnail(null);
 
         dispatch(toggleProductCreateForm());
     }
@@ -103,10 +100,21 @@ const ProductCreateForm = () => {
                         {thumbnailUrl ? <img src={thumbnailUrl} alt="Product" style={{ width: '100%' }} /> : uploadButton}
                     </Upload> */}
                     <Input type="file" onChange={handleChangeImage}/>
+                    { thumbnail && <Image style={{ width: "20em" }} src={URL.createObjectURL(thumbnail)}/> }
                 </div>
                 <div>
                     <span>Gia</span>
-                    <Input value={price} type="number" onChange={(e) => setPrice(e.target.value)}/>
+                    <NumberFormatBase
+                        hidden
+                        value={price}
+                        thousandSeparator="."
+                        decimalSeparator=","
+                        onValueChange={(values) => {
+                            setPrice(values.value); 
+                        }}
+                        className="ant-input"
+                    />
+                    <Input value={Number(price).toLocaleString('vi-VN') || ""} type="text" onChange={(e) => setPrice(e.target.value)}/>
                 </div>
                 <div>
                     <span>Mô tả</span>

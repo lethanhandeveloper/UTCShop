@@ -37,7 +37,7 @@ public class ProductController : Controller
         return results.Id;
     }
 
-    [HttpPost("Update")]
+    [HttpPut("Update")]
     public async Task<Guid> Update([FromBody] ProductDto request)
     {
         var command = new UpdateProductCommand(request);
@@ -45,12 +45,12 @@ public class ProductController : Controller
         return results.Id;
     }
 
-    [HttpPost("Delete")]
-    public async Task<Guid> Delete([FromBody] ProductDto request)
+    [HttpDelete("Delete")]
+    public async Task<List<Guid>> Delete(List<Guid> Ids)
     {
-        var command = new DeleteProductCommand(request);
+        var command = new DeleteProductCommand(Ids);
         var results = await _mediator.Send(command);
-        return results.Id;
+        return results.Ids;
     }
 
     [HttpPost("Upload")]
@@ -58,7 +58,7 @@ public class ProductController : Controller
     {
         try
         {
-            if (image.file == null || image.file.FileName.Length == 0)
+            if (image.File == null || image.File.FileName.Length == 0)
             {
                 return new ApiResponse<string>
                 {
@@ -69,7 +69,7 @@ public class ProductController : Controller
                 };
             }
 
-            var extension = Path.GetExtension(image.file.FileName);
+            var extension = Path.GetExtension(image.File.FileName);
             var fileName = Guid.NewGuid().ToString() + extension;
 
             var uploadPath = Path.Combine("C:\\PProjects\\UTCShop\\src\\BuildingBlocks\\BuildingBlocks\\Images", fileName);
@@ -77,7 +77,7 @@ public class ProductController : Controller
 
             using (FileStream stream = new FileStream(uploadPath, FileMode.Create))
             {
-                await image.file.CopyToAsync(stream);
+                await image.File.CopyToAsync(stream);
                 stream.Close();
             }
 

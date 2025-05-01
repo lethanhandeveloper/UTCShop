@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchAllProductsAPI } from "../../services/api/api.services";
+import productAPI from "../../services/api/productAPI";
 
 const initialState = {
     productTableData: {
@@ -19,11 +19,8 @@ const initialState = {
 export const fetchProducts = createAsyncThunk(
     'product/fetchProducts',
     async (payload, thunkAPI) => {
-    const res =  await fetchAllProductsAPI(payload.pageIndex, payload.pageSize)
-    // if(data && data.id)
-    // {
-    //     thunkAPI.dispatch(fetchListUsers());
-    // }
+    const res =  await productAPI.fetchProducts(payload.pageIndex, payload.pageSize)    
+
       return res
     },
 )
@@ -36,8 +33,10 @@ const productSlice = createSlice({
             state.productTableData.isAllCheckBoxClicked = !state.productTableData.isAllCheckBoxClicked;
             if(state.productTableData.isAllCheckBoxClicked){
                 state.productTableData.selectedIds = state.productTableData.data.map(p => p.id);
+                state.isDisabledDeleteButton = false;
             }else{
                 state.productTableData.selectedIds = [];
+                state.isDisabledDeleteButton = true;
             }
         },
         clickSingleCheckBox: (state, action) => {
@@ -48,6 +47,12 @@ const productSlice = createSlice({
             }else{
                 state.productTableData.selectedIds =
                 state.productTableData.selectedIds.filter(id => id !== action.payload);
+            }
+
+            if(state.productTableData.selectedIds.length > 0){
+                state.isDisabledDeleteButton = false;
+            }else{
+                state.isDisabledDeleteButton = true;
             }
         },
         toggleProductCreateForm: (state, action) => {

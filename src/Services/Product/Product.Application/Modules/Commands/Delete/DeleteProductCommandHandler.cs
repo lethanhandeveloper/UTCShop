@@ -13,7 +13,7 @@ public class DeleteProductCommandHandler : ICommandHandler<DeleteProductCommand,
 
     public async Task<DeleteProductResult> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
     {
-        var result = await _repository.DeleteAsync(command.Product.Id, cancellationToken);
+        var result = await _repository.DeleteAsync(command.Ids, cancellationToken);
         return new DeleteProductResult(result);
     }
 }

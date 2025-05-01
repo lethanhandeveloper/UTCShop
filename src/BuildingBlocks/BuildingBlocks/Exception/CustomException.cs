@@ -14,3 +14,14 @@ public class NotFoundException : CustomExceptionBase
 
     }
 }
+
+
+public class BadRequestException : CustomExceptionBase
+{
+    public BadRequestException(string message) : base(message)
+    {
+
+    }
+}
+
+

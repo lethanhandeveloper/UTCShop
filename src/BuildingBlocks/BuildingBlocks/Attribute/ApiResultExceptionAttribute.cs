@@ -24,6 +24,16 @@ public class ApiResultExceptionAttribute : ExceptionFilterAttribute
                 });
 
                 break;
+            case BadRequestException:
+                context.Result = new ObjectResult(new ApiResponse<object>
+                {
+                    Success = false,
+                    Data = null,
+                    Message = context.Exception.Message,
+                    StatusCode = HttpStatusCodeEnum.BadRequest
+                });
+
+                break;
 
         }
     }

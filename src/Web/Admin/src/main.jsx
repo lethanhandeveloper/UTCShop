@@ -8,8 +8,10 @@ import {
 import Category from './components/pages/category.jsx';
 import Dashboard from './components/pages/dashboard.jsx';
 import Product from './components/pages/product.jsx';
+import FileSetting from './components/pages/fileconfiguration.jsx';
 import { Provider } from 'react-redux';
 import { store } from './redux/store.js';
+import FileConfiguration from './components/pages/fileconfiguration.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/product",
         element: <Product />
+      },
+      {
+        path: "/fileconfiguration",
+        element: <FileConfiguration />
       }
     ]
   },

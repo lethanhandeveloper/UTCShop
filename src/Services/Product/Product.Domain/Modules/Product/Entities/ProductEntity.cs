@@ -19,7 +19,10 @@ public class ProductEntity : Aggregate<Guid>
             Price = price,
             ImageUrl = imageUrl,
             Description = description,
-            CategoryId = categoryId
+            CategoryId = categoryId,
+            IsDeleted = false,
+            CreatedAt = DateTime.UtcNow,
+            LastUpdatedAt = DateTime.UtcNow
         };
 
         return entity;

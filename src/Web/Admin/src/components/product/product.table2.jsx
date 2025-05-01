@@ -1,7 +1,6 @@
 import { Image, Table } from "antd";
 import { theme } from 'antd';
 import { useEffect, useState } from "react";
-import { fetchAllProductsAPI } from "../../services/api/api.services";
 import { render } from "nprogress";
 import ProductCreateForm from "./product.create.form";
 import Checkbox from "antd/es/checkbox/Checkbox";
@@ -40,22 +39,6 @@ const ProductTable = ({ isCheckedClickAllCheckBox }) => {
       dispatch(fetchProducts({ pageIndex, pageSize }));
     }, [pageIndex, pageSize])
 
-    // const fetchProducts = async () => {
-    //   setIsTableLoading(true);
-    //   const result = await fetchAllProductsAPI(current, pageSize);
-    //   console.log(result);
-    //   if(result){
-    //     setCurrent(result.pageIndex);
-    //     setPageSize(result.pageSize);
-    //     setTotal(result.totalCount)
-    //   }
-
-    //   setIsTableLoading(false);
-    //   setProducts(result.data);
-    //   return result;
-    // } 
-    
-
     const columns = [
       {
         title: <Checkbox onClick={() => handleClickAllCheckBox() } checked={isAllCheckBoxClicked}/>,
@@ -82,13 +65,18 @@ const ProductTable = ({ isCheckedClickAllCheckBox }) => {
         dataIndex: 'image',
         render: (_, record, index) => {
           return(
-              <Image src={`/images/productthumbnail.jpg`} style={{width: "3em" }}/>
+              <Image src={`${import.meta.env.VITE_SERVER_FILE_URL}/${record.imageUrl}`} style={{width: "3em" }}/>
           );
         }
       },
       {
         title: 'Gia',
-        dataIndex: 'price'
+        dataIndex: 'price',
+        render: (_, record, index) => {
+          return(
+              <>{record.price.toLocaleString('vi-VN')} d</>
+          );
+        }
       }, 
       {
         title: 'Mo ta',

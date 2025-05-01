@@ -21,17 +21,23 @@ public class ProductRepository : IProductRepository
         return entity.Id;
     }
 
-    public async Task<Guid> DeleteAsync(Guid Id, CancellationToken cancellation)
+    public async Task<List<Guid>> DeleteAsync(List<Guid> Ids, CancellationToken cancellation)
     {
-        if (Id == Guid.Empty)
+        var products = await _dbContext.Products.Where(p => Ids.Contains(p.Id)).ToListAsync();
+
+        if (products == null)
         {
-            return Guid.Empty;
+            throw new NotFoundException($"Product Not found");
         }
 
-        await _dbContext.Products.Where(p => p.Id == Id).ExecuteDeleteAsync();
+        foreach (var product in products)
+        {
+            product.IsDeleted = true;
+        }
+
         await _dbContext.SaveChangesAsync(cancellation);
 
-        return Id;
+        return Ids;
     }
 
     public async Task<Guid> UpdateAsync(ProductEntity entity, CancellationToken cancellation)
@@ -49,6 +55,10 @@ public class ProductRepository : IProductRepository
         }
 
         product.Name = entity.Name;
+        product.Price = entity.Price;
+        product.ImageUrl = entity.ImageUrl;
+        product.Description = entity.Description;
+        product.CategoryId = entity.CategoryId;
 
         await _dbContext.SaveChangesAsync(cancellation);
 

@@ -1,7 +1,8 @@
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { Input, Modal, notification, Upload } from "antd"
+import { Image, Input, Modal, notification, Upload } from "antd"
 import { useState } from "react";
-import { createProductAPI, uploadFileAPI } from "../../services/api/api.services";
+import utilApi from "../../services/api/fileAPI";
+import productAPI from "../../services/api/productAPI";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { ClassicEditor, Essentials, Paragraph, Bold, Italic } from 'ckeditor5';
 import { FormatPainter } from 'ckeditor5-premium-features';
@@ -15,7 +16,7 @@ const ProductUpdateForm = () => {
     const selectedId = useSelector(state => state.product.productTableData.selectedIds[0]);
     const selectedProduct = productData.find(p => p.id === selectedId);
 
-    const [thumbnail, setThumbnail] = useState(selectedProduct.thumbnail);
+    const [thumbnail, setThumbnail] = useState(null);
     const [name, setName] = useState(selectedProduct.name);
     const [price, setPrice] = useState(selectedProduct.price);
     const [description, setDescription] = useState(selectedProduct.description);
@@ -31,11 +32,17 @@ const ProductUpdateForm = () => {
 
 
     const handleSubmitForm = async () => {
-        const res = await uploadFileAPI(thumbnail);
-        await createProductAPI(
+        let res = null;
+
+        if(thumbnail){
+            res = await utilApi.upload(thumbnail);
+        }
+        
+        await productAPI.updateProduct(
+            selectedId,
             name,
             price,
-            res.data,
+            res && res.data ? res.data : selectedProduct.imageUrl,
             description,
             ""
         );
@@ -52,14 +59,24 @@ const ProductUpdateForm = () => {
             message: "Success"
         })
 
-        dispatch(toggleProductCreateForm());
+        dispatch(toggleProductUpdateForm());
+    }
+
+    const handleCloseModel = () => {
+        setName("");
+        setPrice("");
+        setDescription("");
+        setThumbnail(null);
+
+        dispatch(toggleProductUpdateForm());
     }
 
     return(
         <Modal title="Chinh sua danh muc" maskClosable={false}
          open={isOpenedProductUpdateForm} onOk={() => {handleSubmitForm();}} 
-         onClose={() => dispatch(toggleProductUpdateForm())}
-         onCancel={() => dispatch(toggleProductUpdateForm())}>
+         destroyOnClose={true}
+         onClose={() => handleCloseModel()}
+         onCancel={() => handleCloseModel()}>
             <div>
                 <span>Tên san pham</span>
                     <Input value={name} onChange={(e) => setName(e.target.value)}/>
@@ -78,6 +95,14 @@ const ProductUpdateForm = () => {
                         {thumbnailUrl ? <img src={thumbnailUrl} alt="Product" style={{ width: '100%' }} /> : uploadButton}
                     </Upload> */}
                     <Input type="file" onChange={handleChangeImage}/>
+                    {
+                        thumbnail &&
+                        <Image
+                        style={{ width: "20em" }}
+                        src={
+                            URL.createObjectURL(thumbnail)
+                        } />
+                    }
                 </div>
                 <div>
                     <span>Gia</span>

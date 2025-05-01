@@ -9,7 +9,7 @@ public class UserRepository : IUserRepository
         throw new NotImplementedException();
     }
 
-    public Task<Guid> DeleteAsync(Guid Id, CancellationToken cancellation)
+    public Task<List<Guid>> DeleteAsync(List<Guid> Ids, CancellationToken cancellation)
     {
         throw new NotImplementedException();
     }

@@ -2,7 +2,7 @@ import { useState } from "react";
 import ProductCreateForm from "../product/product.create.form";
 import ProductTable from "../product/product.table2";
 import { Button, Drawer, Input, notification } from "antd";
-import { fetchAllProductsAPI, handleDeleteProductAPI } from "../../services/api/api.services";
+import productAPI from "../../services/api/productAPI";
 import { CloseCircleOutlined, CompressOutlined, DeleteFilled, EditFilled, FilterFilled, FilterOutlined, FilterTwoTone, PlusOutlined } from "@ant-design/icons";
 import Search from "antd/es/transfer/search";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,8 +20,7 @@ const Product = () => {
     const { pageIndex, pageSize } = useSelector(state => state.product.productTableData);
 
     const handleDeleteProduct = async () => {
-        const res = await handleDeleteProductAPI(selectedIds);
-        debugger
+        const res = await productAPI.deleteProduct(selectedIds);
         if(res){
             notification.success({
                 title: "Success",
@@ -34,7 +33,7 @@ const Product = () => {
 
     return (
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            <h3>Product List</h3>
+            <h2>Product List</h2>
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                 <div style={{ display: "flex", gap: "0.5em" }}>
                     <Button type="primary" style={{ alignSelf: "flex-end" }} onClick={() => dispatch(toggleProductCreateForm())}>
