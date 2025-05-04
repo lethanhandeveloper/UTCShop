@@ -10,7 +10,7 @@ const productApi = {
     const URL_BACKEND = `${API_PREFIX}/Get`;
     const config = {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       }
     };
 

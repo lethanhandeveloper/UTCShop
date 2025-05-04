@@ -12,31 +12,43 @@ import FileSetting from './components/pages/fileconfiguration.jsx';
 import { Provider } from 'react-redux';
 import { store } from './redux/store.js';
 import FileConfiguration from './components/pages/fileconfiguration.jsx';
+import Auth from './components/pages/auth.jsx';
+import PrivateRoute from './components/routes/PrivateRoute.jsx';
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <App />,
+    element: <PrivateRoute />,
     // errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
-        path: "/dashboard",
-        element: <Dashboard />
-      },
-      {
-        path: "/category",
-        element: <Category />
-      },
-      {
-        path: "/product",
-        element: <Product />
-      },
-      {
-        path: "/fileconfiguration",
-        element: <FileConfiguration />
+        path: "/",
+        element: <App />,
+        children: [
+          {
+            index: true,
+            path: "/dashboard",
+            element: <Dashboard />
+          },
+          {
+            path: "/category",
+            element: <Category />
+          },
+          {
+            path: "/product",
+            element: <Product />
+          },
+          { 
+            path: "/fileconfiguration",
+            element: <FileConfiguration />
+          }
+        ]
       }
     ]
+  },
+  {
+    index: true,
+    path: "/auth",
+    element: <Auth />
   },
   // {
   //   path: "/login", 

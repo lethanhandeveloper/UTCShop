@@ -72,7 +72,6 @@ const productSlice = createSlice({
             state.productTableData.pageSize = action.payload
         },
         toggleEditButtonStatus: (state, action) => {
-            debugger
             if(state.productTableData.selectedIds.length !== 1){
                 state.isDisabledEditButton = true;
             }else{

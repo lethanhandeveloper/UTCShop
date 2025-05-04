@@ -1,10 +1,16 @@
 import { theme } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Avatar, Badge,Layout } from 'antd';
 import { BellOutlined, MenuFoldOutlined, MenuUnfoldOutlined, MoonFilled, SearchOutlined, SunFilled } from '@ant-design/icons';
 const { Header, Content, Footer, Sider } = Layout;
+import authAPI from "../../services/api/authAPI";
+import { useDispatch, useSelector } from 'react-redux';
+import { getAdminInfo } from '../../redux/auth/auth.slice';
+
 
 const AppHeader = ({ isSideBarCollapsed, setIsSideBarCollapsed }) => {
+  const user = useSelector(state => state.auth.userInfo);
+
   const {
       token: { colorBgContainer },
     } = theme.useToken();
@@ -29,7 +35,7 @@ const AppHeader = ({ isSideBarCollapsed, setIsSideBarCollapsed }) => {
                   <MoonFilled style={{ fontSize: "1.5em" }}/>
                   <div>
                     <Avatar style={{ fontSize: "0.5em" }}></Avatar>
-                    <span style={{ marginLeft: "1em", fontFamily: "San Francisco", color: "#666666", fontSize: "1em" }}>Lê Thành An</span>
+                    <span style={{ marginLeft: "1em", fontFamily: "San Francisco", color: "#666666", fontSize: "1em" }}>{ user && user.name } </span>
                   </div>
                 </span>
             </div>

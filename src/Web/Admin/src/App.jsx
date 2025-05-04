@@ -5,6 +5,7 @@ import {
   BellOutlined,
   DesktopOutlined,
   FileOutlined,
+  LoadingOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   PieChartOutlined,
@@ -12,7 +13,7 @@ import {
   TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Avatar, Badge, Breadcrumb, Layout, Menu, Table, theme } from 'antd';
+import { Avatar, Badge, Breadcrumb, Layout, Menu, Spin, Table, theme } from 'antd';
 import AppHeader from './components/layout/header';
 import AppFooter from './components/layout/footer';
 import { Outlet } from 'react-router-dom';
@@ -35,6 +36,12 @@ function App() {
   } = theme.useToken();
   return (
     <Layout style={{ minHeight: '100vh' }}>
+      {/* <div style={{ position: "fixed", top: "50%", left: "50%", 
+        transform: "translate(-50%, -50%)"
+       }}>
+          <Spin size="large" style={{ fontSize: 48}} Spin/>
+      </div> */}
+      
       <AppSideBar isSideBarCollapsed={isSideBarCollapsed} setIsSideBarCollapsed={setIsSideBarCollapsed}/>
       <Layout>
         <AppHeader isSideBarCollapsed={isSideBarCollapsed} setIsSideBarCollapsed={setIsSideBarCollapsed}/>

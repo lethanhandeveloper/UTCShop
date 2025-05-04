@@ -1,10 +1,8 @@
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { Image, Input, Modal, notification, Upload } from "antd"
+import { Button, Drawer, Image, Input, Modal, notification, Space, Upload } from "antd"
 import { useState } from "react";
 import productAPI from "../../services/api/productAPI";
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import { ClassicEditor, Essentials, Paragraph, Bold, Italic } from 'ckeditor5';
-import { FormatPainter } from 'ckeditor5-premium-features';
+import { CKEditor } from 'ckeditor4-react';
 import 'ckeditor5/ckeditor5.css';
 import 'ckeditor5-premium-features/ckeditor5-premium-features.css';
 import { useDispatch, useSelector } from "react-redux";
@@ -36,14 +34,6 @@ const ProductCreateForm = () => {
             return;
           }
           if (info.file.status === 'done') {
-            // URL.createObjectURL
-            // // Get this url from response in real world.
-            // getBase64(info.file.originFileObj, url => {
-            //   setLoading(false);
-            //   setThumbnailUrl(url);
-            //   console.log(url);
-            // });
-            
             setLoading(false);
             setThumbnailUrl(URL.createObjectURL(file))
 
@@ -78,10 +68,16 @@ const ProductCreateForm = () => {
     }
 
     return(
-        <Modal title="Thêm danh mục mới" maskClosable={false}
-         open={isOpenedProductCreateForm} onOk={() => {handleSubmitForm();}} 
-         onClose={() => dispatch(toggleProductCreateForm())}
-         onCancel={() => dispatch(toggleProductCreateForm())}>
+        <Drawer title="Thêm danh mục mới" 
+        width={720}
+        onClose={() => dispatch(toggleProductCreateForm())}
+        open={isOpenedProductCreateForm}
+        styles={{
+          body: {
+            paddingBottom: 80,
+          },
+        }}
+        >
             <div>
                 <span>Tên san pham</span>
                     <Input value={name} onChange={(e) => setName(e.target.value)}/>
@@ -119,17 +115,12 @@ const ProductCreateForm = () => {
                 <div>
                     <span>Mô tả</span>
                     <Input.TextArea value={description} onChange={(e) => setDescription(e.target.value)}/>
-                    <CKEditor
-                        editor={ ClassicEditor }
-                        config={ {
-                            licenseKey: '<YOUR_LICENSE_KEY>', // Or 'GPL'.
-                            plugins: [ Essentials, Paragraph, Bold, Italic, FormatPainter ],
-                            toolbar: [ 'undo', 'redo', '|', 'bold', 'italic', '|', 'formatPainter' ],
-                            initialData: '<p>Hello from CKEditor 5 in React!</p>',
-                        }}
-                    />
+                    <CKEditor initData="<p>This is an example CKEditor 4 WYSIWYG editor instance.</p>" />
                 </div>
-        </Modal>
+                <Button style={{ marginTop: "2em", float: "right" }} onClick={() => handleSubmitForm()} type="primary">
+                    Submit
+                </Button>
+        </Drawer>
     )
 }
 
