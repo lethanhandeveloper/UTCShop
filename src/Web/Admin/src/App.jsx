@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './App.css'
+import React, { useState } from "react";
+import "./App.css";
 import {
   AppstoreAddOutlined,
   BellOutlined,
@@ -12,12 +12,21 @@ import {
   SearchOutlined,
   TeamOutlined,
   UserOutlined,
-} from '@ant-design/icons';
-import { Avatar, Badge, Breadcrumb, Layout, Menu, Spin, Table, theme } from 'antd';
-import AppHeader from './components/layout/header';
-import AppFooter from './components/layout/footer';
-import { Outlet } from 'react-router-dom';
-import AppSideBar from './components/layout/sidebar';
+} from "@ant-design/icons";
+import {
+  Avatar,
+  Badge,
+  Breadcrumb,
+  Layout,
+  Menu,
+  Spin,
+  Table,
+  theme,
+} from "antd";
+import AppHeader from "./components/layout/header";
+import AppFooter from "./components/layout/footer";
+import { Outlet } from "react-router-dom";
+import AppSideBar from "./components/layout/sidebar";
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -35,18 +44,24 @@ function App() {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout style={{ minHeight: "100vh" }}>
       {/* <div style={{ position: "fixed", top: "50%", left: "50%", 
         transform: "translate(-50%, -50%)"
        }}>
           <Spin size="large" style={{ fontSize: 48}} Spin/>
       </div> */}
-      
-      <AppSideBar isSideBarCollapsed={isSideBarCollapsed} setIsSideBarCollapsed={setIsSideBarCollapsed}/>
+
+      <AppSideBar
+        isSideBarCollapsed={isSideBarCollapsed}
+        setIsSideBarCollapsed={setIsSideBarCollapsed}
+      />
       <Layout>
-        <AppHeader isSideBarCollapsed={isSideBarCollapsed} setIsSideBarCollapsed={setIsSideBarCollapsed}/>
-        <Content style={{ margin: '0 16px', minHeight: 'calc(100vh - 64px)' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
+        <AppHeader
+          isSideBarCollapsed={isSideBarCollapsed}
+          setIsSideBarCollapsed={setIsSideBarCollapsed}
+        />
+        <Content style={{ margin: "0 16px", minHeight: "calc(100vh - 64px)" }}>
+          <Breadcrumb style={{ margin: "16px 0" }}>
             <Breadcrumb.Item>User</Breadcrumb.Item>
             <Breadcrumb.Item>Bill</Breadcrumb.Item>
           </Breadcrumb>
@@ -58,4 +73,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

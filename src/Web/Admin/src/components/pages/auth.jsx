@@ -11,7 +11,7 @@ const Auth = () => {
   const onFinish = async (values) => {
     setIsLoadingLoginButton(true);
     const res = await authAPI.loginAdmin(values.email, values.password);
-    if(res.data){
+    if (res.data) {
       navigate("/dashboard");
     }
     setIsLoadingLoginButton(false);
@@ -25,15 +25,29 @@ const Auth = () => {
         alignItems: "center",
         height: "100vh",
         flexDirection: "column",
-        background: "linear-gradient(135deg, #a2c2e0, #c8d6e5)", 
-        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", 
+        background: "linear-gradient(135deg, #a2c2e0, #c8d6e5)",
+        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       }}
     >
-      <div className="demo-logo-vertical" style={{ textAlign: "center", marginBottom: "30px" }}>
-        <img style={{ width: "150px", borderRadius: "50%" }} src={`/images/logo.png`} alt="Logo" />
+      <div
+        className="demo-logo-vertical"
+        style={{ textAlign: "center", marginBottom: "30px" }}
+      >
+        <img
+          style={{ width: "150px", borderRadius: "50%" }}
+          src={`/images/logo.png`}
+          alt="Logo"
+        />
       </div>
 
-      <h2 style={{ color: "#fff", marginBottom: "20px", fontSize: "24px", fontWeight: "bold" }}>
+      <h2
+        style={{
+          color: "#fff",
+          marginBottom: "20px",
+          fontSize: "24px",
+          fontWeight: "bold",
+        }}
+      >
         Đăng nhập quản trị
       </h2>
 
@@ -47,10 +61,10 @@ const Auth = () => {
         style={{
           width: "100%",
           maxWidth: "400px",
-          background: "rgba(255, 255, 255, 0.9)", 
+          background: "rgba(255, 255, 255, 0.9)",
           padding: "40px 30px",
           borderRadius: "8px",
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", 
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
         }}
       >
         <Form.Item
@@ -69,7 +83,7 @@ const Auth = () => {
               borderRadius: "8px",
               padding: "12px",
               border: "1px solid #ddd",
-              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", 
+              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
             }}
           />
         </Form.Item>
@@ -104,7 +118,7 @@ const Auth = () => {
           <a
             className="login-form-forgot"
             href=""
-            style={{ color: "#ff7f00", fontWeight: "bold", fontSize: "14px" }} 
+            style={{ color: "#ff7f00", fontWeight: "bold", fontSize: "14px" }}
           >
             Forgot password
           </a>
@@ -117,15 +131,15 @@ const Auth = () => {
               padding: "12px",
               borderRadius: "8px",
               fontWeight: "bold",
-              background: "#ff7f00", 
+              background: "#ff7f00",
               color: "#fff",
               border: "none",
-              transition: "background-color 0.3s", 
+              transition: "background-color 0.3s",
             }}
             type="primary"
             htmlType="submit"
             className="login-form-button"
-            onMouseEnter={(e) => (e.target.style.backgroundColor = "#e67e00")} 
+            onMouseEnter={(e) => (e.target.style.backgroundColor = "#e67e00")}
             onMouseLeave={(e) => (e.target.style.backgroundColor = "#ff7f00")}
             loading={isLoadingLoginButton}
           >
