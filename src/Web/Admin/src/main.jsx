@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Category from "./components/pages/category.jsx";
+import Category from "./components/pages/category.tsx";
 import Dashboard from "./components/pages/dashboard.jsx";
 import Product from "./components/pages/product.jsx";
 import FileSetting from "./components/pages/fileconfiguration.jsx";
@@ -11,6 +11,9 @@ import { store } from "./redux/store.ts";
 import FileConfiguration from "./components/pages/fileconfiguration.jsx";
 import Auth from "./components/pages/auth.jsx";
 import PrivateRoute from "./components/routes/PrivateRoute.jsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -60,7 +63,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </Provider>
   </StrictMode>,
 );

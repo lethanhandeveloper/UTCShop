@@ -99,7 +99,7 @@ const ProductTable = ({ isCheckedClickAllCheckBox }) => {
     },
     {
       title: "Thuoc danh muc",
-      dataIndex: "description",
+      dataIndex: "categoryName",
     },
   ];
 

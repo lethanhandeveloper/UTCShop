@@ -1,6 +1,9 @@
 import { Table } from "antd";
 import { theme } from "antd";
 import CategoryForm from "./category.form";
+import { useQuery } from "@tanstack/react-query";
+import categoryAPI from "../../services/api/categoryAPI";
+import { useState } from "react";
 
 const dataSource = [
   {
@@ -73,8 +76,18 @@ const columns = [
   },
   {
     title: "Description",
-    dataIndex: "age",
-    key: "age",
+    dataIndex: "description",
+    key: "description",
+  },
+  {
+    title: "Image",
+    dataIndex: "image",
+    key: "image",
+  },
+  {
+    title: "Thuoc danh muc",
+    dataIndex: "categoryname",
+    key: "categoryname",
   },
 ];
 
@@ -82,6 +95,26 @@ const CategoryTable = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const [pageIndex, setPageIndex] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+
+  const {
+    data: categories,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["fetchCategories"],
+    queryFn: async () => {
+      const res = await categoryAPI.fetchCategories(pageIndex, pageSize);
+      console.log(res.data);
+      return res.data;
+    },
+  });
+
+  // if (isLoading) return <p>Loading...</p>;
+  // if (error) return <p>Error!</p>;
+
   return (
     <div
       style={{
@@ -92,7 +125,7 @@ const CategoryTable = () => {
       }}
     >
       <Table
-        dataSource={dataSource}
+        dataSource={categories}
         columns={columns}
         scroll={{ x: "max-content" }}
         pagination={{
