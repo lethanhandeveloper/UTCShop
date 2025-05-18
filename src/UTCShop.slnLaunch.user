@@ -8,7 +8,7 @@
         "DebugTarget": "https"
       },
       {
-        "Path": "Services\\User\\User.API\\User.API.csproj",
+        "Path": "Services\\User\\User.API\\Auth.API.csproj",
         "Action": "Start",
         "DebugTarget": "https"
       }

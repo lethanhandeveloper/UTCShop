@@ -1,0 +1,193 @@
+2025-05-15 15:20:31.215 +07:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-05-15 15:20:31.761 +07:00 [DBG] Entity Framework Core 8.0.0 initialized 'ProductDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:8.0.0+2539d1f4bd0d429cbae20336d531d14938a54297' with options: None
+2025-05-15 15:20:31.773 +07:00 [DBG] Creating DbConnection.
+2025-05-15 15:20:31.777 +07:00 [DBG] Created DbConnection. (3ms).
+2025-05-15 15:20:31.786 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:31.989 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:31.992 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:31.997 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (3ms).
+2025-05-15 15:20:32.003 +07:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-05-15 15:20:32.008 +07:00 [DBG] Created DbCommand for 'ExecuteScalar' (3ms).
+2025-05-15 15:20:32.009 +07:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (7ms).
+2025-05-15 15:20:32.009 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.109 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.114 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-15 15:20:32.191 +07:00 [INF] Executed DbCommand (75ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-15 15:20:32.193 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.195 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (1ms).
+2025-05-15 15:20:32.206 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.206 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.206 +07:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-15 15:20:32.206 +07:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-05-15 15:20:32.206 +07:00 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-05-15 15:20:32.207 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-15 15:20:32.216 +07:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-15 15:20:32.222 +07:00 [DBG] Closing data reader to 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.222 +07:00 [DBG] A data reader for 'utcshopDb' on server 'tcp://localhost:5432' is being disposed after spending 5ms reading results.
+2025-05-15 15:20:32.222 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.223 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-15 15:20:32.226 +07:00 [DBG] Migrating using database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.226 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.289 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.289 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.289 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-15 15:20:32.290 +07:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-05-15 15:20:32.290 +07:00 [DBG] Created DbCommand for 'ExecuteScalar' (0ms).
+2025-05-15 15:20:32.290 +07:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (0ms).
+2025-05-15 15:20:32.290 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.290 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.290 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-15 15:20:32.295 +07:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-15 15:20:32.295 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.295 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-15 15:20:32.296 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.351 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.351 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.351 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-15 15:20:32.351 +07:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-05-15 15:20:32.352 +07:00 [DBG] Created DbCommand for 'ExecuteScalar' (0ms).
+2025-05-15 15:20:32.352 +07:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (0ms).
+2025-05-15 15:20:32.352 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.352 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.352 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-15 15:20:32.353 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-15 15:20:32.353 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.353 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-15 15:20:32.353 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.353 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.353 +07:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-15 15:20:32.353 +07:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-05-15 15:20:32.353 +07:00 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-05-15 15:20:32.353 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-15 15:20:32.354 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-15 15:20:32.354 +07:00 [DBG] Closing data reader to 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.354 +07:00 [DBG] A data reader for 'utcshopDb' on server 'tcp://localhost:5432' is being disposed after spending 0ms reading results.
+2025-05-15 15:20:32.354 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.354 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-15 15:20:32.361 +07:00 [INF] No migrations were applied. The database is already up to date.
+2025-05-15 15:20:32.362 +07:00 [DBG] 'ProductDBContext' disposed.
+2025-05-15 15:20:32.364 +07:00 [DBG] Disposing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-15 15:20:32.365 +07:00 [DBG] Disposed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-15 15:20:32.398 +07:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-05-15 15:20:32.442 +07:00 [DBG] Hosting starting
+2025-05-15 15:20:32.478 +07:00 [INF] User profile is available. Using 'C:\Users\riley.le\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-15 15:20:32.724 +07:00 [DBG] Reading data from file 'C:\Users\riley.le\AppData\Local\ASP.NET\DataProtection-Keys\key-3583acd8-6f16-4ac5-bafa-6a936a93b8ee.xml'.
+2025-05-15 15:20:32.729 +07:00 [DBG] Reading data from file 'C:\Users\riley.le\AppData\Local\ASP.NET\DataProtection-Keys\key-af50a5e9-0754-44e4-8bb0-81de900232ca.xml'.
+2025-05-15 15:20:32.729 +07:00 [DBG] Reading data from file 'C:\Users\riley.le\AppData\Local\ASP.NET\DataProtection-Keys\key-cc3edaa6-2f44-4836-b1df-64c8b561693e.xml'.
+2025-05-15 15:20:32.732 +07:00 [DBG] Found key {3583acd8-6f16-4ac5-bafa-6a936a93b8ee}.
+2025-05-15 15:20:32.735 +07:00 [DBG] Found key {af50a5e9-0754-44e4-8bb0-81de900232ca}.
+2025-05-15 15:20:32.736 +07:00 [DBG] Found key {cc3edaa6-2f44-4836-b1df-64c8b561693e}.
+2025-05-15 15:20:32.739 +07:00 [DBG] Considering key {cc3edaa6-2f44-4836-b1df-64c8b561693e} with expiration date 2025-06-22 04:23:39Z as default key.
+2025-05-15 15:20:32.741 +07:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-05-15 15:20:32.741 +07:00 [DBG] Decrypting secret element using Windows DPAPI.
+2025-05-15 15:20:32.742 +07:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-05-15 15:20:32.744 +07:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-05-15 15:20:32.745 +07:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-05-15 15:20:32.746 +07:00 [DBG] Using key {cc3edaa6-2f44-4836-b1df-64c8b561693e} as the default key.
+2025-05-15 15:20:32.746 +07:00 [DBG] Key ring with default key {cc3edaa6-2f44-4836-b1df-64c8b561693e} was loaded during application startup.
+2025-05-15 15:20:32.885 +07:00 [INF] Now listening on: https://localhost:55956
+2025-05-15 15:20:32.885 +07:00 [INF] Now listening on: http://localhost:55957
+2025-05-15 15:20:32.885 +07:00 [DBG] Loaded hosting startup assembly Product.API
+2025-05-15 15:20:32.885 +07:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2025-05-15 15:20:32.885 +07:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2025-05-15 15:20:32.885 +07:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2025-05-15 15:20:32.933 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-15 15:20:32.933 +07:00 [INF] Hosting environment: Development
+2025-05-15 15:20:32.933 +07:00 [INF] Content root path: C:\PProjects\UTCShop\src\Services\Product\Product.API
+2025-05-15 15:20:32.933 +07:00 [DBG] Hosting started
+2025-05-15 15:20:33.797 +07:00 [DBG] Connection id "0HNCJH5EHAJFC" accepted.
+2025-05-15 15:20:33.802 +07:00 [DBG] Connection id "0HNCJH5EHAJFC" started.
+2025-05-15 15:20:33.826 +07:00 [DBG] Connection 0HNCJH5EHAJFC established using the following protocol: "Tls12"
+2025-05-15 15:20:33.883 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5003/swagger/index.html - null null
+2025-05-15 15:20:33.982 +07:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-05-15 15:20:34.001 +07:00 [DBG] No candidates found for the request path '/swagger/index.html'
+2025-05-15 15:20:34.002 +07:00 [DBG] Request did not match any endpoints
+2025-05-15 15:20:34.046 +07:00 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-05-15 15:20:34.047 +07:00 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-05-15 15:20:34.054 +07:00 [DBG] Response markup was updated to include Browser Link script injection.
+2025-05-15 15:20:34.055 +07:00 [DBG] Response markup was updated to include browser refresh script injection.
+2025-05-15 15:20:34.058 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5003/swagger/index.html - 200 null text/html;charset=utf-8 188.3234ms
+2025-05-15 15:20:34.068 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5003/swagger/swagger-ui-bundle.js - null null
+2025-05-15 15:20:34.070 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5003/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-15 15:20:34.070 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5003/swagger/swagger-ui-standalone-preset.js - null null
+2025-05-15 15:20:34.069 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5003/swagger/swagger-ui.css - null null
+2025-05-15 15:20:34.070 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5003/swagger/index.css - null null
+2025-05-15 15:20:34.074 +07:00 [DBG] No candidates found for the request path '/swagger/swagger-ui-standalone-preset.js'
+2025-05-15 15:20:34.074 +07:00 [DBG] No candidates found for the request path '/swagger/swagger-ui.css'
+2025-05-15 15:20:34.075 +07:00 [DBG] Request did not match any endpoints
+2025-05-15 15:20:34.075 +07:00 [DBG] No candidates found for the request path '/swagger/swagger-ui-bundle.js'
+2025-05-15 15:20:34.075 +07:00 [DBG] No candidates found for the request path '/swagger/index.css'
+2025-05-15 15:20:34.079 +07:00 [DBG] Request did not match any endpoints
+2025-05-15 15:20:34.075 +07:00 [DBG] Request did not match any endpoints
+2025-05-15 15:20:34.075 +07:00 [DBG] Request did not match any endpoints
+2025-05-15 15:20:34.079 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5003/swagger/index.js - null null
+2025-05-15 15:20:34.079 +07:00 [DBG] No candidates found for the request path '/swagger/index.js'
+2025-05-15 15:20:34.081 +07:00 [DBG] Request did not match any endpoints
+2025-05-15 15:20:34.083 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5003/swagger/index.js - 200 null application/javascript;charset=utf-8 3.7703ms
+2025-05-15 15:20:34.083 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5003/_vs/browserLink - null null
+2025-05-15 15:20:34.106 +07:00 [INF] The file /index.css was not modified
+2025-05-15 15:20:34.106 +07:00 [INF] The file /swagger-ui-bundle.js was not modified
+2025-05-15 15:20:34.108 +07:00 [INF] The file /swagger-ui-standalone-preset.js was not modified
+2025-05-15 15:20:34.110 +07:00 [INF] The file /swagger-ui.css was not modified
+2025-05-15 15:20:34.111 +07:00 [DBG] Handled. Status code: 304 File: /swagger-ui.css
+2025-05-15 15:20:34.111 +07:00 [DBG] Handled. Status code: 304 File: /index.css
+2025-05-15 15:20:34.111 +07:00 [DBG] Handled. Status code: 304 File: /swagger-ui-bundle.js
+2025-05-15 15:20:34.111 +07:00 [DBG] Handled. Status code: 304 File: /swagger-ui-standalone-preset.js
+2025-05-15 15:20:34.121 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5003/swagger/swagger-ui-standalone-preset.js - 304 null text/javascript 52.0722ms
+2025-05-15 15:20:34.121 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5003/swagger/index.css - 304 null text/css 52.7164ms
+2025-05-15 15:20:34.121 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5003/swagger/swagger-ui-bundle.js - 304 null text/javascript 49.3154ms
+2025-05-15 15:20:34.121 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5003/swagger/swagger-ui.css - 304 null text/css 52.5257ms
+2025-05-15 15:20:34.128 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5003/_framework/aspnetcore-browser-refresh.js - 200 13758 application/javascript; charset=utf-8 60.2475ms
+2025-05-15 15:20:34.174 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 91.1756ms
+2025-05-15 15:20:34.294 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5003/swagger/v1/swagger.json - null null
+2025-05-15 15:20:34.295 +07:00 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2025-05-15 15:20:34.295 +07:00 [DBG] Request did not match any endpoints
+2025-05-15 15:20:34.323 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5003/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 28.7778ms

@@ -1,0 +1,69 @@
+2025-05-12 09:17:20.358 +07:00 [DBG] Connection id "0HNCG6A5A2GTK" accepted.
+2025-05-12 09:17:20.377 +07:00 [DBG] Connection id "0HNCG6A5A2GTK" started.
+2025-05-12 09:17:20.390 +07:00 [DBG] Connection 0HNCG6A5A2GTK established using the following protocol: "Tls12"
+2025-05-12 09:17:20.424 +07:00 [INF] Request starting HTTP/2 POST https://localhost:5003/api/Category/Get - application/json 56
+2025-05-12 09:17:20.425 +07:00 [DBG] 1 candidate(s) found for the request path '/api/Category/Get'
+2025-05-12 09:17:20.425 +07:00 [DBG] Endpoint 'Product.API.Controllers.CategoryController.Get (Product.API)' with route pattern 'api/Category/Get' is valid for the request path '/api/Category/Get'
+2025-05-12 09:17:20.425 +07:00 [DBG] Request matched endpoint 'Product.API.Controllers.CategoryController.Get (Product.API)'
+2025-05-12 09:17:20.425 +07:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-05-12 09:17:20.425 +07:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-05-12 09:17:20.425 +07:00 [DBG] The request has an origin header: 'http://localhost:5173'.
+2025-05-12 09:17:20.425 +07:00 [INF] CORS policy execution successful.
+2025-05-12 09:17:20.425 +07:00 [INF] Executing endpoint 'Product.API.Controllers.CategoryController.Get (Product.API)'
+2025-05-12 09:17:20.426 +07:00 [INF] Route matched with {action = "Get", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[BuildingBlocks.Pagination.PaginatedResult`1[Product.Application.Dtos.CategoryDto]] Get(BuildingBlocks.Pagination.PaginationRequest) on controller Product.API.Controllers.CategoryController (Product.API).
+2025-05-12 09:17:20.426 +07:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-05-12 09:17:20.426 +07:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-05-12 09:17:20.426 +07:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter (Order: -2147483648)","Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-05-12 09:17:20.426 +07:00 [DBG] Execution plan of exception filters (in the following order): ["BuildingBlocks.Attribute.ApiResultExceptionAttribute (Order: 0)"]
+2025-05-12 09:17:20.426 +07:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-05-12 09:17:20.426 +07:00 [DBG] Executing controller factory for controller Product.API.Controllers.CategoryController (Product.API)
+2025-05-12 09:17:20.426 +07:00 [DBG] Executed controller factory for controller Product.API.Controllers.CategoryController (Product.API)
+2025-05-12 09:17:20.426 +07:00 [DBG] Attempting to bind parameter 'request' of type 'BuildingBlocks.Pagination.PaginationRequest' ...
+2025-05-12 09:17:20.427 +07:00 [DBG] Attempting to bind parameter 'request' of type 'BuildingBlocks.Pagination.PaginationRequest' using the name '' in request data ...
+2025-05-12 09:17:20.427 +07:00 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2025-05-12 09:17:20.427 +07:00 [DBG] Connection id "0HNCG6A5A2GTK", Request id "0HNCG6A5A2GTK:00000001": started reading request body.
+2025-05-12 09:17:20.427 +07:00 [DBG] Connection id "0HNCG6A5A2GTK", Request id "0HNCG6A5A2GTK:00000001": done reading request body.
+2025-05-12 09:17:20.427 +07:00 [DBG] JSON input formatter succeeded, deserializing to type 'BuildingBlocks.Pagination.PaginationRequest'
+2025-05-12 09:17:20.427 +07:00 [DBG] Done attempting to bind parameter 'request' of type 'BuildingBlocks.Pagination.PaginationRequest'.
+2025-05-12 09:17:20.427 +07:00 [DBG] Done attempting to bind parameter 'request' of type 'BuildingBlocks.Pagination.PaginationRequest'.
+2025-05-12 09:17:20.427 +07:00 [DBG] Attempting to validate the bound parameter 'request' of type 'BuildingBlocks.Pagination.PaginationRequest' ...
+2025-05-12 09:17:20.427 +07:00 [DBG] Done attempting to validate the bound parameter 'request' of type 'BuildingBlocks.Pagination.PaginationRequest'.
+2025-05-12 09:17:20.427 +07:00 [INF] Executing action method Product.API.Controllers.CategoryController.Get (Product.API) - Validation state: "Valid"
+2025-05-12 09:17:20.428 +07:00 [DBG] Entity Framework Core 8.0.0 initialized 'ProductDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:8.0.0+2539d1f4bd0d429cbae20336d531d14938a54297' with options: None
+2025-05-12 09:17:20.429 +07:00 [DBG] Creating DbConnection.
+2025-05-12 09:17:20.429 +07:00 [DBG] Created DbConnection. (0ms).
+2025-05-12 09:17:20.429 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-12 09:17:20.597 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-12 09:17:20.597 +07:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-12 09:17:20.597 +07:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-05-12 09:17:20.597 +07:00 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-05-12 09:17:20.597 +07:00 [DBG] Executing DbCommand [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."CreatedBy", c."Description", c."ImageUrl", c."IsDeleted", c."LastUpdatedAt", c."LastUpdatedBy", c."Name", c."ParentId"
+FROM "Categories" AS c
+WHERE c."IsDeleted" = FALSE
+LIMIT @__p_1 OFFSET @__p_0
+2025-05-12 09:17:20.633 +07:00 [INF] Executed DbCommand (35ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."CreatedBy", c."Description", c."ImageUrl", c."IsDeleted", c."LastUpdatedAt", c."LastUpdatedBy", c."Name", c."ParentId"
+FROM "Categories" AS c
+WHERE c."IsDeleted" = FALSE
+LIMIT @__p_1 OFFSET @__p_0
+2025-05-12 09:17:20.634 +07:00 [DBG] Context 'ProductDBContext' started tracking 'CategoryEntity' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-12 09:17:20.634 +07:00 [DBG] Context 'ProductDBContext' started tracking 'CategoryEntity' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-12 09:17:20.634 +07:00 [DBG] Context 'ProductDBContext' started tracking 'CategoryEntity' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-12 09:17:20.634 +07:00 [DBG] Closing data reader to 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-12 09:17:20.634 +07:00 [DBG] A data reader for 'utcshopDb' on server 'tcp://localhost:5432' is being disposed after spending 1ms reading results.
+2025-05-12 09:17:20.634 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-12 09:17:20.634 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-12 09:17:20.635 +07:00 [INF] Executed action method Product.API.Controllers.CategoryController.Get (Product.API), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 207.2577ms.
+2025-05-12 09:17:20.636 +07:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-05-12 09:17:20.636 +07:00 [DBG] No information found on request to perform content negotiation.
+2025-05-12 09:17:20.636 +07:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-05-12 09:17:20.636 +07:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-05-12 09:17:20.636 +07:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-05-12 09:17:20.636 +07:00 [INF] Executing ObjectResult, writing value of type 'BuildingBlocks.Pagination.PaginatedResult`1[[Product.Application.Dtos.CategoryDto, Product.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-12 09:17:20.636 +07:00 [INF] Executed action Product.API.Controllers.CategoryController.Get (Product.API) in 210.1807ms
+2025-05-12 09:17:20.636 +07:00 [INF] Executed endpoint 'Product.API.Controllers.CategoryController.Get (Product.API)'
+2025-05-12 09:17:20.636 +07:00 [DBG] 'ProductDBContext' disposed.
+2025-05-12 09:17:20.636 +07:00 [DBG] Disposing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-12 09:17:20.636 +07:00 [DBG] Disposed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-12 09:17:20.636 +07:00 [INF] Request finished HTTP/2 POST https://localhost:5003/api/Category/Get - 200 null application/json; charset=utf-8 212.3799ms

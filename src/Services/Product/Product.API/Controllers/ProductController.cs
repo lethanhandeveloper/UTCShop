@@ -1,11 +1,15 @@
 ﻿using BuildingBlocks.Attribute;
-using BuildingBlocks.Dtos;
+using BuildingBlocks.Enums;
 using BuildingBlocks.Pagination;
+using BuildingBlocks.Services.CurrentUser;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Product.Application.Dtos;
-using Product.Application.Modules.Commands;
-using Product.Application.Modules.Commands.Create;
-using Product.Application.Modules.Queries.GetProducts;
+using Product.Application.Modules.Category.Commands.Delete;
+using Product.Application.Modules.Product.Commands.Create;
+using Product.Application.Modules.Product.Commands.Update;
+using Product.Application.Modules.Product.Queries.GetProducts;
+using System.Security.Claims;
 
 namespace Product.API.Controllers;
 
@@ -15,15 +19,22 @@ namespace Product.API.Controllers;
 public class ProductController : Controller
 {
     IMediator _mediator;
+    ICurrentUserService _currentUserService;
 
-    public ProductController(IMediator mediator)
+    public ProductController(IMediator mediator, ICurrentUserService currentUserService)
     {
         _mediator = mediator;
+        _currentUserService = currentUserService;
     }
 
     [HttpPost("Get")]
+    //[Authorize(Roles = "Admin")]
     public async Task<PaginatedResult<ProductDto>> Get([FromBody] PaginationRequest request)
     {
+        var roles = User.Claims
+        .Where(c => c.Type == ClaimTypes.Role || c.Type == "role")
+        .Select(c => c.Value)
+        .ToList();
         var query = new GetProductsQuery(request);
         var results = await _mediator.Send(query);
         return results;
@@ -48,57 +59,19 @@ public class ProductController : Controller
     [HttpDelete("Delete")]
     public async Task<List<Guid>> Delete(List<Guid> Ids)
     {
-        var command = new DeleteProductCommand(Ids);
+        var command = new DeleteCategoryCommand(Ids);
         var results = await _mediator.Send(command);
         return results.Ids;
     }
 
-    [HttpPost("Upload")]
-    public async Task<ApiResponse<string>> UploadThumbnailImage([FromForm] UploadImageDto image)
+
+
+    [HttpGet("test")]
+    [Authorize(Roles = nameof(RoleType.Admin))]
+
+    public async Task<Guid> Test()
     {
-        try
-        {
-            if (image.File == null || image.File.FileName.Length == 0)
-            {
-                return new ApiResponse<string>
-                {
-                    Success = false,
-                    Data = null,
-                    Message = "Image is empty",
-                    StatusCode = BuildingBlocks.Enums.HttpStatusCodeEnum.BadRequest
-                };
-            }
-
-            var extension = Path.GetExtension(image.File.FileName);
-            var fileName = Guid.NewGuid().ToString() + extension;
-
-            var uploadPath = Path.Combine("C:\\PProjects\\UTCShop\\src\\BuildingBlocks\\BuildingBlocks\\Images", fileName);
-
-
-            using (FileStream stream = new FileStream(uploadPath, FileMode.Create))
-            {
-                await image.File.CopyToAsync(stream);
-                stream.Close();
-            }
-
-            return new ApiResponse<string>
-            {
-                Success = true,
-                Data = fileName,
-                Message = "Upload successfully",
-                StatusCode = BuildingBlocks.Enums.HttpStatusCodeEnum.Created
-            };
-        }
-        catch (Exception ex)
-        {
-            return new ApiResponse<string>
-            {
-                Success = true,
-                Data = null,
-                Message = ex.Message.ToString(),
-                StatusCode = BuildingBlocks.Enums.HttpStatusCodeEnum.InternalServerError
-            };
-        }
-
+        var currentUserId = _currentUserService.UserId;
+        return (Guid)currentUserId;
     }
 }

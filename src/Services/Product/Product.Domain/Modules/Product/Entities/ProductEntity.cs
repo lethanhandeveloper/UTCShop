@@ -9,6 +9,7 @@ public class ProductEntity : Aggregate<Guid>
     public string ImageUrl { get; set; } = default!;
     public string Description { get; set; } = default!;
     public Guid CategoryId { get; set; }
+    public CategoryEntity Category { get; set; }
 
 
     public static ProductEntity Create(string name, decimal price, string imageUrl, string description, Guid categoryId)

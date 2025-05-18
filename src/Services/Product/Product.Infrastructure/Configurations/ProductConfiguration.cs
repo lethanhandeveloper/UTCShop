@@ -9,6 +9,6 @@ public class ProductConfiguration : IEntityTypeConfiguration<ProductEntity>
     public void Configure(EntityTypeBuilder<ProductEntity> builder)
     {
         builder.HasKey(builder => builder.Id);
-        //builder.Property(builder => builder.Name).IsRequired();
+        builder.HasOne(p => p.Category).WithMany(p => p.Products).HasForeignKey(p => p.CategoryId);
     }
 }

@@ -1,12 +1,17 @@
+using BuildingBlocks.Services;
 using BuildingBlocks.Utils;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
+using Mapster;
 using Microsoft.OpenApi.Models;
 using Product.API.Extensions;
 using Product.Application;
-using System.Text;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug()
+    .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
 
 builder.Configuration
@@ -15,6 +20,8 @@ builder.Configuration
     .AddEnvironmentVariables();
 
 builder.AddServiceDefaults();
+
+builder.Host.UseSerilog();
 
 var assembly = typeof(Program).Assembly;
 
@@ -48,28 +55,11 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
-builder.Services.AddAuthentication(opt =>
-{
-    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(opt =>
-{   // for development only
-    opt.RequireHttpsMetadata = false;
-    opt.SaveToken = true;
-    var config = builder.Configuration["JWT:SecretKey"];
-    opt.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["JWT:SecretKey"])),
-        ValidateIssuer = true,
-        ValidIssuer = builder.Configuration["JWT:Issuer"],
-        ValidateAudience = true,
-        ValidAudience = builder.Configuration["JWT:Audience"]
-    };
-});
 
 // Add services to the container.
 builder.Services.AddApplicationServices(builder.Configuration).AddInfrastructureServices(builder.Configuration);
+
+builder.Services.AddDefaultServices(builder.Configuration);
 
 builder.Services.AddCors(options =>
 {
@@ -90,9 +80,15 @@ app.MapDefaultEndpoints();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
+    app.UseSwagger(c =>
+    {
+        c.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi2_0;
+    });
     app.UseSwaggerUI();
 }
+
+
+ProductMappingConfigExtension.RegisterMappings(TypeAdapterConfig.GlobalSettings);
 
 app.InitialiseDatabaseAsync();
 app.UseHttpsRedirection();

@@ -1,9 +1,9 @@
 ﻿using BuildingBlocks.Pagination;
 using BuildingBlocks.Utils;
 using Microsoft.EntityFrameworkCore;
+using Product.Application.Interfaces.Queries;
 using Product.Domain.Data;
 using Product.Domain.Modules.Product.Entities;
-using Product.Interfaces.Repositories;
 
 namespace Product.Infrastructure.Queries;
 public class ProductQuery : IProductQuery
@@ -13,11 +13,6 @@ public class ProductQuery : IProductQuery
     public ProductQuery(IProductDbContext dbContext)
     {
         _dbContext = dbContext;
-    }
-
-    public Task<ProductEntity> AddAsync(ProductEntity entity, CancellationToken cancellation)
-    {
-        throw new NotImplementedException();
     }
 
     public async Task<long> CountAsync()
@@ -44,7 +39,7 @@ public class ProductQuery : IProductQuery
     {
         var query = _dbContext.Products.AsQueryable();
 
-        query = query.Where(p => p.IsDeleted == false);
+        query = query.Where(p => p.IsDeleted == false).Include(p => p.Category);
 
         foreach (var filter in filters)
         {

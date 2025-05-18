@@ -22,20 +22,17 @@ namespace Product.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Product.Domain.Modules.Product.Entities.ProductEntity", b =>
+            modelBuilder.Entity("Product.Domain.Modules.Product.Entities.CategoryEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("CategoryId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -51,8 +48,54 @@ namespace Product.Infrastructure.Migrations
                     b.Property<DateTime?>("LastUpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("LastUpdatedBy")
+                    b.Property<Guid?>("LastUpdatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<Guid?>("ParentId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Product.Domain.Modules.Product.Entities.ProductEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("LastUpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("LastUpdatedBy")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -63,7 +106,34 @@ namespace Product.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Product.Domain.Modules.Product.Entities.CategoryEntity", b =>
+                {
+                    b.HasOne("Product.Domain.Modules.Product.Entities.CategoryEntity", null)
+                        .WithMany("ChildCategories")
+                        .HasForeignKey("ParentId");
+                });
+
+            modelBuilder.Entity("Product.Domain.Modules.Product.Entities.ProductEntity", b =>
+                {
+                    b.HasOne("Product.Domain.Modules.Product.Entities.CategoryEntity", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Product.Domain.Modules.Product.Entities.CategoryEntity", b =>
+                {
+                    b.Navigation("ChildCategories");
+
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,6 +3,8 @@ using BuildingBlocks.Enums;
 using BuildingBlocks.Exception;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace BuildingBlocks.Attribute;
@@ -10,31 +12,40 @@ namespace BuildingBlocks.Attribute;
 [AttributeUsage(AttributeTargets.All)]
 public class ApiResultExceptionAttribute : ExceptionFilterAttribute
 {
+    private readonly ILogger<ApiResultExceptionAttribute> _logger;
+
+    public ApiResultExceptionAttribute()
+    {
+    }
+
+    public ApiResultExceptionAttribute(ILogger<ApiResultExceptionAttribute> logger)
+    {
+        _logger = logger;
+    }
+
     public override void OnException(ExceptionContext context)
     {
-        switch (context.Exception)
+        //_logger.LogError(context.Exception.ToString());
+        var exception = context.Exception;
+        var (message, statusCode) = exception switch
         {
-            case NotFoundException:
-                context.Result = new ObjectResult(new ApiResponse<object>
-                {
-                    Success = false,
-                    Data = null,
-                    Message = context.Exception.Message,
-                    StatusCode = HttpStatusCodeEnum.NotFound
-                });
+            NotFoundException => (exception.Message, HttpStatusCodeEnum.NotFound),
+            BadRequestException => (exception.Message, HttpStatusCodeEnum.BadRequest),
+            ValidationException => (exception.Message, HttpStatusCodeEnum.BadRequest),
+            UnauthorizedException => (exception.Message, HttpStatusCodeEnum.Unauthorized),
 
-                break;
-            case BadRequestException:
-                context.Result = new ObjectResult(new ApiResponse<object>
-                {
-                    Success = false,
-                    Data = null,
-                    Message = context.Exception.Message,
-                    StatusCode = HttpStatusCodeEnum.BadRequest
-                });
+            _ => ("Internal server error", HttpStatusCodeEnum.InternalServerError)
+        };
 
-                break;
-
-        }
+        context.Result = new ObjectResult(new ApiResponse<object>
+        {
+            Success = false,
+            Data = null,
+            Message = message,
+            StatusCode = statusCode
+        });
+        //{
+        //    StatusCode = (int)statusCode
+        //};
     }
 }

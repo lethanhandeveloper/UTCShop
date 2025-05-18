@@ -25,3 +25,12 @@ public class BadRequestException : CustomExceptionBase
 }
 
 
+public class UnauthorizedException : CustomExceptionBase
+{
+    public UnauthorizedException(string message) : base(message)
+    {
+
+    }
+}
+
+

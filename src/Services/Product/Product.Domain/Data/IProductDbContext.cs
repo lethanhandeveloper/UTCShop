@@ -6,6 +6,7 @@ namespace Product.Domain.Data;
 public interface IProductDbContext
 {
     DbSet<ProductEntity> Products { get; }
+    DbSet<CategoryEntity> Categories { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellation);
 }

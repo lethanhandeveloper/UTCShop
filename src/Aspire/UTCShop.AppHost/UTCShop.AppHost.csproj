@@ -15,8 +15,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\ApiGateWays\YarpApiGateWay\YarpApiGateWay.csproj" />
+    <ProjectReference Include="..\..\Services\Identity\Identity.API\Identity.API.csproj" />
     <ProjectReference Include="..\..\Services\Product\Product.API\Product.API.csproj" />
-    <ProjectReference Include="..\..\Services\User\User.API\User.API.csproj" />
     <ProjectReference Include="..\..\Services\Util\Util.API\Util.API.csproj" />
   </ItemGroup>
 
