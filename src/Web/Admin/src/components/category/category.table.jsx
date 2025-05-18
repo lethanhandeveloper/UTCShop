@@ -1,72 +1,27 @@
-import { Table } from "antd";
+import { Checkbox, Table } from "antd";
 import { theme } from "antd";
 import CategoryForm from "./category.form";
 import { useQuery } from "@tanstack/react-query";
 import categoryAPI from "../../services/api/categoryAPI";
 import { useState } from "react";
+import BaseTable from "../base/base.table";
 
-const dataSource = [
-  {
-    key: "1",
-    name: "Mike",
-    age: 32,
-    address: "10 Downing Street",
-  },
-  {
-    key: "2",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street",
-  },
-  {
-    key: "2",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street",
-  },
-  {
-    key: "2",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street",
-  },
-  {
-    key: "2",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street",
-  },
-  {
-    key: "2",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street",
-  },
-  {
-    key: "2",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street",
-  },
-  {
-    key: "2",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street",
-  },
-  {
-    key: "2",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street",
-  },
-  {
-    key: "2",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street",
-  },
-];
+// const categories = [
+//   {
+//     key: "1",
+//     name: "Mike",
+//     description: "Description",
+//     image: "AAAAAAAAA",
+//     categoryname: "10 Downing Street",
+//   },
+//   {
+//     key: "2",
+//     name: "Mike",
+//     description: "Description",
+//     image: "AAAAAAAAA",
+//     categoryname: "10 Downing Street",
+//   }
+// ];
 
 const columns = [
   {
@@ -98,17 +53,17 @@ const CategoryTable = () => {
 
   const [pageIndex, setPageIndex] = useState(1);
   const [pageSize, setPageSize] = useState(10);
+  const [selectedIds, setSelectedIds] = useState([]);
 
   const {
-    data: categories,
+    data: data,
     isLoading,
     error,
   } = useQuery({
     queryKey: ["fetchCategories"],
     queryFn: async () => {
       const res = await categoryAPI.fetchCategories(pageIndex, pageSize);
-      console.log(res.data);
-      return res.data;
+      return res;
     },
   });
 
@@ -124,25 +79,10 @@ const CategoryTable = () => {
         borderRadius: borderRadiusLG,
       }}
     >
-      <Table
-        dataSource={categories}
-        columns={columns}
-        scroll={{ x: "max-content" }}
-        pagination={{
-          current: 1,
-          pageSize: 10,
-          showSizeChanger: true,
-          total: 10,
-          showTotal: (total, range) => {
-            return (
-              <div>
-                {" "}
-                {range[0]}-{range[1]} trên {total} rows
-              </div>
-            );
-          },
-        }}
-      />
+      { data && <BaseTable  dataSource={data.data} columns={columns} 
+            pagination={{ current: data.pageIndex, pageSize: data.pageSize, total: data.totalCount }}
+            selectedIds={selectedIds} setSelectedIds={setSelectedIds}
+        /> }
     </div>
   );
 };

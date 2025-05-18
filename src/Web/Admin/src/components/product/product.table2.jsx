@@ -104,9 +104,6 @@ const ProductTable = ({ isCheckedClickAllCheckBox }) => {
   ];
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchProducts({ pageIndex, pageSize }));
-  }, []);
 
   const onChange = (pagination, filters, sorter, extra) => {
     dispatch(resetCheckBoxes());

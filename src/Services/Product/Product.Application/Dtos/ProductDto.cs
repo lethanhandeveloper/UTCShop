@@ -9,5 +9,5 @@ public class ProductDto : CommonDto
     public string ImageUrl { get; set; } = default!;
     public string Description { get; set; } = default!;
     public Guid CategoryId { get; set; } = default!;
-    public string CategoryName { get; set; } = default!;
+    public string? CategoryName { get; set; } = default!;
 }

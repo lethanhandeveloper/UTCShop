@@ -1,5 +1,6 @@
 using BuildingBlocks.Dtos;
 using BuildingBlocks.Enums;
+using BuildingBlocks.Utils;
 using Identity.Application;
 using Identity.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -15,7 +16,7 @@ builder.AddServiceDefaults();
 
 builder.Services.AddControllers();
 builder.Configuration
-    .SetBasePath("C:\\PProjects\\UTCShop\\src")
+    .SetBasePath(SystemPathBuilder.GetBasePath())
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddEnvironmentVariables();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
