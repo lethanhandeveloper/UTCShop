@@ -1,25 +1,29 @@
 import { Checkbox, Table } from "antd";
 
-const BaseTable = ({ dataSource, columns, pagination, selectedIds, setSelectedIds }) => {
-  
+const BaseTable = ({
+  dataSource,
+  columns,
+  pagination,
+  selectedIds,
+  setSelectedIds,
+}) => {
   const handleClickAllCheckBox = (e) => {
-    if(e.target.checked){
-      setSelectedIds(dataSource.map(x => x.id));
-    }else{
+    if (e.target.checked) {
+      setSelectedIds(dataSource.map((x) => x.id));
+    } else {
       setSelectedIds([]);
     }
-  }
+  };
 
   const handleClickSingleCheckBox = (id) => {
-    debugger
-    if(selectedIds.includes(id)){
-      setSelectedIds(selectedIds.filter(x => x !== id))
-    }else{
-      setSelectedIds([...selectedIds, id ])
+    if (selectedIds.includes(id)) {
+      setSelectedIds(selectedIds.filter((x) => x !== id));
+    } else {
+      setSelectedIds([...selectedIds, id]);
     }
-  }
+  };
 
-	const enhancedColumns = [
+  const enhancedColumns = [
     {
       title: (
         <Checkbox
@@ -39,29 +43,31 @@ const BaseTable = ({ dataSource, columns, pagination, selectedIds, setSelectedId
     {
       title: "STT",
       render: (_, record, index) => {
-        return <>{(pagination.current - 1) * pagination.pageSize + index + 1}</>;
+        return (
+          <>{(pagination.current - 1) * pagination.pageSize + index + 1}</>
+        );
       },
     },
-		...columns
+    ...columns,
   ];
 
   return (
     <Table
-				columns={enhancedColumns}
-        dataSource={dataSource}
-        scroll={{ x: "max-content" }}
-        pagination={{
-          ...pagination,
-          showSizeChanger: true,
-          showTotal: (total, range) => {
-            return (
-              <div>
-                {" "}
-                {range[0]}-{range[1]} trên {total} rows
-              </div>
-            );
-          },
-        }}
+      columns={enhancedColumns}
+      dataSource={dataSource}
+      scroll={{ x: "max-content" }}
+      pagination={{
+        ...pagination,
+        showSizeChanger: true,
+        showTotal: (total, range) => {
+          return (
+            <div>
+              {" "}
+              {range[0]}-{range[1]} trên {total} rows
+            </div>
+          );
+        },
+      }}
     />
   );
 };
