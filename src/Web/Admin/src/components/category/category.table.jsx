@@ -60,10 +60,20 @@ const CategoryTable = () => {
         borderRadius: borderRadiusLG,
       }}
     >
-      { data && <BaseTable  dataSource={data.data} columns={columns} 
-            pagination={{ current: data.pageIndex, pageSize: data.pageSize, total: data.totalCount }}
-            selectedIds={selectedIds} setSelectedIds={setSelectedIds}
-        /> }
+      <button onClick={() => console.log(selectedIds)}>Show</button>
+      {data && (
+        <BaseTable
+          dataSource={data.data}
+          columns={columns}
+          pagination={{
+            current: data.pageIndex,
+            pageSize: data.pageSize,
+            total: data.totalCount,
+          }}
+          selectedIds={selectedIds}
+          setSelectedIds={setSelectedIds}
+        />
+      )}
     </div>
   );
 };
