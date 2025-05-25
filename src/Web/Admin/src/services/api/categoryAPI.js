@@ -5,6 +5,41 @@ const API_BASE = "/api/Category";
 const API_PREFIX = SERVICE_PATH + API_BASE;
 
 const categoryAPI = {
+  createCategory: (name, description, imageUrl, parentId) => {
+    const URL_BACKEND = `${API_PREFIX}/Create`;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    return axios.post(
+      URL_BACKEND,
+      {
+        name,
+        description,
+        imageUrl: "",
+        parentId
+      },
+      config,
+    );
+  },
+  fetchAllCategories: () => {
+    const URL_BACKEND = `${API_PREFIX}/GetAllCategories`;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    return axios.get(
+      URL_BACKEND,
+      {
+       
+      },
+      config,
+    );
+  },
   fetchCategories: (pageIndex, pageSize) => {
     const URL_BACKEND = `${API_PREFIX}/Get`;
     const config = {

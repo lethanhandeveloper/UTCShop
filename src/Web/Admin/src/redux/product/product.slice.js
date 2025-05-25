@@ -28,6 +28,19 @@ export const fetchProducts = createAsyncThunk(
   },
 );
 
+
+// export const fetchProducts = createAsyncThunk(
+//   "product/fetchProducts",
+//   async (payload, thunkAPI) => {
+//     const res = await productAPI.fetchProducts(
+//       payload.pageIndex,
+//       payload.pageSize,
+//     );
+
+//     return res;
+//   },
+// );
+
 const productSlice = createSlice({
   name: "product",
   initialState,

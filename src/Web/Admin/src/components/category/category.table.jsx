@@ -6,23 +6,6 @@ import categoryAPI from "../../services/api/categoryAPI";
 import { useState } from "react";
 import BaseTable from "../base/base.table";
 
-// const categories = [
-//   {
-//     key: "1",
-//     name: "Mike",
-//     description: "Description",
-//     image: "AAAAAAAAA",
-//     categoryname: "10 Downing Street",
-//   },
-//   {
-//     key: "2",
-//     name: "Mike",
-//     description: "Description",
-//     image: "AAAAAAAAA",
-//     categoryname: "10 Downing Street",
-//   }
-// ];
-
 const columns = [
   {
     title: "Name",
@@ -57,8 +40,6 @@ const CategoryTable = () => {
 
   const {
     data: data,
-    isLoading,
-    error,
   } = useQuery({
     queryKey: ["fetchCategories"],
     queryFn: async () => {

@@ -55,10 +55,10 @@ public class CategoryController : Controller
         return results.Id;
     }
 
-    [HttpGet("GetLeafCategories")]
-    public async Task<List<CategoryDto>> GetLeafCategories()
+    [HttpGet("GetAllCategories")]
+    public async Task<List<CategoryDto>> GetAllCategories()
     {
-        return await _mediator.Send(new GetLeafCategories());
+        return await _mediator.Send(new GetAllCategoriesQuery());
     }
 
 }

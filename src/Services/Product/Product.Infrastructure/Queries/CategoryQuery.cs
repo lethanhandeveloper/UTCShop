@@ -53,6 +53,11 @@ public class CategoryQuery : ICategoryQuery
         return await query.ToListAsync();
     }
 
+    public async Task<List<CategoryEntity>> GetAllCategories()
+    {
+        return await _dbContext.Categories.ToListAsync();
+    }
+
     public async Task<bool> IsLeafCategory(Guid Id)
     {
         var parentIds = await _dbContext.Categories.Select(c => c.ParentId).ToListAsync();

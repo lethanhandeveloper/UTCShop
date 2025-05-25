@@ -58,6 +58,7 @@ const ProductCreateForm = () => {
   };
 
   const handleSubmitForm = async () => {
+    alert("ok");
     const res = await fileAPI.upload(thumbnail);
     await productAPI.createProduct(name, price, res.data, description, "");
 
@@ -78,7 +79,7 @@ const ProductCreateForm = () => {
 
   return (
     <Drawer
-      title="Thêm danh mục mới"
+      title="Thêm sản phẩm mới"
       width={720}
       onClose={() => dispatch(toggleProductCreateForm())}
       open={isOpenedProductCreateForm}
