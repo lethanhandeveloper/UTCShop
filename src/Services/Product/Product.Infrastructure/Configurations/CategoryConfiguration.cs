@@ -9,6 +9,10 @@ public class CategoryConfiguration : IEntityTypeConfiguration<CategoryEntity>
     public void Configure(EntityTypeBuilder<CategoryEntity> builder)
     {
         builder.HasKey(builder => builder.Id);
-        builder.HasMany(c => c.ChildCategories).WithOne().HasForeignKey(c => c.ParentId);
+        builder.Ignore(c => c.ParentName);
+        builder.HasOne(c => c.ParentCategory)
+            .WithMany(c => c.ChildCategories)
+            .HasForeignKey(c => c.ParentId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

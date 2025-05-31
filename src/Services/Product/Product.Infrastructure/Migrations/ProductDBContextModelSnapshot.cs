@@ -58,6 +58,9 @@ namespace Product.Infrastructure.Migrations
                     b.Property<Guid?>("ParentId")
                         .HasColumnType("uuid");
 
+                    b.Property<decimal>("Tessss")
+                        .HasColumnType("numeric");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ParentId");
@@ -113,9 +116,12 @@ namespace Product.Infrastructure.Migrations
 
             modelBuilder.Entity("Product.Domain.Modules.Product.Entities.CategoryEntity", b =>
                 {
-                    b.HasOne("Product.Domain.Modules.Product.Entities.CategoryEntity", null)
+                    b.HasOne("Product.Domain.Modules.Product.Entities.CategoryEntity", "ParentCategory")
                         .WithMany("ChildCategories")
-                        .HasForeignKey("ParentId");
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("ParentCategory");
                 });
 
             modelBuilder.Entity("Product.Domain.Modules.Product.Entities.ProductEntity", b =>

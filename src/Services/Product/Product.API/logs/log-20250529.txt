@@ -1,0 +1,765 @@
+2025-05-29 10:13:37.108 +07:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-05-29 10:13:37.633 +07:00 [DBG] Entity Framework Core 8.0.0 initialized 'ProductDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:8.0.0+2539d1f4bd0d429cbae20336d531d14938a54297' with options: None
+2025-05-29 10:13:37.648 +07:00 [DBG] Creating DbConnection.
+2025-05-29 10:13:37.651 +07:00 [DBG] Created DbConnection. (3ms).
+2025-05-29 10:13:37.662 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:37.875 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:37.879 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:37.885 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (4ms).
+2025-05-29 10:13:37.891 +07:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-05-29 10:13:37.895 +07:00 [DBG] Created DbCommand for 'ExecuteScalar' (3ms).
+2025-05-29 10:13:37.896 +07:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (6ms).
+2025-05-29 10:13:37.896 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:37.968 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:37.973 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 10:13:38.032 +07:00 [INF] Executed DbCommand (58ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 10:13:38.034 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.035 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (1ms).
+2025-05-29 10:13:38.047 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.047 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.047 +07:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-29 10:13:38.047 +07:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-05-29 10:13:38.047 +07:00 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-05-29 10:13:38.048 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-29 10:13:38.056 +07:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-29 10:13:38.062 +07:00 [DBG] Closing data reader to 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.063 +07:00 [DBG] A data reader for 'utcshopDb' on server 'tcp://localhost:5432' is being disposed after spending 6ms reading results.
+2025-05-29 10:13:38.063 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.063 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 10:13:38.066 +07:00 [DBG] Migrating using database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.066 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.116 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.116 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.117 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 10:13:38.117 +07:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-05-29 10:13:38.117 +07:00 [DBG] Created DbCommand for 'ExecuteScalar' (0ms).
+2025-05-29 10:13:38.117 +07:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (0ms).
+2025-05-29 10:13:38.117 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.117 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.117 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 10:13:38.118 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 10:13:38.118 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.118 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 10:13:38.119 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.166 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.166 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.166 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 10:13:38.166 +07:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-05-29 10:13:38.166 +07:00 [DBG] Created DbCommand for 'ExecuteScalar' (0ms).
+2025-05-29 10:13:38.166 +07:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (0ms).
+2025-05-29 10:13:38.166 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.166 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.166 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 10:13:38.167 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 10:13:38.167 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.167 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 10:13:38.168 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.168 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.168 +07:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-29 10:13:38.168 +07:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-05-29 10:13:38.168 +07:00 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-05-29 10:13:38.168 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-29 10:13:38.169 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-29 10:13:38.169 +07:00 [DBG] Closing data reader to 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.169 +07:00 [DBG] A data reader for 'utcshopDb' on server 'tcp://localhost:5432' is being disposed after spending 0ms reading results.
+2025-05-29 10:13:38.169 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.169 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 10:13:38.175 +07:00 [INF] No migrations were applied. The database is already up to date.
+2025-05-29 10:13:38.176 +07:00 [DBG] 'ProductDBContext' disposed.
+2025-05-29 10:13:38.177 +07:00 [DBG] Disposing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:38.178 +07:00 [DBG] Disposed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 10:13:38.192 +07:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-05-29 10:13:38.221 +07:00 [DBG] Hosting starting
+2025-05-29 10:13:38.231 +07:00 [INF] User profile is available. Using 'C:\Users\riley.le\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-29 10:13:38.359 +07:00 [DBG] Reading data from file 'C:\Users\riley.le\AppData\Local\ASP.NET\DataProtection-Keys\key-3583acd8-6f16-4ac5-bafa-6a936a93b8ee.xml'.
+2025-05-29 10:13:38.362 +07:00 [DBG] Reading data from file 'C:\Users\riley.le\AppData\Local\ASP.NET\DataProtection-Keys\key-af50a5e9-0754-44e4-8bb0-81de900232ca.xml'.
+2025-05-29 10:13:38.362 +07:00 [DBG] Reading data from file 'C:\Users\riley.le\AppData\Local\ASP.NET\DataProtection-Keys\key-cc3edaa6-2f44-4836-b1df-64c8b561693e.xml'.
+2025-05-29 10:13:38.364 +07:00 [DBG] Found key {3583acd8-6f16-4ac5-bafa-6a936a93b8ee}.
+2025-05-29 10:13:38.366 +07:00 [DBG] Found key {af50a5e9-0754-44e4-8bb0-81de900232ca}.
+2025-05-29 10:13:38.366 +07:00 [DBG] Found key {cc3edaa6-2f44-4836-b1df-64c8b561693e}.
+2025-05-29 10:13:38.369 +07:00 [DBG] Considering key {cc3edaa6-2f44-4836-b1df-64c8b561693e} with expiration date 2025-06-22 04:23:39Z as default key.
+2025-05-29 10:13:38.371 +07:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-05-29 10:13:38.371 +07:00 [DBG] Decrypting secret element using Windows DPAPI.
+2025-05-29 10:13:38.372 +07:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-05-29 10:13:38.374 +07:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-05-29 10:13:38.374 +07:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-05-29 10:13:38.375 +07:00 [DBG] Using key {cc3edaa6-2f44-4836-b1df-64c8b561693e} as the default key.
+2025-05-29 10:13:38.375 +07:00 [DBG] Key ring with default key {cc3edaa6-2f44-4836-b1df-64c8b561693e} was loaded during application startup.
+2025-05-29 10:13:38.443 +07:00 [INF] Now listening on: https://localhost:56862
+2025-05-29 10:13:38.443 +07:00 [INF] Now listening on: http://localhost:56863
+2025-05-29 10:13:38.443 +07:00 [DBG] Loaded hosting startup assembly Product.API
+2025-05-29 10:13:38.443 +07:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2025-05-29 10:13:38.443 +07:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2025-05-29 10:13:38.444 +07:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2025-05-29 10:13:38.478 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-29 10:13:38.478 +07:00 [INF] Hosting environment: Development
+2025-05-29 10:13:38.478 +07:00 [INF] Content root path: C:\PProjects\UTCShop\src\Services\Product\Product.API
+2025-05-29 10:13:38.478 +07:00 [DBG] Hosting started
+2025-05-29 10:13:52.207 +07:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-05-29 10:13:52.846 +07:00 [DBG] Entity Framework Core 8.0.0 initialized 'ProductDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:8.0.0+2539d1f4bd0d429cbae20336d531d14938a54297' with options: None
+2025-05-29 10:13:52.856 +07:00 [DBG] Creating DbConnection.
+2025-05-29 10:13:52.860 +07:00 [DBG] Created DbConnection. (2ms).
+2025-05-29 10:13:52.869 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.097 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.100 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.106 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (3ms).
+2025-05-29 10:13:53.112 +07:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-05-29 10:13:53.115 +07:00 [DBG] Created DbCommand for 'ExecuteScalar' (3ms).
+2025-05-29 10:13:53.116 +07:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (5ms).
+2025-05-29 10:13:53.116 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.191 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.196 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 10:13:53.252 +07:00 [INF] Executed DbCommand (55ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 10:13:53.253 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.254 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 10:13:53.267 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.267 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.267 +07:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-29 10:13:53.267 +07:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-05-29 10:13:53.267 +07:00 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-05-29 10:13:53.267 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-29 10:13:53.272 +07:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-29 10:13:53.277 +07:00 [DBG] Closing data reader to 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.277 +07:00 [DBG] A data reader for 'utcshopDb' on server 'tcp://localhost:5432' is being disposed after spending 4ms reading results.
+2025-05-29 10:13:53.277 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.277 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 10:13:53.279 +07:00 [DBG] Migrating using database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.280 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.449 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.449 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.449 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 10:13:53.449 +07:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-05-29 10:13:53.449 +07:00 [DBG] Created DbCommand for 'ExecuteScalar' (0ms).
+2025-05-29 10:13:53.449 +07:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (0ms).
+2025-05-29 10:13:53.449 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.449 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.449 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 10:13:53.451 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 10:13:53.451 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.451 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 10:13:53.451 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.499 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.499 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.499 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 10:13:53.499 +07:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-05-29 10:13:53.500 +07:00 [DBG] Created DbCommand for 'ExecuteScalar' (0ms).
+2025-05-29 10:13:53.500 +07:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (0ms).
+2025-05-29 10:13:53.500 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.500 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.500 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 10:13:53.501 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 10:13:53.501 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.501 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 10:13:53.502 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.502 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.502 +07:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-29 10:13:53.502 +07:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-05-29 10:13:53.502 +07:00 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-05-29 10:13:53.502 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-29 10:13:53.503 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-29 10:13:53.503 +07:00 [DBG] Closing data reader to 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.503 +07:00 [DBG] A data reader for 'utcshopDb' on server 'tcp://localhost:5432' is being disposed after spending 0ms reading results.
+2025-05-29 10:13:53.503 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.503 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 10:13:53.509 +07:00 [INF] No migrations were applied. The database is already up to date.
+2025-05-29 10:13:53.510 +07:00 [DBG] 'ProductDBContext' disposed.
+2025-05-29 10:13:53.511 +07:00 [DBG] Disposing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 10:13:53.511 +07:00 [DBG] Disposed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 10:13:53.526 +07:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-05-29 10:13:53.553 +07:00 [DBG] Hosting starting
+2025-05-29 10:13:53.562 +07:00 [INF] User profile is available. Using 'C:\Users\riley.le\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-29 10:13:53.643 +07:00 [DBG] Reading data from file 'C:\Users\riley.le\AppData\Local\ASP.NET\DataProtection-Keys\key-3583acd8-6f16-4ac5-bafa-6a936a93b8ee.xml'.
+2025-05-29 10:13:53.645 +07:00 [DBG] Reading data from file 'C:\Users\riley.le\AppData\Local\ASP.NET\DataProtection-Keys\key-af50a5e9-0754-44e4-8bb0-81de900232ca.xml'.
+2025-05-29 10:13:53.646 +07:00 [DBG] Reading data from file 'C:\Users\riley.le\AppData\Local\ASP.NET\DataProtection-Keys\key-cc3edaa6-2f44-4836-b1df-64c8b561693e.xml'.
+2025-05-29 10:13:53.648 +07:00 [DBG] Found key {3583acd8-6f16-4ac5-bafa-6a936a93b8ee}.
+2025-05-29 10:13:53.649 +07:00 [DBG] Found key {af50a5e9-0754-44e4-8bb0-81de900232ca}.
+2025-05-29 10:13:53.649 +07:00 [DBG] Found key {cc3edaa6-2f44-4836-b1df-64c8b561693e}.
+2025-05-29 10:13:53.652 +07:00 [DBG] Considering key {cc3edaa6-2f44-4836-b1df-64c8b561693e} with expiration date 2025-06-22 04:23:39Z as default key.
+2025-05-29 10:13:53.654 +07:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-05-29 10:13:53.654 +07:00 [DBG] Decrypting secret element using Windows DPAPI.
+2025-05-29 10:13:53.655 +07:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-05-29 10:13:53.656 +07:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-05-29 10:13:53.657 +07:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-05-29 10:13:53.657 +07:00 [DBG] Using key {cc3edaa6-2f44-4836-b1df-64c8b561693e} as the default key.
+2025-05-29 10:13:53.658 +07:00 [DBG] Key ring with default key {cc3edaa6-2f44-4836-b1df-64c8b561693e} was loaded during application startup.
+2025-05-29 10:13:53.726 +07:00 [INF] Now listening on: https://localhost:56888
+2025-05-29 10:13:53.726 +07:00 [INF] Now listening on: http://localhost:56889
+2025-05-29 10:13:53.726 +07:00 [DBG] Loaded hosting startup assembly Product.API
+2025-05-29 10:13:53.726 +07:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2025-05-29 10:13:53.726 +07:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2025-05-29 10:13:53.726 +07:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2025-05-29 10:13:53.768 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-29 10:13:53.768 +07:00 [INF] Hosting environment: Development
+2025-05-29 10:13:53.768 +07:00 [INF] Content root path: C:\PProjects\UTCShop\src\Services\Product\Product.API
+2025-05-29 10:13:53.768 +07:00 [DBG] Hosting started
+2025-05-29 10:51:14.868 +07:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-05-29 10:51:15.312 +07:00 [DBG] Entity Framework Core 8.0.0 initialized 'ProductDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:8.0.0+2539d1f4bd0d429cbae20336d531d14938a54297' with options: None
+2025-05-29 10:51:15.824 +07:00 [DBG] 'ProductDBContext' disposed.
+2025-05-29 10:59:11.279 +07:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-05-29 10:59:11.741 +07:00 [DBG] Entity Framework Core 8.0.0 initialized 'ProductDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:8.0.0+2539d1f4bd0d429cbae20336d531d14938a54297' with options: None
+2025-05-29 10:59:12.210 +07:00 [DBG] 'ProductDBContext' disposed.
+2025-05-29 11:26:26.069 +07:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-05-29 11:26:26.520 +07:00 [DBG] Entity Framework Core 8.0.0 initialized 'ProductDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:8.0.0+2539d1f4bd0d429cbae20336d531d14938a54297' with options: None
+2025-05-29 11:26:26.875 +07:00 [DBG] 'ProductDBContext' disposed.
+2025-05-29 11:31:03.176 +07:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-05-29 11:31:03.582 +07:00 [DBG] Entity Framework Core 8.0.0 initialized 'ProductDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:8.0.0+2539d1f4bd0d429cbae20336d531d14938a54297' with options: None
+2025-05-29 11:31:03.896 +07:00 [DBG] 'ProductDBContext' disposed.
+2025-05-29 11:41:23.530 +07:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-05-29 11:41:23.963 +07:00 [DBG] Entity Framework Core 8.0.0 initialized 'ProductDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:8.0.0+2539d1f4bd0d429cbae20336d531d14938a54297' with options: None
+2025-05-29 11:41:24.301 +07:00 [DBG] 'ProductDBContext' disposed.
+2025-05-29 11:42:36.509 +07:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-05-29 11:42:36.919 +07:00 [DBG] Entity Framework Core 8.0.0 initialized 'ProductDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:8.0.0+2539d1f4bd0d429cbae20336d531d14938a54297' with options: None
+2025-05-29 11:42:36.940 +07:00 [DBG] Creating DbConnection.
+2025-05-29 11:42:36.942 +07:00 [DBG] Created DbConnection. (3ms).
+2025-05-29 11:42:36.950 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.060 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.062 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.068 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (3ms).
+2025-05-29 11:42:37.073 +07:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-05-29 11:42:37.077 +07:00 [DBG] Created DbCommand for 'ExecuteScalar' (3ms).
+2025-05-29 11:42:37.077 +07:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (6ms).
+2025-05-29 11:42:37.077 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.149 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.158 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 11:42:37.216 +07:00 [INF] Executed DbCommand (62ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 11:42:37.216 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.217 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 11:42:37.226 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.226 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.226 +07:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-29 11:42:37.226 +07:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-05-29 11:42:37.226 +07:00 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-05-29 11:42:37.226 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-29 11:42:37.229 +07:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-29 11:42:37.233 +07:00 [DBG] Closing data reader to 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.234 +07:00 [DBG] A data reader for 'utcshopDb' on server 'tcp://localhost:5432' is being disposed after spending 4ms reading results.
+2025-05-29 11:42:37.234 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.234 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 11:42:37.236 +07:00 [DBG] Migrating using database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.236 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.286 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.286 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.286 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 11:42:37.286 +07:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-05-29 11:42:37.286 +07:00 [DBG] Created DbCommand for 'ExecuteScalar' (0ms).
+2025-05-29 11:42:37.286 +07:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (0ms).
+2025-05-29 11:42:37.286 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.286 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.286 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 11:42:37.287 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 11:42:37.287 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.287 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 11:42:37.287 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.347 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.347 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.347 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 11:42:37.347 +07:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-05-29 11:42:37.347 +07:00 [DBG] Created DbCommand for 'ExecuteScalar' (0ms).
+2025-05-29 11:42:37.347 +07:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (0ms).
+2025-05-29 11:42:37.347 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.347 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.348 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 11:42:37.348 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 11:42:37.348 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.348 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 11:42:37.348 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.348 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.348 +07:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-29 11:42:37.348 +07:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-05-29 11:42:37.348 +07:00 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-05-29 11:42:37.348 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-29 11:42:37.349 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-29 11:42:37.349 +07:00 [DBG] Closing data reader to 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.349 +07:00 [DBG] A data reader for 'utcshopDb' on server 'tcp://localhost:5432' is being disposed after spending 0ms reading results.
+2025-05-29 11:42:37.349 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.349 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 11:42:37.357 +07:00 [INF] Applying migration '20250529044124_10112c9d-2554-4641-8482-3141e8fbaa1b'.
+2025-05-29 11:42:37.378 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.378 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.379 +07:00 [DBG] Beginning transaction with isolation level 'Unspecified'.
+2025-05-29 11:42:37.381 +07:00 [DBG] Began transaction with isolation level 'ReadCommitted'.
+2025-05-29 11:42:37.382 +07:00 [DBG] Creating DbCommand for 'ExecuteNonQuery'.
+2025-05-29 11:42:37.382 +07:00 [DBG] Created DbCommand for 'ExecuteNonQuery' (0ms).
+2025-05-29 11:42:37.382 +07:00 [DBG] Initialized DbCommand for 'ExecuteNonQuery' (0ms).
+2025-05-29 11:42:37.382 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Products" DROP COLUMN "Test";
+2025-05-29 11:42:37.389 +07:00 [ERR] Failed executing DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Products" DROP COLUMN "Test";
+2025-05-29 11:42:37.392 +07:00 [DBG] Disposing transaction.
+2025-05-29 11:42:37.392 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.392 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 11:42:37.393 +07:00 [DBG] 'ProductDBContext' disposed.
+2025-05-29 11:42:37.394 +07:00 [DBG] Disposing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 11:42:37.394 +07:00 [DBG] Disposed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 11:46:42.052 +07:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-05-29 11:46:42.474 +07:00 [DBG] Entity Framework Core 8.0.0 initialized 'ProductDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:8.0.0+2539d1f4bd0d429cbae20336d531d14938a54297' with options: None
+2025-05-29 11:46:42.793 +07:00 [DBG] 'ProductDBContext' disposed.
+2025-05-29 14:06:25.947 +07:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-05-29 14:06:26.839 +07:00 [DBG] Entity Framework Core 8.0.0 initialized 'ProductDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:8.0.0+2539d1f4bd0d429cbae20336d531d14938a54297' with options: None
+2025-05-29 14:06:26.852 +07:00 [DBG] Creating DbConnection.
+2025-05-29 14:06:26.855 +07:00 [DBG] Created DbConnection. (2ms).
+2025-05-29 14:06:26.864 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.040 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.043 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.051 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (5ms).
+2025-05-29 14:06:27.058 +07:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-05-29 14:06:27.064 +07:00 [DBG] Created DbCommand for 'ExecuteScalar' (3ms).
+2025-05-29 14:06:27.066 +07:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (8ms).
+2025-05-29 14:06:27.066 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.146 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.152 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 14:06:27.200 +07:00 [INF] Executed DbCommand (48ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 14:06:27.201 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.202 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (1ms).
+2025-05-29 14:06:27.215 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.215 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.215 +07:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-29 14:06:27.215 +07:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-05-29 14:06:27.215 +07:00 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-05-29 14:06:27.216 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-29 14:06:27.222 +07:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-29 14:06:27.229 +07:00 [DBG] Closing data reader to 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.229 +07:00 [DBG] A data reader for 'utcshopDb' on server 'tcp://localhost:5432' is being disposed after spending 6ms reading results.
+2025-05-29 14:06:27.229 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.229 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 14:06:27.231 +07:00 [DBG] Migrating using database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.232 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.391 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.391 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.392 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 14:06:27.392 +07:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-05-29 14:06:27.392 +07:00 [DBG] Created DbCommand for 'ExecuteScalar' (0ms).
+2025-05-29 14:06:27.392 +07:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (0ms).
+2025-05-29 14:06:27.392 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.392 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.392 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 14:06:27.395 +07:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 14:06:27.395 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.395 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 14:06:27.396 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.451 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.451 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.451 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 14:06:27.451 +07:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-05-29 14:06:27.451 +07:00 [DBG] Created DbCommand for 'ExecuteScalar' (0ms).
+2025-05-29 14:06:27.451 +07:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (0ms).
+2025-05-29 14:06:27.451 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.451 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.451 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 14:06:27.453 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-05-29 14:06:27.453 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.453 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 14:06:27.454 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.454 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.454 +07:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-29 14:06:27.454 +07:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-05-29 14:06:27.454 +07:00 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-05-29 14:06:27.454 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-29 14:06:27.455 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-05-29 14:06:27.455 +07:00 [DBG] Closing data reader to 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.455 +07:00 [DBG] A data reader for 'utcshopDb' on server 'tcp://localhost:5432' is being disposed after spending 0ms reading results.
+2025-05-29 14:06:27.455 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.455 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 14:06:27.464 +07:00 [INF] Applying migration '20250529044642_641d557f-cb84-4d16-89f5-bfa1a64fa0b6'.
+2025-05-29 14:06:27.479 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.479 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.481 +07:00 [DBG] Beginning transaction with isolation level 'Unspecified'.
+2025-05-29 14:06:27.484 +07:00 [DBG] Began transaction with isolation level 'ReadCommitted'.
+2025-05-29 14:06:27.486 +07:00 [DBG] Creating DbCommand for 'ExecuteNonQuery'.
+2025-05-29 14:06:27.486 +07:00 [DBG] Created DbCommand for 'ExecuteNonQuery' (0ms).
+2025-05-29 14:06:27.486 +07:00 [DBG] Initialized DbCommand for 'ExecuteNonQuery' (0ms).
+2025-05-29 14:06:27.486 +07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20250529044642_641d557f-cb84-4d16-89f5-bfa1a64fa0b6', '8.0.0');
+2025-05-29 14:06:27.495 +07:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20250529044642_641d557f-cb84-4d16-89f5-bfa1a64fa0b6', '8.0.0');
+2025-05-29 14:06:27.498 +07:00 [DBG] Committing transaction.
+2025-05-29 14:06:27.503 +07:00 [DBG] Committed transaction.
+2025-05-29 14:06:27.505 +07:00 [DBG] Disposing transaction.
+2025-05-29 14:06:27.506 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.506 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 14:06:27.507 +07:00 [DBG] 'ProductDBContext' disposed.
+2025-05-29 14:06:27.508 +07:00 [DBG] Disposing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:06:27.509 +07:00 [DBG] Disposed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 14:06:27.557 +07:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-05-29 14:06:27.613 +07:00 [DBG] Hosting starting
+2025-05-29 14:06:27.655 +07:00 [INF] User profile is available. Using 'C:\Users\riley.le\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-29 14:06:27.861 +07:00 [DBG] Starting bus instances: IBus
+2025-05-29 14:06:27.866 +07:00 [DBG] Starting bus: "rabbitmq://localhost/"
+2025-05-29 14:06:27.885 +07:00 [DBG] Reading data from file 'C:\Users\riley.le\AppData\Local\ASP.NET\DataProtection-Keys\key-3583acd8-6f16-4ac5-bafa-6a936a93b8ee.xml'.
+2025-05-29 14:06:27.891 +07:00 [DBG] Reading data from file 'C:\Users\riley.le\AppData\Local\ASP.NET\DataProtection-Keys\key-af50a5e9-0754-44e4-8bb0-81de900232ca.xml'.
+2025-05-29 14:06:27.892 +07:00 [DBG] Reading data from file 'C:\Users\riley.le\AppData\Local\ASP.NET\DataProtection-Keys\key-cc3edaa6-2f44-4836-b1df-64c8b561693e.xml'.
+2025-05-29 14:06:27.904 +07:00 [DBG] Found key {3583acd8-6f16-4ac5-bafa-6a936a93b8ee}.
+2025-05-29 14:06:27.910 +07:00 [DBG] Found key {af50a5e9-0754-44e4-8bb0-81de900232ca}.
+2025-05-29 14:06:27.910 +07:00 [DBG] Found key {cc3edaa6-2f44-4836-b1df-64c8b561693e}.
+2025-05-29 14:06:27.912 +07:00 [DBG] Connect: guest@localhost:5672/
+2025-05-29 14:06:27.914 +07:00 [DBG] Considering key {cc3edaa6-2f44-4836-b1df-64c8b561693e} with expiration date 2025-06-22 04:23:39Z as default key.
+2025-05-29 14:06:27.917 +07:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-05-29 14:06:27.917 +07:00 [DBG] Decrypting secret element using Windows DPAPI.
+2025-05-29 14:06:27.918 +07:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-05-29 14:06:27.920 +07:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-05-29 14:06:27.921 +07:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-05-29 14:06:27.922 +07:00 [DBG] Using key {cc3edaa6-2f44-4836-b1df-64c8b561693e} as the default key.
+2025-05-29 14:06:27.922 +07:00 [DBG] Key ring with default key {cc3edaa6-2f44-4836-b1df-64c8b561693e} was loaded during application startup.
+2025-05-29 14:06:27.994 +07:00 [DBG] Connected: guest@localhost:5672/ (address: amqp://localhost:5672, local: 60908)
+2025-05-29 14:06:28.035 +07:00 [DBG] Endpoint Ready: "rabbitmq://localhost/VNHNRILEYVM_ProductAPI_bus_o1dyyyn78oybmidrbdq3h94ud6?temporary=true"
+2025-05-29 14:06:28.045 +07:00 [INF] Bus started: "rabbitmq://localhost/"
+2025-05-29 14:06:28.106 +07:00 [INF] Now listening on: https://localhost:60845
+2025-05-29 14:06:28.106 +07:00 [INF] Now listening on: http://localhost:60846
+2025-05-29 14:06:28.106 +07:00 [DBG] Loaded hosting startup assembly Product.API
+2025-05-29 14:06:28.106 +07:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2025-05-29 14:06:28.106 +07:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2025-05-29 14:06:28.106 +07:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2025-05-29 14:06:28.156 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-29 14:06:28.156 +07:00 [INF] Hosting environment: Development
+2025-05-29 14:06:28.156 +07:00 [INF] Content root path: C:\PProjects\UTCShop\src\Services\Product\Product.API
+2025-05-29 14:06:28.156 +07:00 [DBG] Hosting started
+2025-05-29 14:06:56.881 +07:00 [DBG] Connection id "0HNCUFTJ2RTLD" accepted.
+2025-05-29 14:06:56.887 +07:00 [DBG] Connection id "0HNCUFTJ2RTLD" started.
+2025-05-29 14:06:56.906 +07:00 [DBG] Connection 0HNCUFTJ2RTLD established using the following protocol: "Tls12"
+2025-05-29 14:06:57.036 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5003/swagger/index.html - null null
+2025-05-29 14:06:57.090 +07:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-05-29 14:06:57.103 +07:00 [DBG] No candidates found for the request path '/swagger/index.html'
+2025-05-29 14:06:57.104 +07:00 [DBG] Request did not match any endpoints
+2025-05-29 14:06:57.153 +07:00 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-05-29 14:06:57.156 +07:00 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-05-29 14:06:57.169 +07:00 [DBG] Response markup was updated to include Browser Link script injection.
+2025-05-29 14:06:57.169 +07:00 [DBG] Response markup was updated to include browser refresh script injection.
+2025-05-29 14:06:57.172 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5003/swagger/index.html - 200 null text/html;charset=utf-8 150.1338ms
+2025-05-29 14:06:57.194 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5003/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-29 14:06:57.195 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5003/_vs/browserLink - null null
+2025-05-29 14:06:57.195 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5003/swagger/index.js - null null
+2025-05-29 14:06:57.196 +07:00 [DBG] No candidates found for the request path '/swagger/index.js'
+2025-05-29 14:06:57.196 +07:00 [DBG] Request did not match any endpoints
+2025-05-29 14:06:57.200 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5003/swagger/index.js - 200 null application/javascript;charset=utf-8 5.2188ms
+2025-05-29 14:06:57.209 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5003/_framework/aspnetcore-browser-refresh.js - 200 13758 application/javascript; charset=utf-8 16.2254ms
+2025-05-29 14:06:57.240 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 45.1166ms
+2025-05-29 14:06:57.282 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5003/swagger/v1/swagger.json - null null
+2025-05-29 14:06:57.282 +07:00 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2025-05-29 14:06:57.282 +07:00 [DBG] Request did not match any endpoints
+2025-05-29 14:06:57.311 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5003/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 30.0439ms
+2025-05-29 14:08:49.675 +07:00 [INF] Request starting HTTP/2 POST https://localhost:5003/api/Category/Create - application/json 100
+2025-05-29 14:08:49.679 +07:00 [DBG] 1 candidate(s) found for the request path '/api/Category/Create'
+2025-05-29 14:08:49.680 +07:00 [DBG] Endpoint 'Product.API.Controllers.CategoryController.Create (Product.API)' with route pattern 'api/Category/Create' is valid for the request path '/api/Category/Create'
+2025-05-29 14:08:49.681 +07:00 [DBG] Request matched endpoint 'Product.API.Controllers.CategoryController.Create (Product.API)'
+2025-05-29 14:08:49.682 +07:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-05-29 14:08:49.784 +07:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-05-29 14:08:49.787 +07:00 [DBG] The request has an origin header: 'https://localhost:5003'.
+2025-05-29 14:08:49.787 +07:00 [INF] CORS policy execution failed.
+2025-05-29 14:08:49.787 +07:00 [INF] Request origin https://localhost:5003 does not have permission to access the resource.
+2025-05-29 14:08:49.789 +07:00 [INF] Executing endpoint 'Product.API.Controllers.CategoryController.Create (Product.API)'
+2025-05-29 14:08:49.815 +07:00 [INF] Route matched with {action = "Create", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Guid] Create(Product.Application.Dtos.CategoryDto) on controller Product.API.Controllers.CategoryController (Product.API).
+2025-05-29 14:08:49.816 +07:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-05-29 14:08:49.816 +07:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-05-29 14:08:49.817 +07:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter (Order: -2147483648)","Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-05-29 14:08:49.817 +07:00 [DBG] Execution plan of exception filters (in the following order): ["BuildingBlocks.Attribute.ApiResultExceptionAttribute (Order: 0)"]
+2025-05-29 14:08:49.817 +07:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-05-29 14:08:49.819 +07:00 [DBG] Executing controller factory for controller Product.API.Controllers.CategoryController (Product.API)
+2025-05-29 14:08:49.820 +07:00 [DBG] Executed controller factory for controller Product.API.Controllers.CategoryController (Product.API)
+2025-05-29 14:08:49.842 +07:00 [DBG] Attempting to bind parameter 'request' of type 'Product.Application.Dtos.CategoryDto' ...
+2025-05-29 14:08:49.844 +07:00 [DBG] Attempting to bind parameter 'request' of type 'Product.Application.Dtos.CategoryDto' using the name '' in request data ...
+2025-05-29 14:08:49.845 +07:00 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2025-05-29 14:08:49.859 +07:00 [DBG] Connection id "0HNCUFTJ2RTLD", Request id "0HNCUFTJ2RTLD:0000000B": started reading request body.
+2025-05-29 14:08:49.859 +07:00 [DBG] Connection id "0HNCUFTJ2RTLD", Request id "0HNCUFTJ2RTLD:0000000B": done reading request body.
+2025-05-29 14:08:49.863 +07:00 [DBG] JSON input formatter succeeded, deserializing to type 'Product.Application.Dtos.CategoryDto'
+2025-05-29 14:08:49.864 +07:00 [DBG] Done attempting to bind parameter 'request' of type 'Product.Application.Dtos.CategoryDto'.
+2025-05-29 14:08:49.864 +07:00 [DBG] Done attempting to bind parameter 'request' of type 'Product.Application.Dtos.CategoryDto'.
+2025-05-29 14:08:49.864 +07:00 [DBG] Attempting to validate the bound parameter 'request' of type 'Product.Application.Dtos.CategoryDto' ...
+2025-05-29 14:08:49.873 +07:00 [DBG] Done attempting to validate the bound parameter 'request' of type 'Product.Application.Dtos.CategoryDto'.
+2025-05-29 14:08:49.878 +07:00 [INF] Executing action method Product.API.Controllers.CategoryController.Create (Product.API) - Validation state: "Valid"
+2025-05-29 14:08:53.520 +07:00 [DBG] Entity Framework Core 8.0.0 initialized 'ProductDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:8.0.0+2539d1f4bd0d429cbae20336d531d14938a54297' with options: None
+2025-05-29 14:08:53.565 +07:00 [DBG] 'ProductDBContext' generated a value for the property 'CategoryEntity.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-29 14:08:53.626 +07:00 [DBG] Context 'ProductDBContext' started tracking 'CategoryEntity' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-29 14:08:58.753 +07:00 [DBG] Declare exchange: name: BuildingBlocks.Messaging.Events:CategoryCreatedEvent, type: fanout, durable
+2025-05-29 14:08:58.860 +07:00 [DBG] SEND "rabbitmq://localhost/BuildingBlocks.Messaging.Events:CategoryCreatedEvent" "84860000-5d3c-0015-5d1c-08dd9e7faecd" BuildingBlocks.Messaging.Events.CategoryCreatedEvent
+2025-05-29 14:09:30.644 +07:00 [DBG] SaveChanges starting for 'ProductDBContext'.
+2025-05-29 14:09:30.665 +07:00 [DBG] DetectChanges starting for 'ProductDBContext'.
+2025-05-29 14:09:30.680 +07:00 [DBG] DetectChanges completed for 'ProductDBContext'.
+2025-05-29 14:09:30.683 +07:00 [DBG] DetectChanges starting for 'ProductDBContext'.
+2025-05-29 14:09:30.684 +07:00 [DBG] The unchanged property 'CategoryEntity.CreatedAt' was detected as changed and will be marked as modified. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-29 14:09:30.685 +07:00 [DBG] The unchanged property 'CategoryEntity.CreatedBy' was detected as changed and will be marked as modified. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-29 14:09:30.686 +07:00 [DBG] The unchanged property 'CategoryEntity.IsDeleted' was detected as changed and will be marked as modified. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-29 14:09:30.686 +07:00 [DBG] The unchanged property 'CategoryEntity.LastUpdatedAt' was detected as changed and will be marked as modified. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-29 14:09:30.686 +07:00 [DBG] The unchanged property 'CategoryEntity.LastUpdatedBy' was detected as changed and will be marked as modified. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-29 14:09:30.687 +07:00 [DBG] DetectChanges completed for 'ProductDBContext'.
+2025-05-29 14:09:30.741 +07:00 [DBG] Creating DbConnection.
+2025-05-29 14:09:30.741 +07:00 [DBG] Created DbConnection. (0ms).
+2025-05-29 14:09:30.741 +07:00 [DBG] Opening connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:09:30.741 +07:00 [DBG] Opened connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:09:30.742 +07:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-29 14:09:30.742 +07:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-05-29 14:09:30.747 +07:00 [DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+2025-05-29 14:09:30.750 +07:00 [DBG] Executing DbCommand [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?', @p4='?', @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?', @p9='?' (DbType = Guid), @p10='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Categories" ("Id", "CreatedAt", "CreatedBy", "Description", "ImageUrl", "IsDeleted", "LastUpdatedAt", "LastUpdatedBy", "Name", "ParentId", "Tessss")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2025-05-29 14:09:30.806 +07:00 [ERR] Failed executing DbCommand (57ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?', @p4='?', @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?', @p9='?' (DbType = Guid), @p10='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Categories" ("Id", "CreatedAt", "CreatedBy", "Description", "ImageUrl", "IsDeleted", "LastUpdatedAt", "LastUpdatedBy", "Name", "ParentId", "Tessss")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2025-05-29 14:09:30.810 +07:00 [DBG] Closing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:09:30.811 +07:00 [DBG] Closed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 14:09:30.857 +07:00 [ERR] An exception occurred in the database while saving changes for context type 'Product.Infrastructure.ProductDBContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 42703: column "Tessss" of relation "Categories" does not exist
+
+POSITION: 153
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column "Tessss" of relation "Categories" does not exist
+    Position: 153
+    File: parse_target.c
+    Line: 1070
+    Routine: checkInsertTargets
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 42703: column "Tessss" of relation "Categories" does not exist
+
+POSITION: 153
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column "Tessss" of relation "Categories" does not exist
+    Position: 153
+    File: parse_target.c
+    Line: 1070
+    Routine: checkInsertTargets
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-05-29 14:09:31.188 +07:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-05-29 14:09:31.190 +07:00 [DBG] Attempting to select an output formatter based on Accept header '["application/json"]'.
+2025-05-29 14:09:31.190 +07:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-05-29 14:09:31.190 +07:00 [INF] Executing ObjectResult, writing value of type 'BuildingBlocks.Dtos.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-29 14:09:31.199 +07:00 [INF] Executed action Product.API.Controllers.CategoryController.Create (Product.API) in 41379.5943ms
+2025-05-29 14:09:31.200 +07:00 [INF] Executed endpoint 'Product.API.Controllers.CategoryController.Create (Product.API)'
+2025-05-29 14:09:31.202 +07:00 [DBG] 'ProductDBContext' disposed.
+2025-05-29 14:09:31.204 +07:00 [DBG] Disposing connection to database 'utcshopDb' on server 'tcp://localhost:5432'.
+2025-05-29 14:09:31.205 +07:00 [DBG] Disposed connection to database 'utcshopDb' on server 'tcp://localhost:5432' (0ms).
+2025-05-29 14:09:31.205 +07:00 [INF] Request finished HTTP/2 POST https://localhost:5003/api/Category/Create - 200 null application/json; charset=utf-8 41529.6382ms

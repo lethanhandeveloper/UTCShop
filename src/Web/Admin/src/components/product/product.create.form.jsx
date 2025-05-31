@@ -6,6 +6,7 @@ import {
   Input,
   Modal,
   notification,
+  Select,
   Space,
   Upload,
 } from "antd";
@@ -56,6 +57,36 @@ const ProductCreateForm = () => {
       dispatch(toggleProductCreateForm());
     }
   };
+
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
+  const options = [
+    {
+      label: "China",
+      value: "china",
+      emoji: "🇨🇳",
+      desc: "China (中国)",
+    },
+    {
+      label: "USA",
+      value: "usa",
+      emoji: "🇺🇸",
+      desc: "USA (美国)",
+    },
+    {
+      label: "Japan",
+      value: "japan",
+      emoji: "🇯🇵",
+      desc: "Japan (日本)",
+    },
+    {
+      label: "Korea",
+      value: "korea",
+      emoji: "🇰🇷",
+      desc: "Korea (韩国)",
+    },
+  ];
 
   const handleSubmitForm = async () => {
     alert("ok");
@@ -140,12 +171,31 @@ const ProductCreateForm = () => {
         />
         <CKEditor initData="<p>This is an example CKEditor 4 WYSIWYG editor instance.</p>" />
       </div>
+      <div>
+        <span>Thuoc danh muc</span>
+        <Select
+          mode="multiple"
+          style={{ width: "100%" }}
+          placeholder="Chon mot danh muc"
+          defaultValue={["china"]}
+          onChange={handleChange}
+          options={options}
+          optionRender={(option) => (
+            <Space>
+              <span role="img" aria-label={option.data.label}>
+                {option.data.emoji}
+              </span>
+              {option.data.desc}
+            </Space>
+          )}
+        />
+      </div>
       <Button
         style={{ marginTop: "2em", float: "right" }}
         onClick={() => handleSubmitForm()}
         type="primary"
       >
-        Submit
+        Save
       </Button>
     </Drawer>
   );

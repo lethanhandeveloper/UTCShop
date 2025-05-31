@@ -33,8 +33,8 @@ namespace Identity.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("Expire")
                         .HasColumnType("timestamp with time zone");
@@ -45,8 +45,8 @@ namespace Identity.Infrastructure.Migrations
                     b.Property<DateTime?>("LastUpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("LastUpdatedBy")
-                        .HasColumnType("text");
+                    b.Property<Guid?>("LastUpdatedBy")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Token")
                         .IsRequired()
@@ -57,7 +57,7 @@ namespace Identity.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RefreshTokens", (string)null);
+                    b.ToTable("RefreshTokens");
                 });
 
             modelBuilder.Entity("Identity.Domain.Entities.RoleEntity", b =>
@@ -69,8 +69,8 @@ namespace Identity.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uuid");
 
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("boolean");
@@ -78,8 +78,8 @@ namespace Identity.Infrastructure.Migrations
                     b.Property<DateTime?>("LastUpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("LastUpdatedBy")
-                        .HasColumnType("text");
+                    b.Property<Guid?>("LastUpdatedBy")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -93,7 +93,7 @@ namespace Identity.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles", (string)null);
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Identity.Domain.Entities.UserEntity", b =>
@@ -113,8 +113,8 @@ namespace Identity.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -133,8 +133,8 @@ namespace Identity.Infrastructure.Migrations
                     b.Property<DateTime?>("LastUpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("LastUpdatedBy")
-                        .HasColumnType("text");
+                    b.Property<Guid?>("LastUpdatedBy")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -142,7 +142,7 @@ namespace Identity.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

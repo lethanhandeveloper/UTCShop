@@ -1,5 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
-using BuildingBlocks.Utils;
+﻿using BuildingBlocks.Utils;
+using EfMigrationTool;
 using System.Diagnostics;
 Console.WriteLine("Hello, World!");
 
@@ -23,21 +23,38 @@ var servicePath = $"{SystemPathBuilder.GetBasePath()}" + "\\Services";
 
 string[] allSubDirs = Directory.GetDirectories(servicePath, "*", SearchOption.TopDirectoryOnly);
 
+List<CommandProperty> commands = new List<CommandProperty>();
+
 foreach (var dir in allSubDirs)
 {
     var folders = Directory.GetDirectories(dir, "*", SearchOption.TopDirectoryOnly);
-    foreach (var folder in folders)
+
+    var infrastructurePath = folders.FirstOrDefault(x => x.EndsWith("Infrastructure"));
+
+
+
+    var apiPath = folders.FirstOrDefault(x => x.EndsWith("API"));
+
+    if (apiPath != null && infrastructurePath != null)
     {
-        if (folder.IndexOf("Infrastructure", StringComparison.OrdinalIgnoreCase) >= 0)
+        var infrastructureFile = Directory.GetFiles(infrastructurePath, "*Infrastructure.csproj", SearchOption.AllDirectories)
+                           .FirstOrDefault();
+        var apiFile = Directory.GetFiles(apiPath, "*API.csproj", SearchOption.AllDirectories)
+                            .FirstOrDefault();
+
+        CommandProperty commandProperty = new CommandProperty
         {
-            var file = Directory.GetFiles(folder, "*Infrastructure.csproj", SearchOption.TopDirectoryOnly).FirstOrDefault();
-            Console.WriteLine(file);
-        }
+            ProjectLocation = infrastructureFile,
+            StarupProjectLocation = apiFile
+        };
+
+        commands.Add(commandProperty);
     }
+
 }
 
-//string content = File.ReadAllText(relativePath);
-//Console.WriteLine("Nội dung file:");
-//Console.WriteLine(content);
-
-//RunCommand(command: $"dotnet ef migrations add new --project C:\\PProjects\\UTCShop\\src\\Services\\Identity\\Identity.Infrastructure --startup-project C:\\PProjects\\UTCShop\\src\\Services\\Identity\\Identity.API\\Identity.API.csproj");
+foreach (var command in commands)
+{
+    RunCommand($"dotnet ef migrations add {Guid.NewGuid().ToString()} --project {command.ProjectLocation} --startup-project {command.StarupProjectLocation}");
+    RunCommand($"dotnet ef database update --project {command.ProjectLocation} --startup-project {command.StarupProjectLocation}\r\n");
+}

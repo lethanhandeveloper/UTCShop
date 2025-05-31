@@ -1,3 +1,4 @@
+using BuildingBlocks.Messaging.MassTransit;
 using BuildingBlocks.Services;
 using BuildingBlocks.Utils;
 using Mapster;
@@ -18,6 +19,8 @@ builder.Configuration
     .SetBasePath(SystemPathBuilder.GetBasePath())
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddEnvironmentVariables();
+
+builder.Services.AddMessageBroker(builder.Configuration);
 
 builder.AddServiceDefaults();
 

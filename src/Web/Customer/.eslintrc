@@ -1,0 +1,7 @@
+{
+  "plugins": ["import"],
+  "extends": ["eslint:recommended", "plugin:import/recommended"],
+  "rules": {
+    "import/no-unused-modules": [1, { "unusedExports": true }],
+  },
+}

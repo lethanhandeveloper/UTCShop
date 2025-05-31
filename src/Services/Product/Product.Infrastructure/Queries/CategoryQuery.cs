@@ -48,7 +48,16 @@ public class CategoryQuery : ICategoryQuery
             query = query.Where(expression);
         }
 
-        query = query.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+        query = query.Skip((pageNumber - 1) * pageSize).Take(pageSize).Include(c => c.ChildCategories).
+            Select(c => new CategoryEntity
+            {
+                Id = c.Id,
+                Name = c.Name,
+                ImageUrl = c.ImageUrl,
+                ParentId = c.ParentId,
+                ParentName = c.ParentCategory.Name == null ? "" : c.ParentCategory.Name,
+                ChildCategories = c.ChildCategories
+            });
 
         return await query.ToListAsync();
     }

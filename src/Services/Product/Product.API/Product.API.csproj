@@ -38,6 +38,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Aspire\UTCShop.ServiceDefaults\UTCShop.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks.Messaging\BuildingBlocks.Messaging\BuildingBlocks.Messaging.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj" />
     <ProjectReference Include="..\Product.Application\Product.Application.csproj" />
     <ProjectReference Include="..\Product.Infrastructure\Product.Infrastructure.csproj" />

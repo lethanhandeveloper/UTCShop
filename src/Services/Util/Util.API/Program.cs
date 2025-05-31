@@ -1,5 +1,7 @@
+using BuildingBlocks.Messaging.MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using Util.API.DBContext;
 using Util.API.Services;
@@ -19,6 +21,9 @@ builder.Configuration
 
 
 builder.Services.AddTransient<IFileService, FileService>();
+
+builder.Services.AddMessageBroker(builder.Configuration, Assembly.GetExecutingAssembly());
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

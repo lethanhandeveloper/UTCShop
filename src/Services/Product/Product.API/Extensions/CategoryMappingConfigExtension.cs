@@ -8,5 +8,7 @@ public static class CategoryMappingConfigExtension
     {
         //config.NewConfig<CategoryEntity, CategoryDto>()
         //    .Map(dest => dest.Name, src => src..Name);
+        //config.NewConfig<CategoryEntity, CategoryDto>()
+        //    .Map(dest => dest.ChildCategories, src => src.ChildCategories.);
     }
 }
