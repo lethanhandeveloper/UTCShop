@@ -10,7 +10,7 @@ import {
   Space,
   Upload,
 } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import productAPI from "../../services/api/productAPI";
 import { CKEditor } from "ckeditor4-react";
 import "ckeditor5/ckeditor5.css";
@@ -22,6 +22,7 @@ import {
 } from "../../redux/product/product.slice";
 import fileAPI from "../../services/api/fileAPI";
 import { NumberFormatBase } from "react-number-format";
+import categoryAPI from "../../services/api/categoryAPI";
 
 const ProductCreateForm = () => {
   const [thumbnailUrl, setThumbnailUrl] = useState(
@@ -32,6 +33,8 @@ const ProductCreateForm = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
+  const [categoryOptions, setCategoryOptions] = useState([]);
+  const [selectedCategoryIds, setSelectedCategoryIds] = useState([]);
 
   const isOpenedProductCreateForm = useSelector(
     (state) => state.product.isOpenedProductCreateForm,
@@ -44,6 +47,26 @@ const ProductCreateForm = () => {
   const handleChangeImage = (e) => {
     setThumbnail(e.target.files[0]);
   };
+
+  useEffect(() => {
+    handleFetchLeafCategory();
+  }, [])
+
+  const handleFetchLeafCategory = async () => {
+    const res = await categoryAPI.fetchLeafCategory();
+    const arrOptions = [];
+    res.map(item => {
+      arrOptions.push({
+        value: item.id,
+        label: item.name,
+        desc: item.name
+      },
+    )
+
+    setCategoryOptions(arrOptions);
+
+    })
+  }
 
   const handleChangeThumbnailImage = (info) => {
     if (info.file.status === "uploading") {
@@ -59,39 +82,12 @@ const ProductCreateForm = () => {
   };
 
   const handleChange = (value) => {
-    console.log(`selected ${value}`);
+    setSelectedCategoryIds(value);
   };
-  const options = [
-    {
-      label: "China",
-      value: "china",
-      emoji: "🇨🇳",
-      desc: "China (中国)",
-    },
-    {
-      label: "USA",
-      value: "usa",
-      emoji: "🇺🇸",
-      desc: "USA (美国)",
-    },
-    {
-      label: "Japan",
-      value: "japan",
-      emoji: "🇯🇵",
-      desc: "Japan (日本)",
-    },
-    {
-      label: "Korea",
-      value: "korea",
-      emoji: "🇰🇷",
-      desc: "Korea (韩国)",
-    },
-  ];
 
   const handleSubmitForm = async () => {
-    alert("ok");
     const res = await fileAPI.upload(thumbnail);
-    await productAPI.createProduct(name, price, res.data, description, "");
+    await productAPI.createProduct(name, price, res.data, description, selectedCategoryIds[0]);
 
     dispatch(fetchProducts({ pageIndex, pageSize }));
 
@@ -173,22 +169,25 @@ const ProductCreateForm = () => {
       </div>
       <div>
         <span>Thuoc danh muc</span>
-        <Select
-          mode="multiple"
-          style={{ width: "100%" }}
-          placeholder="Chon mot danh muc"
-          defaultValue={["china"]}
-          onChange={handleChange}
-          options={options}
-          optionRender={(option) => (
-            <Space>
-              <span role="img" aria-label={option.data.label}>
-                {option.data.emoji}
-              </span>
-              {option.data.desc}
-            </Space>
-          )}
-        />
+        {
+          categoryOptions.length > 0 &&
+          <Select
+            mode="multiple"
+            style={{ width: "100%" }}
+            placeholder="Chon mot danh muc"
+            defaultValue={categoryOptions[0].name}
+            onChange={handleChange}
+            options={categoryOptions}
+            optionRender={(option) => (
+              <Space>
+                <span role="img" aria-label={option.data.label}>
+                  {option.data.emoji}
+                </span>
+                {option.data.desc}
+              </Space>
+            )}
+          />
+        }
       </div>
       <Button
         style={{ marginTop: "2em", float: "right" }}

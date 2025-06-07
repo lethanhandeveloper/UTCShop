@@ -65,7 +65,7 @@ public class RefreshTokenCommandHandler : ICommandHandler<RefreshTokenCommand, A
         var newRefreshToken = new RefreshTokenEntity
         {
             Token = user.RefreshToken,
-            Expire = DateTime.UtcNow.AddMinutes(5),
+            Expire = DateTime.UtcNow.AddDays(7),
             UserId = user.Id
         };
 

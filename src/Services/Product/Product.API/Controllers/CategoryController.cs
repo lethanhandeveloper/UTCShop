@@ -61,4 +61,9 @@ public class CategoryController : Controller
         return await _mediator.Send(new GetAllCategoriesQuery());
     }
 
+    [HttpGet("GetLeafCategories")]
+    public async Task<List<CategoryDto>> GetLeafCategories()
+    {
+        return await _mediator.Send(new GetLeafCategories());
+    }
 }

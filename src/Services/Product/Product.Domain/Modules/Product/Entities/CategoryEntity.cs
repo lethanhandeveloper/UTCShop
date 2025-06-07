@@ -2,7 +2,6 @@
 public class CategoryEntity : Entity<Guid>
 {
     public string Name { get; set; } = default!;
-    public decimal Tessss { get; set; } = default!;
     public string Description { get; set; } = default!;
     public string ImageUrl { get; set; } = default!;
     public Guid? ParentId { get; set; }

@@ -59,6 +59,19 @@ const categoryAPI = {
       config,
     );
   },
+  fetchLeafCategory: () => {
+    const URL_BACKEND = `${API_PREFIX}/GetLeafCategories`;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    return axios.get(
+      URL_BACKEND,
+      config
+    );
+  },
   // createProduct: (name, price, imageUrl, description, categoryId) => {
   //   const URL_BACKEND = `${API_PREFIX}/Create`;
 
