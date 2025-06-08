@@ -19,7 +19,7 @@ function DropdownMenu() {
       <div className="v-menu v-close">
         <span className="v-title">
           <i className="ion ion-md-menu" />
-          All Categories
+          Danh sách danh mục
           <i className="fas fa-angle-down" />
         </span>
         <nav>
@@ -61,7 +61,7 @@ function DropdownMenu() {
                   return (
                     <li className="v-none">
                       <a href="shop-v1-root-category.html">
-                        <i className="ion ion-md-easel" />
+                        {/* <i className="ion ion-md-easel" /> */}
                         {category.name}
                       </a>
                     </li>

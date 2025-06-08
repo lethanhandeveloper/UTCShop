@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import productApi from "../../../services/api/productAPI";
+import { formatCurrency } from '../../../utils/format'; 
 
 const ProductItem = () => {
   const [products, setProducts] = useState([]);
@@ -20,10 +21,10 @@ const ProductItem = () => {
           <div className="product-item col-lg-4 col-md-6 col-sm-6">
           <div className="item">
             <div className="image-container">
-              <a className="item-img-wrapper-link" href="single-product.html">
+              <a className="item-img-wrapper-link" href="">
                 <img
                   className="img-fluid"
-                  src="images/product/product@3x.jpg"
+                  src={`${import.meta.env.VITE_SERVER_FILE_URL}/${product.imageUrl}`}
                   alt="Product"
                 />
               </a>
@@ -82,7 +83,7 @@ const ProductItem = () => {
                 </div>
               </div>
               <div className="price-template">
-                <div className="item-new-price">$55.00</div>
+                <div className="item-new-price">{ formatCurrency(product.price)}</div>
                 <div className="item-old-price">$60.00</div>
               </div>
             </div>

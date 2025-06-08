@@ -26,32 +26,32 @@ const AppHeader = () => {
             <ul className="secondary-nav g-nav">
               <li>
                 <a>
-                  My Account
+                  Tài khoản
                   <i className="fas fa-chevron-down u-s-m-l-9" />
                 </a>
                 <ul className="g-dropdown" style={{ width: 200 }}>
                   <li>
                     <a href="cart.html">
                       <i className="fas fa-cog u-s-m-r-9" />
-                      My Cart
+                      Giỏ hàng
                     </a>
                   </li>
                   <li>
                     <a href="wishlist.html">
                       <i className="far fa-heart u-s-m-r-9" />
-                      My Wishlist
+                     Sản phẩm yêu thích 
                     </a>
                   </li>
                   <li>
                     <a href="checkout.html">
                       <i className="far fa-check-circle u-s-m-r-9" />
-                      Checkout
+                      Thanh toán
                     </a>
                   </li>
                   <li>
                     <a href="account.html">
                       <i className="fas fa-sign-in-alt u-s-m-r-9" />
-                      Login / Signup
+                      Đăng nhập / Đăng ký
                     </a>
                   </li>
                 </ul>
@@ -99,8 +99,9 @@ const AppHeader = () => {
               <div className="brand-logo text-lg-center">
                 <a href="home.html">
                   <img
-                    src="images/main-logo/groover-branding-1.png"
+                    src={`/images/logo.png`}
                     alt="Groover Brand Logo"
+                    style={{ width: 200, height: 'auto' }}
                     className="app-brand-logo"
                   />
                 </a>
@@ -115,7 +116,7 @@ const AppHeader = () => {
                   id="search-landscape"
                   type="text"
                   className="text-field"
-                  placeholder="Search everything"
+                  placeholder="Nhập tại đây để tìm kiếm"
                 />
                 <div className="select-box-position">
                   <div className="select-box-wrapper select-hide">

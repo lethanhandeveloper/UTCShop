@@ -64,6 +64,11 @@ public class ProductController : Controller
         return results.Ids;
     }
 
+    [HttpGet("{Id}")]
+    public async Task<List<Guid>> GetById(Guid Id)
+    {
+        throw new NotImplementedException();
+    }
 
 
     [HttpGet("test")]
