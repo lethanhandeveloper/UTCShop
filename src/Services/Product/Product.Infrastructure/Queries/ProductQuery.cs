@@ -30,9 +30,9 @@ public class ProductQuery : IProductQuery
         throw new NotImplementedException();
     }
 
-    public Task<ProductEntity> GetByIdAsync(Guid Id)
+    public async Task<ProductEntity> GetByIdAsync(Guid Id)
     {
-        throw new NotImplementedException();
+        return await _dbContext.Products.Where(p => p.Id == Id).FirstOrDefaultAsync();
     }
 
     public async Task<IEnumerable<ProductEntity>> GetPagedAsync(List<FilterCreteria> filters, int pageNumber = 1, int pageSize = 10)

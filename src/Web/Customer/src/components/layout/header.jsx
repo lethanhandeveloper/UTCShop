@@ -1,7 +1,11 @@
+import { Link } from "react-router-dom";
 import DropdownMenu from "../menu/dropdownmenu";
 import HorizontalMenu from "../menu/horizontalmenu";
+import { useState } from "react";
+import clsx from "clsx";
 
 const AppHeader = () => {
+  const [isCartPreviewOpen, setIsCartPreviewOpen] = useState(false);
   return (
     <header>
       <div className="full-layer-outer-header">
@@ -158,7 +162,7 @@ const AppHeader = () => {
                       <i className="far fa-heart" />
                     </a>
                   </li>
-                  <li>
+                  <li onClick={() => setIsCartPreviewOpen(!isCartPreviewOpen)}>
                     <a id="mini-cart-trigger">
                       <i className="ion ion-md-basket" />
                       <span className="item-counter">4</span>
@@ -190,7 +194,7 @@ const AppHeader = () => {
       </div>
       {/* Responsive-Buttons /- */}
       {/* Mini Cart */}
-      <div className="mini-cart-wrapper">
+      <div className={clsx("mini-cart-wrapper", isCartPreviewOpen && "mini-cart-open")}>
         <div className="mini-cart">
           <div className="mini-cart-header">
             YOUR CART
@@ -198,6 +202,7 @@ const AppHeader = () => {
               type="button"
               className="button ion ion-md-close"
               id="mini-cart-close"
+              onClick={() => setIsCartPreviewOpen(false)}
             />
           </div>
           <ul className="mini-cart-list">
@@ -245,9 +250,9 @@ const AppHeader = () => {
             <span className="mini-total-price float-right">$220.00</span>
           </div>
           <div className="mini-action-anchors">
-            <a href="cart.html" className="cart-anchor">
+            <Link to="/cart" className="cart-anchor" onClick={() => setIsCartPreviewOpen(false)}>
               View Cart
-            </a>
+            </Link>
             <a href="checkout.html" className="checkout-anchor">
               Checkout
             </a>

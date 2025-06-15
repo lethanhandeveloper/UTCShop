@@ -1,27 +1,22 @@
-import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import {
   Button,
   Drawer,
   Input,
-  Modal,
-  Select,
   Space,
   Switch,
-  Tree,
   TreeSelect,
 } from "antd";
 import { useEffect, useState } from "react";
 import categoryAPI from "../../services/api/categoryAPI";
+import { FORM_TYPES } from "../../constants/formTypes";
 
 function convertToTreeSelect(data) {
   const guidEmpty = "00000000-0000-0000-0000-000000000000";
-
-  // Tìm danh mục gốc (parentId null hoặc là guid rỗng)
+  
   const rootCategories = data.filter(
     (c) => !c.parentId || c.parentId === guidEmpty,
   );
 
-  // Hàm đệ quy chuyển danh mục sang dạng treeData
   const buildNode = (category) => {
     return {
       value: category.id,
@@ -36,7 +31,7 @@ function convertToTreeSelect(data) {
   return rootCategories.map(buildNode);
 }
 
-const CategoryForm = ({ isCategoryFormOpen, setIsCategoryFormOpen }) => {
+const CategoryForm = ({ isCategoryFormOpen, setIsCategoryFormOpen, formType, selectedCategory, formTitle }) => {
   const [isCheckedChildCategorySwitch, setIsCheckedChildCategorySwitch] =
     useState(false);
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
@@ -52,13 +47,24 @@ const CategoryForm = ({ isCategoryFormOpen, setIsCategoryFormOpen }) => {
     console.log("onPopupScroll", e);
   };
 
+  useEffect(() => {
+    if(formType === FORM_TYPES.UPDATE){
+        setName(selectedCategory.name);
+        setDescription(selectedCategory.description);
+        setIsCheckedChildCategorySwitch(true);
+    }
+  }, [])
+
   const handleSubmitForm = async () => {
-    const res = await categoryAPI.createCategory(
-      name,
-      description,
-      null,
-      selectedCategoryId,
-    );
+    if(FORM_TYPES.CREATE){
+        const res = await categoryAPI.createCategory(
+            name,
+            description,
+            null,
+            selectedCategoryId,
+        );
+    }
+    
 
     setIsOpenDrawer(false);
   };
@@ -81,10 +87,10 @@ const CategoryForm = ({ isCategoryFormOpen, setIsCategoryFormOpen }) => {
 
   return (
     <Drawer
-      title="Thêm danh mục mới"
+      title={formTitle}
       width={720}
       closable={{ "aria-label": "Close Button" }}
-      onClose={() => setIsCategoryFormOpen(!isCategoryFormOpen)}
+      onClose={() => setIsCategoryFormOpen(false)}
       open={isCategoryFormOpen}
     >
       <div>
@@ -117,7 +123,7 @@ const CategoryForm = ({ isCategoryFormOpen, setIsCategoryFormOpen }) => {
           <TreeSelect
             showSearch
             style={{ width: "100%" }}
-            value={value}
+            value={selectedCategory.name}
             styles={{
               popup: { root: { maxHeight: 400, overflow: "auto" } },
             }}

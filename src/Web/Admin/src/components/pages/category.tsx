@@ -1,30 +1,30 @@
-import { Button, Checkbox, Dropdown } from "antd";
+import { Button, Checkbox, Drawer, Dropdown } from "antd";
 import CategoryTable from "../category/category.table";
 import { useState } from "react";
 import CategoryForm from "../category/category.form";
-import { SettingOutlined } from "@ant-design/icons";
+import { DeleteFilled, EditFilled, FilterOutlined, PlusOutlined, SettingOutlined } from "@ant-design/icons";
+import TableActions from "../base/base.tableactions";
+import Search from "antd/es/transfer/search";
+import { FORM_TYPES } from "../../constants/formTypes";
 
 const Category = () => {
-  const [isCategoryFormOpen, setIsCategoryFormOpen] = useState(false);
-  const [columnOptionsVisible, setColumnOptionsVisible] = useState(false);
-  const [checkedColumns, setCheckedColumns] = useState<string[]>([]);
-
-  const handleCheckboxChange = (checkedValues: any) => {
-    setCheckedColumns(checkedValues);
-  };
+  const [isCreateCategoryFormOpen, setIsCreateCategoryFormOpen] = useState(false);
+  const [isUpdateCategoryFormOpen, setIsUpdateCategoryFormOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [selectedIds, setSelectedIds] = useState([]);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-      <div
+      {/* <div
         style={{
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
         }}
-      >
-        <h2>Category List</h2>
-        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+      > 
+         <h2>Category List</h2> 
+         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
           <Dropdown
             open={columnOptionsVisible}
             onOpenChange={setColumnOptionsVisible}
@@ -60,14 +60,94 @@ const Category = () => {
           <Button type="primary" onClick={() => setIsCategoryFormOpen(true)}>
             Create category
           </Button>
+        </div> 
+      </div> */}
+      {/* <h2>Quản lý danh mục</h2>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ display: "flex", gap: "0.5em" }}>
+          <Button
+            type="primary"
+            style={{ alignSelf: "flex-end" }}
+            onClick={() => setIsCategoryFormOpen(true)}
+          >
+            <PlusOutlined />
+            Create
+          </Button>
+          <Button
+            // disabled={isDisabledEditButton}
+            type="primary"
+            style={{ alignSelf: "flex-end" }}
+            // onClick={() => dispatch(toggleProductUpdateForm())}
+          >
+            <EditFilled />
+            Edit
+          </Button>
+          <Button
+            // disabled={isDisabledDeleteButton}
+            danger
+            style={{ alignSelf: "flex-end" }}
+            // onClick={() => handleDeleteProduct()}
+          >
+            <DeleteFilled /> Delete
+          </Button>
         </div>
-      </div>
-
+        <div
+          style={{
+            width: "50%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            gap: "1em",
+          }}
+        >
+          <FilterOutlined
+            style={{ fontSize: "1.5em", cursor: "pointer" }}
+            // onClick={() => setIsFilterDrawerOpen(true)}
+          />
+          <Search
+            // style={{ width: "40%" }}
+            placeholder="Search by name or description..."
+            // enterButton
+          />
+        </div>
+        <Drawer
+          title="Filter Product"
+          // open={isFilterDrawerOpen}
+          // onClose={() => setIsFilterDrawerOpen(false)}
+        >
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </Drawer>
+      </div> */}
+      <h2>Quản lý danh mục</h2>
       <CategoryForm
-        isCategoryFormOpen={isCategoryFormOpen}
-        setIsCategoryFormOpen={setIsCategoryFormOpen}
+        isCategoryFormOpen={isCreateCategoryFormOpen}
+        setIsCategoryFormOpen={setIsCreateCategoryFormOpen}
+        formType={FORM_TYPES.CREATE}
+        formTitle="Thêm danh mục"
       />
-      <CategoryTable />
+      {
+        selectedIds.length > 0 && isUpdateCategoryFormOpen && 
+        <CategoryForm
+          isCategoryFormOpen={isUpdateCategoryFormOpen}
+          setIsCategoryFormOpen={setIsUpdateCategoryFormOpen}
+          formType={FORM_TYPES.UPDATE}
+          selectedCategory={categories.find(x => x.id === selectedIds[0] )}
+          formTitle="Cập nhật danh mục"
+      />
+      }
+      <CategoryTable selectedIds={selectedIds} setSelectedIds={setSelectedIds} categories={categories} 
+            setCategories={setCategories} setIsCreateCategoryFormOpen={setIsCreateCategoryFormOpen}
+            setIsUpdateCategoryFormOpen={setIsUpdateCategoryFormOpen}
+      />
     </div>
   );
 };

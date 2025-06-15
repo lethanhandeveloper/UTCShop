@@ -1,10 +1,9 @@
 import { Checkbox, Table } from "antd";
 import { theme } from "antd";
-import CategoryForm from "./category.form";
 import { useQuery } from "@tanstack/react-query";
 import categoryAPI from "../../services/api/categoryAPI";
-import { useState } from "react";
-import BaseTable from "../base/base.table";
+import { useEffect, useState } from "react";
+import ManageTable from "../base/base.managetable";
 
 const columns = [
   {
@@ -29,25 +28,26 @@ const columns = [
   },
 ];
 
-const CategoryTable = () => {
+const CategoryTable = ({ selectedIds, setSelectedIds, categories, setCategories, setIsCreateCategoryFormOpen, setIsUpdateCategoryFormOpen }) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
   const [pageIndex, setPageIndex] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  const [selectedIds, setSelectedIds] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
 
-  const { data: data } = useQuery({
-    queryKey: ["fetchCategories"],
-    queryFn: async () => {
-      const res = await categoryAPI.fetchCategories(pageIndex, pageSize);
-      return res;
-    },
-  });
+  useEffect(() => {
+     fetchCategories();
+  }, [])
 
-  // if (isLoading) return <p>Loading...</p>;
-  // if (error) return <p>Error!</p>;
+  const fetchCategories = async () => {
+    const res = await categoryAPI.fetchCategories(pageIndex, pageSize);
+    setCategories(res.data);
+    setPageIndex(res.pageIndex);
+    setPageIndex(res.pageSize);
+    setTotalCount(res.totalCount);
+  }
 
   return (
     <div
@@ -58,17 +58,19 @@ const CategoryTable = () => {
         borderRadius: borderRadiusLG,
       }}
     >
-      {data && (
-        <BaseTable
-          dataSource={data.data}
+      {categories.length > 0 && (
+        <ManageTable
+          dataSource={categories}
           columns={columns}
           pagination={{
-            current: data.pageIndex,
-            pageSize: data.pageSize,
-            total: data.totalCount,
+            current: pageIndex,
+            pageSize: pageSize,
+            total: totalCount,
           }}
           selectedIds={selectedIds}
           setSelectedIds={setSelectedIds}
+          setIsCreateFormOpen={setIsCreateCategoryFormOpen}
+          setIsUpdateFormOpen={setIsUpdateCategoryFormOpen}
         />
       )}
     </div>

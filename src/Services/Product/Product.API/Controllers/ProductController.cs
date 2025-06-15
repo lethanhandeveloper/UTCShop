@@ -9,6 +9,7 @@ using Product.Application.Modules.Category.Commands.Delete;
 using Product.Application.Modules.Product.Commands.Create;
 using Product.Application.Modules.Product.Commands.Update;
 using Product.Application.Modules.Product.Queries.GetProducts;
+using Product.Application.Modules.Queries.GetProductById;
 using System.Security.Claims;
 
 namespace Product.API.Controllers;
@@ -65,9 +66,9 @@ public class ProductController : Controller
     }
 
     [HttpGet("{Id}")]
-    public async Task<List<Guid>> GetById(Guid Id)
+    public async Task<ProductDto> GetById(Guid Id)
     {
-        throw new NotImplementedException();
+        return await _mediator.Send(new GetProductByIdQuery(Id));
     }
 
 

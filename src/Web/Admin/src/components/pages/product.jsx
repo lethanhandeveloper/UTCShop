@@ -24,10 +24,7 @@ import { Typography } from "antd";
 const { Text } = Typography;
 
 const Product = () => {
-  const [products, setProducts] = useState([]);
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
-  const [isCheckedClickAllCheckBox, setIsCheckedClickAllCheckBox] =
-    useState(false);
   const dispatch = useDispatch();
   const { isDisabledEditButton, isDisabledDeleteButton } = useSelector(
     (state) => state.product,
@@ -53,7 +50,7 @@ const Product = () => {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-      <h2>Product List</h2>
+      <h2>Quản lý sản phẩm</h2>
       <div
         style={{
           display: "flex",
@@ -121,13 +118,7 @@ const Product = () => {
       {selectedIds.length > 0 && (
         <Text code>{selectedIds.length} hang da chon</Text>
       )}
-      <ProductTable
-        products={products}
-        setProducts={setProducts}
-        isCheckedClickAllCheckBox={isCheckedClickAllCheckBox}
-        setIsCheckedClickAllCheckBox={setIsCheckedClickAllCheckBox}
-        // selectedIds={selectedIds} setSelectedIds={setSelectedIds}
-      />
+      <ProductTable />
     </div>
   );
 };

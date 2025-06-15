@@ -1,5 +1,5 @@
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { Image, Input, Modal, notification, Upload } from "antd";
+import { Drawer, Image, Input, Modal, notification, Upload, Button } from "antd";
 import { useState } from "react";
 import utilApi from "../../services/api/fileAPI";
 import productAPI from "../../services/api/productAPI";
@@ -82,13 +82,11 @@ const ProductUpdateForm = () => {
   };
 
   return (
-    <Modal
+    <Drawer
+      width={720}
       title="Chinh sua danh muc"
       maskClosable={false}
       open={isOpenedProductUpdateForm}
-      onOk={() => {
-        handleSubmitForm();
-      }}
       destroyOnClose={true}
       onClose={() => handleCloseModel()}
       onCancel={() => handleCloseModel()}
@@ -132,7 +130,7 @@ const ProductUpdateForm = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <CKEditor
+        {/* <CKEditor
           editor={ClassicEditor}
           config={{
             licenseKey: "<YOUR_LICENSE_KEY>", // Or 'GPL'.
@@ -143,14 +141,21 @@ const ProductUpdateForm = () => {
               "|",
               "bold",
               "italic",
-              "|",
+              "|",View Cart
               "formatPainter",
             ],
             initialData: "<p>Hello from CKEditor 5 in React!</p>",
           }}
-        />
+        /> */}
       </div>
-    </Modal>
+      <Button
+        style={{ marginTop: "2em", float: "right" }}
+        onClick={() => handleSubmitForm()}
+        type="primary"
+      >
+        Save
+      </Button>
+    </Drawer>
   );
 };
 

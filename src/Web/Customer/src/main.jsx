@@ -4,49 +4,19 @@ import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./redux/store.ts";
+import Home from "./components/pages/home/home.jsx";
+import ViewByCategory from "./components/pages/viewbycategory/viewbycategory.jsx";
+import Cart from "./components/pages/cart/cart.jsx";
 
 const router = createBrowserRouter([
-  {
-    // element: <PrivateRoute />,
-    // errorElement: <ErrorPage />,
-    // children: [
-    //   {
-    //     path: "/",
-    //     element: <App />,
-    // children: [
-    //   {
-    //     index: true,
-    //     path: "/dashboard",
-    //     element: <Dashboard />,
-    //   },
-    //   {
-    //     path: "/category",
-    //     element: <Category />,
-    //   },
-    //   {
-    //     path: "/product",
-    //     element: <Product />,
-    //   },
-    //   {
-    //     path: "/fileconfiguration",
-    //     element: <FileConfiguration />,
-    //   },
-    // ],
-    //     },
-    //   ],
-    // },
-    // {
-    //   index: true,
-    //   path: "/auth",
-    //   element: <Auth />,
-    // },
-    // {
-    //   path: "/login",
-    //   element: <LoginPage />
-    // },
-    // {
+ {
     path: "/",
     element: <App />,
+    children: [
+      { index: true, element: <Home /> },    
+      { path: "/viewbycategory", element: <ViewByCategory /> },         
+      { path: "/cart", element: <Cart /> }         
+    ],
   },
 ]);
 

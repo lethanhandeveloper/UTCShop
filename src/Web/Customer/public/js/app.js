@@ -127,13 +127,13 @@ $(function () {
         //  let $href = $('#mini-cart-trigger'.attr('href');
         //   window.location.href = $href; //causes the browser to refresh and
         // load the requested url
-        $('#mini-cart-trigger').on('click', function () {
-            $('.mini-cart-wrapper').addClass('mini-cart-open');
-        });
+        // $('#mini-cart-trigger').on('click', function () {
+        //     $('.mini-cart-wrapper').addClass('mini-cart-open');
+        // });
 
-        $('#mini-cart-close').on('click', function () {
-            $('.mini-cart-wrapper').removeClass('mini-cart-open');
-        });
+        // $('#mini-cart-close').on('click', function () {
+        //     $('.mini-cart-wrapper').removeClass('mini-cart-open');
+        // });
     };
 
     /**

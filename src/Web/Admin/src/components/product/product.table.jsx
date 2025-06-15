@@ -5,6 +5,7 @@ import productAPI from "../../services/api/productAPI";
 import { render } from "nprogress";
 import ProductCreateForm from "./product.form";
 import Checkbox from "antd/es/checkbox/Checkbox";
+import ManageTable from "../base/base.managetable";
 
 const ProductTable = ({
   products,
@@ -145,25 +146,16 @@ const ProductTable = ({
         setIsProductCreateFormOpen={setIsProductCreateFormOpen}
         fetchProducts={fetchProducts}
       />
-      <Table
+      <ManageTable
         dataSource={products}
         columns={columns}
         scroll={{ x: "max-content" }}
         loading={isTableLoading}
-        pagination={{
-          current: current,
-          pageSize: pageSize,
-          showSizeChanger: true,
-          total: total,
-          showTotal: (total, range) => {
-            return (
-              <div>
-                {" "}
-                {range[0]}-{range[1]} trên {total} rows
-              </div>
-            );
-          },
-        }}
+         pagination={{
+            current,
+            pageSize,
+            total,
+          }}
         onChange={onChange}
       />
     </div>

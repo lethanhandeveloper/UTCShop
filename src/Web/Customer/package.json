@@ -24,6 +24,7 @@
     "ckeditor4-react": "^5.2.1",
     "ckeditor5": "^45.0.0",
     "ckeditor5-premium-features": "^45.0.0",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.9.4",
     "i18next": "^25.2.1",
     "nprogress": "0.2.0",
