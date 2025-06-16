@@ -8,4 +8,6 @@ builder.AddProject<Projects.Util_API>("util-api");
 
 builder.AddProject<Projects.YarpApiGateWay>("yarp-api-gatway");
 
+builder.AddProject<Projects.Cart_API>("cart-api");
+
 builder.Build().Run();
