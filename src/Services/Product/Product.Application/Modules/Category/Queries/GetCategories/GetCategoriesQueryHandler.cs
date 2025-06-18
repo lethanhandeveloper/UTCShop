@@ -13,10 +13,10 @@ public class GetCategoriesQueryHandler(ICategoryQuery categoryQuery) : IQueryHan
         var pageIndex = query.PaginationRequest.pageIndex;
         var filters = query.PaginationRequest.filters;
 
-        var categories = await categoryQuery.GetPagedAsync(filters, pageIndex, pageSize);
-        var totalCount = categories.Count();
+        var result = await categoryQuery.GetPagedAsync(filters, pageIndex, pageSize);
+        var totalCount = result.totalCount;
 
-        var categoryDtos = categories.Adapt<List<CategoryDto>>();
+        var categoryDtos = result.data.Adapt<List<CategoryDto>>();
         return new PaginatedResult<CategoryDto>(pageIndex, pageSize, totalCount, categoryDtos);
     }
 }

@@ -1,18 +1,11 @@
-import {
-  Button,
-  Drawer,
-  Input,
-  Space,
-  Switch,
-  TreeSelect,
-} from "antd";
+import { Button, Drawer, Input, Space, Switch, TreeSelect } from "antd";
 import { useEffect, useState } from "react";
 import categoryAPI from "../../services/api/categoryAPI";
 import { FORM_TYPES } from "../../constants/formTypes";
 
 function convertToTreeSelect(data) {
   const guidEmpty = "00000000-0000-0000-0000-000000000000";
-  
+
   const rootCategories = data.filter(
     (c) => !c.parentId || c.parentId === guidEmpty,
   );
@@ -31,7 +24,13 @@ function convertToTreeSelect(data) {
   return rootCategories.map(buildNode);
 }
 
-const CategoryForm = ({ isCategoryFormOpen, setIsCategoryFormOpen, formType, selectedCategory, formTitle }) => {
+const CategoryForm = ({
+  isCategoryFormOpen,
+  setIsCategoryFormOpen,
+  formType,
+  selectedCategory,
+  formTitle,
+}) => {
   const [isCheckedChildCategorySwitch, setIsCheckedChildCategorySwitch] =
     useState(false);
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
@@ -48,23 +47,31 @@ const CategoryForm = ({ isCategoryFormOpen, setIsCategoryFormOpen, formType, sel
   };
 
   useEffect(() => {
-    if(formType === FORM_TYPES.UPDATE){
-        setName(selectedCategory.name);
-        setDescription(selectedCategory.description);
-        setIsCheckedChildCategorySwitch(true);
+    if (formType === FORM_TYPES.UPDATE) {
+      setName(selectedCategory.name);
+      setDescription(selectedCategory.description);
+      setIsCheckedChildCategorySwitch(true);
     }
-  }, [])
+  }, []);
 
   const handleSubmitForm = async () => {
-    if(FORM_TYPES.CREATE){
-        const res = await categoryAPI.createCategory(
-            name,
-            description,
-            null,
-            selectedCategoryId,
-        );
+    debugger;
+    if (formType === FORM_TYPES.CREATE) {
+      const res = await categoryAPI.createCategory(
+        name,
+        description,
+        null,
+        selectedCategoryId,
+      );
+    } else if (formType === FORM_TYPES.UPDATE) {
+      const res = await categoryAPI.updateCategory(
+        selectedCategory.id,
+        name,
+        description,
+        undefined,
+        selectedCategoryId,
+      );
     }
-    
 
     setIsOpenDrawer(false);
   };

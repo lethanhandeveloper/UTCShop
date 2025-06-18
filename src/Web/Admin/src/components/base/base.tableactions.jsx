@@ -1,9 +1,20 @@
-import { DeleteFilled, EditFilled, FilterOutlined, PlusOutlined } from "@ant-design/icons";
+import {
+  DeleteFilled,
+  EditFilled,
+  FilterOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
 import { Button, Drawer } from "antd";
 import Search from "antd/es/transfer/search";
 import { useState } from "react";
 
-const TableActions = ({ onClickCreateBtn, onClickUpdateBtn, onClickDeleteBtn, selectedIds, filterContent }) => {
+const TableActions = ({
+  onClickCreateBtn,
+  onClickUpdateBtn,
+  onClickDeleteBtn,
+  selectedIds,
+  filterContent,
+}) => {
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
 
   return (
@@ -53,7 +64,7 @@ const TableActions = ({ onClickCreateBtn, onClickUpdateBtn, onClickDeleteBtn, se
       >
         <FilterOutlined
           style={{ fontSize: "1.5em", cursor: "pointer" }}
-        //   onClick={() => setIsFilterDrawerOpen(true)}
+          //   onClick={() => setIsFilterDrawerOpen(true)}
         />
         <Search
           style={{ width: "40%" }}

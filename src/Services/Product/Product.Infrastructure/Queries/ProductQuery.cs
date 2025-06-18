@@ -1,54 +1,55 @@
-﻿using BuildingBlocks.Pagination;
-using BuildingBlocks.Utils;
+﻿using BuildingBlocks.BaseDBDataAccess.Queries;
 using Microsoft.EntityFrameworkCore;
 using Product.Application.Interfaces.Queries;
 using Product.Domain.Data;
 using Product.Domain.Modules.Product.Entities;
 
 namespace Product.Infrastructure.Queries;
-public class ProductQuery : IProductQuery
+public class ProductQuery : BaseQuery<ProductEntity>, IProductQuery
 {
-    IProductDbContext _dbContext;
-
-    public ProductQuery(IProductDbContext dbContext)
+    public ProductQuery(IProductDbContext dbContext) : base((DbContext)dbContext)
     {
-        _dbContext = dbContext;
     }
 
-    public async Task<long> CountAsync()
-    {
-        return await _dbContext.Products.LongCountAsync();
-    }
+    //public ProductQuery(IProductDbContext dbContext)
+    //{
+    //    _dbContext = dbContext;
+    //}
 
-    public Task<IEnumerable<ProductEntity>> GetAllAsync()
-    {
-        throw new NotImplementedException();
-    }
+    //public async Task<long> CountAsync()
+    //{
+    //    return await _dbContext.Products.LongCountAsync();
+    //}
 
-    public Task<ProductEntity> GetByIdAsync()
-    {
-        throw new NotImplementedException();
-    }
+    //public Task<IEnumerable<ProductEntity>> GetAllAsync()
+    //{
+    //    throw new NotImplementedException();
+    //}
 
-    public async Task<ProductEntity> GetByIdAsync(Guid Id)
-    {
-        return await _dbContext.Products.Where(p => p.Id == Id).FirstOrDefaultAsync();
-    }
+    //public Task<ProductEntity> GetByIdAsync()
+    //{
+    //    throw new NotImplementedException();
+    //}
 
-    public async Task<IEnumerable<ProductEntity>> GetPagedAsync(List<FilterCreteria> filters, int pageNumber = 1, int pageSize = 10)
-    {
-        var query = _dbContext.Products.AsQueryable();
+    //public async Task<ProductEntity> GetByIdAsync(Guid Id)
+    //{
+    //    return await _dbContext.Products.Where(p => p.Id == Id).FirstOrDefaultAsync();
+    //}
 
-        query = query.Where(p => p.IsDeleted == false).Include(p => p.Category);
+    //public async Task<IEnumerable<ProductEntity>> GetPagedAsync(List<FilterCreteria> filters, int pageNumber = 1, int pageSize = 10)
+    //{
+    //    var query = _dbContext.Products.AsQueryable();
 
-        foreach (var filter in filters)
-        {
-            var expression = ExpressionBuilder.BuildPredicate<ProductEntity>(filter);
-            query = query.Where(expression);
-        }
+    //    query = query.Where(p => p.IsDeleted == false).Include(p => p.Category);
 
-        query = query.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+    //    foreach (var filter in filters)
+    //    {
+    //        var expression = ExpressionBuilder.BuildPredicate<ProductEntity>(filter);
+    //        query = query.Where(expression);
+    //    }
 
-        return await query.ToListAsync();
-    }
+    //    query = query.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+
+    //    return await query.ToListAsync();
+    //}
 }

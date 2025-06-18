@@ -13,10 +13,10 @@ public class GetProductsQueryHandler(IProductQuery productQuery) : IQueryHandler
         var pageIndex = query.PaginationRequest.pageIndex;
         var filters = query.PaginationRequest.filters;
 
-        var products = await productQuery.GetPagedAsync(filters, pageIndex, pageSize);
-        var totalCount = products.Count();
+        var result = await productQuery.GetPagedAsync(filters, pageIndex, pageSize);
+        var totalCount = result.totalCount;
 
-        var productDtos = products.Adapt<List<ProductDto>>();
+        var productDtos = result.data.Adapt<List<ProductDto>>();
 
         foreach (var productDto in productDtos)
         {

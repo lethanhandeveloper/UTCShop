@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.DBQueryAbtractions;
+﻿using BuildingBlocks.DBQuery;
 using Identity.Domain.Entities;
 
 namespace Identity.Application.Interfaces.Queries;

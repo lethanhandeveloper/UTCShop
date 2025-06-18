@@ -1,4 +1,4 @@
-﻿namespace BuildingBlocks.DBQueryAbtractions;
+﻿namespace BuildingBlocks.BaseDBDataAccess.Repositories;
 public interface IBaseRepository<T>
 {
     Task CreateAsync(T entity, CancellationToken cancellation);

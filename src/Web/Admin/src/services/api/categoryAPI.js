@@ -5,7 +5,7 @@ const API_BASE = "/api/Category";
 const API_PREFIX = SERVICE_PATH + API_BASE;
 
 const categoryAPI = {
-  createCategory: (name, description, imageUrl, parentId) => {
+  createCategory: (name, description, imageUrl = "", parentId) => {
     const URL_BACKEND = `${API_PREFIX}/Create`;
     const config = {
       headers: {
@@ -18,8 +18,28 @@ const categoryAPI = {
       {
         name,
         description,
-        imageUrl: "",
-        parentId
+        imageUrl,
+        parentId,
+      },
+      config,
+    );
+  },
+  updateCategory: (id, name, description, imageUrl = "", parentId) => {
+    const URL_BACKEND = `${API_PREFIX}/Update`;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    return axios.put(
+      URL_BACKEND,
+      {
+        id,
+        name,
+        description,
+        imageUrl,
+        parentId,
       },
       config,
     );
@@ -32,13 +52,7 @@ const categoryAPI = {
       },
     };
 
-    return axios.get(
-      URL_BACKEND,
-      {
-       
-      },
-      config,
-    );
+    return axios.get(URL_BACKEND, {}, config);
   },
   fetchCategories: (pageIndex, pageSize) => {
     const URL_BACKEND = `${API_PREFIX}/Get`;
@@ -67,10 +81,7 @@ const categoryAPI = {
       },
     };
 
-    return axios.get(
-      URL_BACKEND,
-      config
-    );
+    return axios.get(URL_BACKEND, config);
   },
   // createProduct: (name, price, imageUrl, description, categoryId) => {
   //   const URL_BACKEND = `${API_PREFIX}/Create`;
