@@ -6,10 +6,14 @@ const ManageTable = ({
   dataSource,
   columns,
   pagination,
+  setPageIndex,
+  setPageSize,
+  setTotalCount,
   selectedIds,
   setSelectedIds,
   setIsCreateFormOpen,
-  setIsUpdateFormOpen
+  setIsUpdateFormOpen,
+  handleDelete,
 }) => {
   const handleClickAllCheckBox = (e) => {
     if (e.target.checked) {
@@ -17,6 +21,12 @@ const ManageTable = ({
     } else {
       setSelectedIds([]);
     }
+  };
+
+  const handleTableChange = (pagination, filters, sorter, extra) => {
+    setPageIndex(pagination.current);
+    setPageSize(pagination.pageSize);
+    setTotalCount(pagination.total);
   };
 
   const handleClickSingleCheckBox = (id) => {
@@ -57,26 +67,31 @@ const ManageTable = ({
 
   return (
     <div style={{ display: "flex", gap: 20, flexDirection: "column" }}>
-      <TableActions onClickCreateBtn={setIsCreateFormOpen} onClickUpdateBtn={setIsUpdateFormOpen}  
-            selectedIds={selectedIds}
-            filterContent={<h1>This is filter content</h1>}/>
+      <TableActions
+        onClickCreateBtn={setIsCreateFormOpen}
+        onClickUpdateBtn={setIsUpdateFormOpen}
+        onClickDeleteBtn={handleDelete}
+        selectedIds={selectedIds}
+        filterContent={<h1>This is filter content</h1>}
+      />
       <Table
-      columns={enhancedColumns}
-      dataSource={dataSource}
-      scroll={{ x: "max-content" }}
-      pagination={{
-        ...pagination,
-        showSizeChanger: true,
-        showTotal: (total, range) => {
-          return (
-            <div>
-              {" "}
-              {range[0]}-{range[1]} trên {total} rows
-            </div>
-          );
-        },
-      }}
-    />
+        columns={enhancedColumns}
+        dataSource={dataSource}
+        scroll={{ x: "max-content" }}
+        pagination={{
+          ...pagination,
+          showSizeChanger: true,
+          showTotal: (total, range) => {
+            return (
+              <div>
+                {" "}
+                {range[0]}-{range[1]} trên {total} rows
+              </div>
+            );
+          },
+        }}
+        onChange={handleTableChange}
+      />
     </div>
   );
 };

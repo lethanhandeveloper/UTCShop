@@ -11,6 +11,7 @@ public class RefreshTokenQuery : BaseQuery<RefreshTokenEntity>, IRefreshTokenQue
 
     public RefreshTokenQuery(IIdentityDbContext dbContext) : base((DbContext)dbContext)
     {
+        _dbContext = dbContext;
     }
 
     public async Task<RefreshTokenEntity> GetByTokenAsync(string token)

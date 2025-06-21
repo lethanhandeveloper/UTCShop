@@ -22,32 +22,29 @@ const columns = [
     key: "image",
   },
   {
-    title: "Thuoc danh muc",
+    title: "Thuộc danh mục",
     dataIndex: "parentName",
-    key: "categoryname",
+    key: "parentName",
   },
 ];
 
-const CategoryTable = ({ selectedIds, setSelectedIds, categories, setCategories, setIsCreateCategoryFormOpen, setIsUpdateCategoryFormOpen }) => {
+const CategoryTable = ({
+  selectedIds,
+  setSelectedIds,
+  categories,
+  pageIndex,
+  setPageIndex,
+  pageSize,
+  setPageSize,
+  totalCount,
+  setTotalCount,
+  setIsCreateCategoryFormOpen,
+  setIsUpdateCategoryFormOpen,
+  handleDeleteCategories,
+}) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-
-  const [pageIndex, setPageIndex] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
-  const [totalCount, setTotalCount] = useState(0);
-
-  useEffect(() => {
-     fetchCategories();
-  }, [])
-
-  const fetchCategories = async () => {
-    const res = await categoryAPI.fetchCategories(pageIndex, pageSize);
-    setCategories(res.data);
-    setPageIndex(res.pageIndex);
-    setPageIndex(res.pageSize);
-    setTotalCount(res.totalCount);
-  }
 
   return (
     <div
@@ -67,10 +64,14 @@ const CategoryTable = ({ selectedIds, setSelectedIds, categories, setCategories,
             pageSize: pageSize,
             total: totalCount,
           }}
+          setPageIndex={setPageIndex}
+          setPageSize={setPageSize}
+          setTotalCount={setTotalCount}
           selectedIds={selectedIds}
           setSelectedIds={setSelectedIds}
           setIsCreateFormOpen={setIsCreateCategoryFormOpen}
           setIsUpdateFormOpen={setIsUpdateCategoryFormOpen}
+          handleDelete={handleDeleteCategories}
         />
       )}
     </div>

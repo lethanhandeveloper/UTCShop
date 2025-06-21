@@ -1,23 +1,38 @@
 ﻿using BuildingBlock.CQRS;
+using BuildingBlocks.Exception;
 using Product.Application.Interfaces;
-using Product.Domain.Modules.Product.Entities;
+using Product.Application.Interfaces.Queries;
 
 namespace Product.Application.Modules.Category.Commands.Update;
 public class UpdateCategoryCommandHandler : ICommandHandler<UpdateCategoryCommand, UpdateCategoryResult>
 {
-    IUnitOfWork _unitOfWork;
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICategoryQuery _categoryQuery;
 
-    public UpdateCategoryCommandHandler(IUnitOfWork unitOfWork)
+    public UpdateCategoryCommandHandler(IUnitOfWork unitOfWork, ICategoryQuery categoryQuery)
     {
         _unitOfWork = unitOfWork;
+        _categoryQuery = categoryQuery;
     }
 
     public async Task<UpdateCategoryResult> Handle(UpdateCategoryCommand command, CancellationToken cancellationToken)
     {
-        var category = CategoryEntity.Create(command.Category.Name,
-        command.Category.Description, command.Category.ImageUrl, command.Category.ParentId);
+        if (command.Category.Id == null || command.Category.Id == Guid.Empty)
+        {
+            throw new NotFoundException($"Category is not empty");
+        }
 
-        category.Id = command.Category.Id;
+        var category = await _categoryQuery.GetByIdAsync(command.Category.Id);
+
+        if (category == null)
+        {
+            throw new NotFoundException($"Category with id {command.Category.Id} not found");
+        }
+
+        category.Name = command.Category.Name;
+        category.Description = command.Category.Description;
+        category.ImageUrl = command.Category.ImageUrl;
+        category.ParentId = command.Category.ParentId;
 
         await _unitOfWork._categoryRepository.UpdateAsync(category, cancellationToken);
         await _unitOfWork.SaveChangeAsync(cancellationToken);

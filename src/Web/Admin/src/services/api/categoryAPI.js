@@ -12,13 +12,13 @@ const categoryAPI = {
         "Content-Type": "application/json",
       },
     };
-
+    debugger;
     return axios.post(
       URL_BACKEND,
       {
         name,
         description,
-        imageUrl,
+        imageUrl: "",
         parentId,
       },
       config,
@@ -66,7 +66,12 @@ const categoryAPI = {
       URL_BACKEND,
       {
         filters: [],
-        sortings: [],
+        sortings: [
+          {
+            field: "Id",
+            direction: 1,
+          },
+        ],
         pageIndex,
         pageSize,
       },
@@ -82,6 +87,17 @@ const categoryAPI = {
     };
 
     return axios.get(URL_BACKEND, config);
+  },
+  deleteCategories: (ids) => {
+    const URL_BACKEND = `${API_PREFIX}/Delete`;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: ids,
+    };
+
+    return axios.delete(URL_BACKEND, config);
   },
   // createProduct: (name, price, imageUrl, description, categoryId) => {
   //   const URL_BACKEND = `${API_PREFIX}/Create`;

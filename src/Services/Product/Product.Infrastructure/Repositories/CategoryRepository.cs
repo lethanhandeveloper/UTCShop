@@ -1,5 +1,4 @@
-﻿using BuildingBlocks.Exception;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Product.Application.Interfaces.Repositories;
 using Product.Domain.Data;
 using Product.Domain.Modules.Product.Entities;
@@ -33,23 +32,9 @@ public class CategoryRepository : ICategoryRepository
 
     public async Task UpdateAsync(CategoryEntity entity, CancellationToken cancellation)
     {
-        if (entity.Id == null || entity.Id == Guid.Empty)
-        {
-            throw new NotFoundException($"Category is not empty");
-        }
-
-        var category = await _dbContext.Categories.Where(p => p.Id == entity.Id).FirstOrDefaultAsync();
-
-        if (category == null)
-        {
-            throw new NotFoundException($"Category with id {entity.Id} not found");
-        }
-
-        category.Name = entity.Name;
-        category.Description = entity.Description;
-        category.ImageUrl = entity.ImageUrl;
-        category.ParentId = entity.ParentId;
-
-        await _dbContext.SaveChangesAsync(cancellation);
+        //category.Name = entity.Name;
+        //category.Description = entity.Description;
+        //category.ImageUrl = entity.ImageUrl;
+        //category.ParentId = entity.ParentId;
     }
 }

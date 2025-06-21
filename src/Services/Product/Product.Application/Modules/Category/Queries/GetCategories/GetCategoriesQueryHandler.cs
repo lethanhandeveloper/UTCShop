@@ -12,11 +12,18 @@ public class GetCategoriesQueryHandler(ICategoryQuery categoryQuery) : IQueryHan
         var pageSize = query.PaginationRequest.pageSize;
         var pageIndex = query.PaginationRequest.pageIndex;
         var filters = query.PaginationRequest.filters;
+        var sorts = query.PaginationRequest.sortings;
 
-        var result = await categoryQuery.GetPagedAsync(filters, pageIndex, pageSize);
+        var result = await categoryQuery.GetPagedAsync(filters, sorts, pageIndex, pageSize);
         var totalCount = result.totalCount;
 
         var categoryDtos = result.data.Adapt<List<CategoryDto>>();
+
+        foreach (var categoryDto in categoryDtos)
+        {
+
+        }
+
         return new PaginatedResult<CategoryDto>(pageIndex, pageSize, totalCount, categoryDtos);
     }
 }

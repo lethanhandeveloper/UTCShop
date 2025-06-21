@@ -48,7 +48,7 @@ const TableActions = ({
           disabled={selectedIds.length < 1}
           danger
           style={{ alignSelf: "flex-end" }}
-          onClick={() => onClickUpdateBtn()}
+          onClick={() => onClickDeleteBtn()}
         >
           <DeleteFilled /> Delete
         </Button>

@@ -1,7 +1,9 @@
 ﻿using BuildingBlocks.DBQuery;
+using BuildingBlocks.Enums;
 using BuildingBlocks.Pagination;
 using BuildingBlocks.Utils;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 
 namespace BuildingBlocks.BaseDBDataAccess.Queries;
@@ -21,19 +23,28 @@ public class BaseQuery<T> : IBaseQuery<T> where T : class
         return await _dbSet.LongCountAsync();
     }
 
-    public async Task<T> GetByIdAsync(Guid Id)
+    public async Task<IEnumerable<T>> GetAllAsync()
     {
-        var property = typeof(T).GetProperty("Id");
-        var parameter = Expression.Parameter(typeof(T), "x");
-        var propertyAccess = Expression.Property(parameter, property);
-        var idConstant = Expression.Constant(Id);
-        var equalExpr = Expression.Equal(propertyAccess, idConstant);
-        var lambda = Expression.Lambda<Func<T, bool>>(equalExpr, parameter);
-
-        return await _dbSet.Where(lambda).FirstOrDefaultAsync();
+        var query = _dbSet.AsQueryable();
+        var expression = ExpressionBuilder.BuildPredicate<T>("IsDeleted", false, ComparisionOperator.Equals);
+        return await query.Where(expression).ToListAsync();
     }
 
-    public async Task<(IEnumerable<T> data, long totalCount)> GetPagedAsync(List<FilterCreteria> filters, int pageNumber = 1, int pageSize = 10)
+    public async Task<T> GetByIdAsync(Guid Id)
+    {
+        var query = _dbSet.AsQueryable();
+        var expression = ExpressionBuilder.BuildPredicate<T>("Id", Id, ComparisionOperator.Equals);
+        //var property = typeof(T).GetProperty("Id");
+        //var parameter = Expression.Parameter(typeof(T), "x");
+        //var propertyAccess = Expression.Property(parameter, property);
+        //var idConstant = Expression.Constant(Id);
+        //var equalExpr = Expression.Equal(propertyAccess, idConstant);
+        //var lambda = Expression.Lambda<Func<T, bool>>(equalExpr, parameter);
+
+        return await _dbSet.Where(expression).FirstOrDefaultAsync();
+    }
+
+    public async Task<(IEnumerable<T> data, long totalCount)> GetPagedAsync(List<FilterCreteria> filters, List<SortCreteria> sorts, int pageNumber = 1, int pageSize = 10)
     {
         var query = _dbSet.AsQueryable();
         var isDeletedProp = typeof(T).GetProperty("IsDeleted");
@@ -48,6 +59,8 @@ public class BaseQuery<T> : IBaseQuery<T> where T : class
             query = query.Where(lambda);
         }
 
+
+
         var entityType = _dbContext.Model.FindEntityType(typeof(T));
         if (entityType != null)
         {
@@ -60,8 +73,16 @@ public class BaseQuery<T> : IBaseQuery<T> where T : class
 
         foreach (var filter in filters)
         {
-            var expression = ExpressionBuilder.BuildPredicate<T>(filter);
+            var expression = ExpressionBuilder.BuildPredicate<T>(filter.field, filter.value, ComparisionOperator.Equals);
             query = query.Where(expression);
+        }
+
+        foreach (var sort in sorts)
+        {
+            var sortExpression = string.Join(", ",
+        sorts.Select(s => $"{s.field} {(s.direction == SortingEnum.Asc ? "ascending" : "descending")}"));
+
+            query = query.OrderBy(sortExpression);
         }
 
         var totalCount = await query.LongCountAsync();

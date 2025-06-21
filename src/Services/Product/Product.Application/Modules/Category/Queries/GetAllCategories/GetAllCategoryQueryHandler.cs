@@ -8,7 +8,7 @@ public class GetAllCategoryQueryHandler(ICategoryQuery categoryQuery) : IQueryHa
 {
     public async Task<List<CategoryDto>> Handle(GetAllCategoriesQuery request, CancellationToken cancellationToken)
     {
-        var categories = await categoryQuery.GetAllCategories();
+        var categories = await categoryQuery.GetAllAsync();
         return categories.Adapt<List<CategoryDto>>();
     }
 }

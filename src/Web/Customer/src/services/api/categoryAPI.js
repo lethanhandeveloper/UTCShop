@@ -19,7 +19,7 @@ const categoryAPI = {
         name,
         description,
         imageUrl: "",
-        parentId
+        parentId,
       },
       config,
     );
@@ -32,13 +32,7 @@ const categoryAPI = {
       },
     };
 
-    return axios.get(
-      URL_BACKEND,
-      {
-       
-      },
-      config,
-    );
+    return axios.get(URL_BACKEND, {}, config);
   },
   fetchCategories: (pageIndex, pageSize) => {
     const URL_BACKEND = `${API_PREFIX}/Get`;
@@ -52,7 +46,12 @@ const categoryAPI = {
       URL_BACKEND,
       {
         filters: [],
-        sortings: [],
+        sortings: [
+          {
+            field: "Id",
+            direction: 1,
+          },
+        ],
         pageIndex,
         pageSize,
       },

@@ -27,6 +27,7 @@ function convertToTreeSelect(data) {
 const CategoryForm = ({
   isCategoryFormOpen,
   setIsCategoryFormOpen,
+  fetchTableData,
   formType,
   selectedCategory,
   formTitle,
@@ -37,7 +38,6 @@ const CategoryForm = ({
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [categories, setCategories] = useState([]);
-  const [isOpenedDrawer, setIsOpenDrawer] = useState(false);
   const [value, setValue] = useState();
   const onChange = (newValue) => {
     setSelectedCategoryId(newValue);
@@ -48,6 +48,7 @@ const CategoryForm = ({
 
   useEffect(() => {
     if (formType === FORM_TYPES.UPDATE) {
+      setSelectedCategoryId(selectedCategory.id);
       setName(selectedCategory.name);
       setDescription(selectedCategory.description);
       setIsCheckedChildCategorySwitch(true);
@@ -55,7 +56,6 @@ const CategoryForm = ({
   }, []);
 
   const handleSubmitForm = async () => {
-    debugger;
     if (formType === FORM_TYPES.CREATE) {
       const res = await categoryAPI.createCategory(
         name,
@@ -73,7 +73,8 @@ const CategoryForm = ({
       );
     }
 
-    setIsOpenDrawer(false);
+    setIsCategoryFormOpen(false);
+    fetchTableData();
   };
 
   useEffect(() => {
@@ -83,6 +84,7 @@ const CategoryForm = ({
   const fetchAllCategories = async () => {
     const res = await categoryAPI.fetchAllCategories();
     setCategories(convertToTreeSelect(res));
+    console.log(categories);
   };
 
   const handleChangeCategorySwitch = () => {
@@ -130,7 +132,7 @@ const CategoryForm = ({
           <TreeSelect
             showSearch
             style={{ width: "100%" }}
-            value={selectedCategory.name}
+            value={selectedCategoryId}
             styles={{
               popup: { root: { maxHeight: 400, overflow: "auto" } },
             }}

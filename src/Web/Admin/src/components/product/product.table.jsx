@@ -90,7 +90,7 @@ const ProductTable = ({
       dataIndex: "description",
     },
     {
-      title: "Thuoc danh muc",
+      title: "Thuộc danh mục",
       dataIndex: "description",
     },
   ];
@@ -151,11 +151,11 @@ const ProductTable = ({
         columns={columns}
         scroll={{ x: "max-content" }}
         loading={isTableLoading}
-         pagination={{
-            current,
-            pageSize,
-            total,
-          }}
+        pagination={{
+          current,
+          pageSize,
+          total,
+        }}
         onChange={onChange}
       />
     </div>

@@ -10,5 +10,9 @@ public static class ProductMappingConfigExtension
     {
         config.NewConfig<ProductEntity, ProductDto>()
             .Map(member: dest => dest.CategoryName, src => src.Category.Name);
+
+        config.NewConfig<CategoryEntity, CategoryDto>()
+            .Map(member: dest => dest.ParentId, src => src.ParentCategory.Id)
+            .Map(member: dest => dest.ParentName, src => src.ParentCategory.Name);
     }
 }

@@ -9,7 +9,7 @@ public class UnitOfWork : IUnitOfWork
     public IProductRepository _productRepository { get; set; }
     public ICategoryRepository _categoryRepository { get; set; }
 
-    public UnitOfWork(IProductDbContext productDbContext, IProductRepository productRepository, ICategoryRepository categoryRepository)
+    public UnitOfWork(IProductDbContext productDbContext)
     {
         _productDbContext = productDbContext;
         _productRepository = new ProductRepository(productDbContext);
