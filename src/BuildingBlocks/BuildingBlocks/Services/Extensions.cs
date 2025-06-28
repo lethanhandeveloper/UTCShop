@@ -14,7 +14,7 @@ public static class Extensions
     public static IServiceCollection AddDefaultServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddHttpContextAccessor();
-        services.AddScoped<ICurrentUserService, CurrentUserService>();
+        services.AddScoped<ICurrentAccountService, CurrentAccountService>();
 
         services.AddAuthentication(opt =>
         {

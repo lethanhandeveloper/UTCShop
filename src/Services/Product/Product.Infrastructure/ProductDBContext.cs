@@ -1,4 +1,4 @@
-﻿using BuildingBlock.DBInterceptors;
+﻿using BuildingBlocks.BaseDBDataAccess.Interceptors;
 using BuildingBlocks.Services.CurrentUser;
 using Microsoft.EntityFrameworkCore;
 using Product.Domain.Data;
@@ -9,7 +9,7 @@ namespace Product.Infrastructure;
 
 public class ProductDBContext : DbContext, IProductDbContext
 {
-    private readonly ICurrentUserService _currentUserService;
+    private readonly ICurrentAccountService _currentUserService;
 
     public ProductDBContext(DbContextOptions<ProductDBContext> options) : base(options)
     {

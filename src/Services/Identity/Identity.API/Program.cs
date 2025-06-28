@@ -1,17 +1,14 @@
-using BuildingBlocks.Dtos;
-using BuildingBlocks.Enums;
+using BuildingBlocks.Services;
 using BuildingBlocks.Utils;
 using Identity.Application;
 using Identity.Infrastructure;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
+builder.Services.AddDefaultServices(builder.Configuration);
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -51,52 +48,52 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 
-builder.Services.AddAuthentication(opt =>
-{
-    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(opt =>
-{   // for development only
-    opt.RequireHttpsMetadata = false;
-    opt.SaveToken = true;
-    var config = builder.Configuration["JWT:SecretKey"];
-    opt.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuerSigningKey = true,
-        ValidateLifetime = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["JWT:SecretKey"])),
-        ValidateIssuer = true,
-        ValidIssuer = builder.Configuration["JWT:Issuer"],
-        ValidateAudience = true,
-        ValidAudience = builder.Configuration["JWT:Audience"],
-        ClockSkew = TimeSpan.Zero
-    };
+//builder.Services.AddAuthentication(opt =>
+//{
+//    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+//}).AddJwtBearer(opt =>
+//{   // for development only
+//    opt.RequireHttpsMetadata = false;
+//    opt.SaveToken = true;
+//    var config = builder.Configuration["JWT:SecretKey"];
+//    opt.TokenValidationParameters = new TokenValidationParameters
+//    {
+//        ValidateIssuerSigningKey = true,
+//        ValidateLifetime = true,
+//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["JWT:SecretKey"])),
+//        ValidateIssuer = true,
+//        ValidIssuer = builder.Configuration["JWT:Issuer"],
+//        ValidateAudience = true,
+//        ValidAudience = builder.Configuration["JWT:Audience"],
+//        ClockSkew = TimeSpan.Zero
+//    };
 
-    opt.Events = new JwtBearerEvents
-    {
-        OnMessageReceived = context =>
-        {
-            context.Token = context.Request.Cookies["accessToken"];
-            return Task.CompletedTask;
-        },
-        OnChallenge = context =>
-        {
-            context.HandleResponse();
+//    opt.Events = new JwtBearerEvents
+//    {
+//        OnMessageReceived = context =>
+//        {
+//            context.Token = context.Request.Cookies["accessToken"];
+//            return Task.CompletedTask;
+//        },
+//        OnChallenge = context =>
+//        {
+//            context.HandleResponse();
 
-            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-            context.Response.ContentType = "application/json";
+//            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+//            context.Response.ContentType = "application/json";
 
-            var response = new ApiResponse<object>
-            {
-                Success = false,
-                Message = "Unauthorized access. Please check your authentication token.",
-                StatusCode = HttpStatusCodeEnum.Unauthorized
-            };
+//            var response = new ApiResponse<object>
+//            {
+//                Success = false,
+//                Message = "Unauthorized access. Please check your authentication token.",
+//                StatusCode = HttpStatusCodeEnum.Unauthorized
+//            };
 
-            return context.Response.WriteAsJsonAsync(response);
-        }
-    };
-});
+//            return context.Response.WriteAsJsonAsync(response);
+//        }
+//    };
+//});
 
 builder.Services.AddInfrastructureServices(builder.Configuration).AddApplicationServices(builder.Configuration);
 

@@ -9,14 +9,14 @@ using Identity.Domain.Entities;
 using Mapster;
 
 namespace Identity.Application.Modules.Admin.Commands.Create;
-public class CreateAdminCommandHandler : ICommandHandler<CreateAdminCommand, UserDto>
+public class RegisterCommandHandler : ICommandHandler<CreateAdminCommand, UserDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IUserRepository _userRepository;
-    private readonly IRoleRepository _roleRepository;
+    private readonly IUserRoleRepository _roleRepository;
     private readonly IUserQuery _userQuery;
 
-    public CreateAdminCommandHandler(IUnitOfWork unitOfWork, IUserRepository userRepository, IUserQuery userQuery, IRoleRepository roleRepository)
+    public RegisterCommandHandler(IUnitOfWork unitOfWork, IUserRepository userRepository, IUserQuery userQuery, IUserRoleRepository roleRepository)
     {
         _unitOfWork = unitOfWork;
         _userRepository = userRepository;
@@ -33,22 +33,21 @@ public class CreateAdminCommandHandler : ICommandHandler<CreateAdminCommand, Use
             throw new BadRequestException("The email is already existed");
         }
 
-        var user = new UserEntity
-        {
-            Name = request.Name,
-            Email = request.Email,
-            HashPassword = BCrypt.Net.BCrypt.HashPassword(request.Password),
-            Age = request.Age,
-            Addresses = request.Addresses
-        };
+        //var user = new UserEntity
+        //{
+        //    Name = request.Name,
+        //    Email = request.Email,
+        //    HashPassword = BCrypt.Net.BCrypt.HashPassword(request.Password),
+        //    Age = request.Age,
+        //    Addresses = request.Addresses
+        //};
 
-        await _userRepository.CreateAsync(user, cancellationToken);
+        //await _userRepository.CreateAsync(user, cancellationToken);
 
-        var role = new RoleEntity
+        var role = new UserRoleEntity
         {
-            Name = "Admin",
             Type = RoleType.Admin,
-            UserId = user.Id,
+            //UserId = user.Id,
         };
 
         await _roleRepository.CreateAsync(role, cancellationToken);

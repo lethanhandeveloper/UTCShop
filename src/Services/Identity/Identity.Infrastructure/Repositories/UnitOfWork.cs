@@ -1,26 +1,21 @@
 ﻿
+using BuildingBlocks.BaseDBDataAccess.UnitOfWork;
 using Identity.Application.Interfaces;
 using Identity.Application.Interfaces.Repositories;
-using Identity.Domain.Data;
 
 namespace Identity.Infrastructure.Repositories;
-public class UnitOfWork : IUnitOfWork
+public class UnitOfWork : BaseUnitOfWork<IdentityDbContext>, IUnitOfWork
 {
-    public IIdentityDbContext _identityDbContext;
     public IUserRepository _userRepository { get; set; }
     public IRefreshTokenRepository _refreshTokenRepository { get; set; }
-    public IRoleRepository _roleRepository { get; set; }
+    public IUserRoleRepository _userRoleRepository { get; set; }
+    public IAccountRepository _accountRepository { get; set; }
 
-    public UnitOfWork(IIdentityDbContext identityDbContext)
+    public UnitOfWork(IdentityDbContext dbContext) : base(dbContext)
     {
-        _identityDbContext = identityDbContext;
-        _userRepository = new UserRepository(_identityDbContext);
-        _refreshTokenRepository = new RefreshTokenRepository(_identityDbContext);
-        _roleRepository = new RoleRepository(_identityDbContext);
-    }
-
-    public async Task<int> SaveChangeAsync(CancellationToken cancellationToken)
-    {
-        return await _identityDbContext.SaveChangesAsync(cancellationToken);
+        _userRepository = new UserRepository(dbContext);
+        _refreshTokenRepository = new RefreshTokenRepository(dbContext);
+        _userRoleRepository = new UserRoleRepository(dbContext);
+        _accountRepository = new AccountRepository(dbContext);
     }
 }

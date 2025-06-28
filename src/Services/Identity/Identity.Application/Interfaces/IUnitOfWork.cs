@@ -5,7 +5,8 @@ public interface IUnitOfWork
 {
     IUserRepository _userRepository { get; }
     IRefreshTokenRepository _refreshTokenRepository { get; }
-    IRoleRepository _roleRepository { get; }
+    IUserRoleRepository _userRoleRepository { get; }
+    IAccountRepository _accountRepository { get; }
 
     Task<int> SaveChangeAsync(CancellationToken cancellationToken);
 }

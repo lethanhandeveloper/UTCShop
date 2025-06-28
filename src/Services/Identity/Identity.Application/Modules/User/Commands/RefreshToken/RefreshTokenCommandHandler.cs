@@ -6,27 +6,27 @@ using Identity.Application.Dtos;
 using Identity.Application.Interfaces;
 using Identity.Application.Interfaces.Queries;
 using Identity.Domain.Entities;
-using Mapster;
+using System.Data;
 
 namespace Identity.Application.Modules.User.Commands.Login;
-public class RefreshTokenCommandHandler : ICommandHandler<RefreshTokenCommand, ApiResponse<UserDto>>
+public class RefreshTokenCommandHandler : ICommandHandler<RefreshTokenCommand, ApiResponse<UserAccountDto>>
 {
-    private readonly IUserQuery _userQuery;
-    private readonly IRoleQuery _roleQuery;
+    private readonly IAccountQuery _accountQuery;
+    private readonly IUserRoleQuery _roleQuery;
     private readonly IAuthService _authService;
     private readonly IRefreshTokenQuery _refreshTokenQuery;
     private IUnitOfWork _unitOfWork;
 
-    public RefreshTokenCommandHandler(IUserQuery userQuery, IAuthService authService, IUnitOfWork unitOfWork, IRoleQuery roleQuery, IRefreshTokenQuery refreshTokenQuery)
+    public RefreshTokenCommandHandler(IAccountQuery accountQuery, IAuthService authService, IUnitOfWork unitOfWork, IUserRoleQuery roleQuery, IRefreshTokenQuery refreshTokenQuery)
     {
-        _userQuery = userQuery;
+        _accountQuery = accountQuery;
         _authService = authService;
         _unitOfWork = unitOfWork;
         _roleQuery = roleQuery;
         _refreshTokenQuery = refreshTokenQuery;
     }
 
-    public async Task<ApiResponse<UserDto>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
+    public async Task<ApiResponse<UserAccountDto>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
     {
         var refreshToken = await _refreshTokenQuery.GetByTokenAsync(request.RefreshToken);
 
@@ -37,36 +37,33 @@ public class RefreshTokenCommandHandler : ICommandHandler<RefreshTokenCommand, A
 
         if (refreshToken.Expire < DateTime.UtcNow)
         {
+            await _unitOfWork._refreshTokenRepository.RemoveAsync(request.RefreshToken, cancellationToken);
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
             throw new UnauthorizedException("The refresh token is expired");
         }
 
-        var user = await _userQuery.GetByIdAsync(refreshToken.UserId);
+        var account = await _accountQuery.GetByIdAsync(refreshToken.AccountId);
 
-        if (user == null)
+        if (account == null)
         {
-            throw new BadRequestException("The user is not existed");
+            throw new BadRequestException("The account does not exist");
         }
 
-        var role = await _roleQuery.GetByUserIdAsync(user.Id);
+        var roles = await _roleQuery.GetByUserIdAsync(account.Id);
 
-        if (role == null)
+        if (roles == null)
         {
-            return new ApiResponse<UserDto>
-            {
-                Success = false,
-                Data = null,
-                Message = "User role is not existed",
-                StatusCode = HttpStatusCodeEnum.BadRequest
-            };
+            throw new BadRequestException("User role does not exist");
         }
 
-        user = await _authService.GenerateAccessToken(user, role);
+        var accessToken = _authService.GenerateAccessToken(account, roles.Select(r => r.Type).ToList());
+        var refreshTokenValue = _authService.GenerateRefreshToken();
 
         var newRefreshToken = new RefreshTokenEntity
         {
-            Token = user.RefreshToken,
+            Token = _authService.GenerateRefreshToken(),
             Expire = DateTime.UtcNow.AddDays(7),
-            UserId = user.Id
+            AccountId = account.Id
         };
 
         await _unitOfWork._refreshTokenRepository.CreateAsync(newRefreshToken, cancellationToken);
@@ -75,11 +72,15 @@ public class RefreshTokenCommandHandler : ICommandHandler<RefreshTokenCommand, A
 
         await _unitOfWork.SaveChangeAsync(cancellationToken);
 
-        return new ApiResponse<UserDto>
+        return new ApiResponse<UserAccountDto>
         {
             Success = true,
-            Data = user.Adapt<UserDto>(),
-            Message = "Login successfully",
+            Data = new UserAccountDto
+            {
+                AccessToken = accessToken,
+                RefreshToken = refreshTokenValue
+            },
+            Message = "",
             StatusCode = HttpStatusCodeEnum.OK
         };
     }

@@ -13,6 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Modules\Account\Create\" />
+    <Folder Include="Modules\User\Commands\CreateAccount\" />
     <Folder Include="Modules\User\Queries\" />
   </ItemGroup>
 

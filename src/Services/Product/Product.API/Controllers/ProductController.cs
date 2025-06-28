@@ -1,8 +1,6 @@
 ﻿using BuildingBlocks.Attribute;
-using BuildingBlocks.Enums;
 using BuildingBlocks.Pagination;
 using BuildingBlocks.Services.CurrentUser;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Product.Application.Dtos;
 using Product.Application.Modules.Category.Commands.Delete;
@@ -20,9 +18,9 @@ namespace Product.API.Controllers;
 public class ProductController : Controller
 {
     IMediator _mediator;
-    ICurrentUserService _currentUserService;
+    ICurrentAccountService _currentUserService;
 
-    public ProductController(IMediator mediator, ICurrentUserService currentUserService)
+    public ProductController(IMediator mediator, ICurrentAccountService currentUserService)
     {
         _mediator = mediator;
         _currentUserService = currentUserService;
@@ -69,15 +67,5 @@ public class ProductController : Controller
     public async Task<ProductDto> GetById(Guid Id)
     {
         return await _mediator.Send(new GetProductByIdQuery(Id));
-    }
-
-
-    [HttpGet("test")]
-    [Authorize(Roles = nameof(RoleType.Admin))]
-
-    public async Task<Guid> Test()
-    {
-        var currentUserId = _currentUserService.UserId;
-        return (Guid)currentUserId;
     }
 }

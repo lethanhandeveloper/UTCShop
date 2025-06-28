@@ -3,6 +3,7 @@ import DropdownMenu from "../menu/dropdownmenu";
 import HorizontalMenu from "../menu/horizontalmenu";
 import { useState } from "react";
 import clsx from "clsx";
+import { UserOutlined } from "@ant-design/icons";
 
 const AppHeader = () => {
   const [isCartPreviewOpen, setIsCartPreviewOpen] = useState(false);
@@ -28,38 +29,6 @@ const AppHeader = () => {
           </nav>
           <nav>
             <ul className="secondary-nav g-nav">
-              <li>
-                <a>
-                  Tài khoản
-                  <i className="fas fa-chevron-down u-s-m-l-9" />
-                </a>
-                <ul className="g-dropdown" style={{ width: 200 }}>
-                  <li>
-                    <a href="cart.html">
-                      <i className="fas fa-cog u-s-m-r-9" />
-                      Giỏ hàng
-                    </a>
-                  </li>
-                  <li>
-                    <a href="wishlist.html">
-                      <i className="far fa-heart u-s-m-r-9" />
-                     Sản phẩm yêu thích 
-                    </a>
-                  </li>
-                  <li>
-                    <a href="checkout.html">
-                      <i className="far fa-check-circle u-s-m-r-9" />
-                      Thanh toán
-                    </a>
-                  </li>
-                  <li>
-                    <a href="account.html">
-                      <i className="fas fa-sign-in-alt u-s-m-r-9" />
-                      Đăng nhập / Đăng ký
-                    </a>
-                  </li>
-                </ul>
-              </li>
               <li>
                 <a>
                   USD
@@ -92,6 +61,38 @@ const AppHeader = () => {
                   </li>
                 </ul>
               </li>
+              <li>
+                <a>
+                  <UserOutlined /> Lê Thành An
+                  <i className="fas fa-chevron-down u-s-m-l-9" />
+                </a>
+                <ul className="g-dropdown" style={{ width: 200 }}>
+                  <li>
+                    <a href="cart.html">
+                      <i className="fas fa-cog u-s-m-r-9" />
+                      Giỏ hàng
+                    </a>
+                  </li>
+                  <li>
+                    <a href="wishlist.html">
+                      <i className="far fa-heart u-s-m-r-9" />
+                      Sản phẩm yêu thích
+                    </a>
+                  </li>
+                  <li>
+                    <a href="checkout.html">
+                      <i className="far fa-check-circle u-s-m-r-9" />
+                      Thanh toán
+                    </a>
+                  </li>
+                  <li>
+                    <a href="account.html">
+                      <i className="fas fa-sign-in-alt u-s-m-r-9" />
+                      Đăng nhập / Đăng ký
+                    </a>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </nav>
         </div>
@@ -105,7 +106,7 @@ const AppHeader = () => {
                   <img
                     src={`/images/logo.png`}
                     alt="Groover Brand Logo"
-                    style={{ width: 200, height: 'auto' }}
+                    style={{ width: 200, height: "auto" }}
                     className="app-brand-logo"
                   />
                 </a>
@@ -194,7 +195,12 @@ const AppHeader = () => {
       </div>
       {/* Responsive-Buttons /- */}
       {/* Mini Cart */}
-      <div className={clsx("mini-cart-wrapper", isCartPreviewOpen && "mini-cart-open")}>
+      <div
+        className={clsx(
+          "mini-cart-wrapper",
+          isCartPreviewOpen && "mini-cart-open",
+        )}
+      >
         <div className="mini-cart">
           <div className="mini-cart-header">
             YOUR CART
@@ -250,7 +256,11 @@ const AppHeader = () => {
             <span className="mini-total-price float-right">$220.00</span>
           </div>
           <div className="mini-action-anchors">
-            <Link to="/cart" className="cart-anchor" onClick={() => setIsCartPreviewOpen(false)}>
+            <Link
+              to="/cart"
+              className="cart-anchor"
+              onClick={() => setIsCartPreviewOpen(false)}
+            >
               View Cart
             </Link>
             <a href="checkout.html" className="checkout-anchor">
@@ -264,8 +274,8 @@ const AppHeader = () => {
       <div className="full-layer-bottom-header">
         <div className="container">
           <div className="row align-items-center">
-              <DropdownMenu />
-              <HorizontalMenu />
+            <DropdownMenu />
+            <HorizontalMenu />
           </div>
         </div>
       </div>

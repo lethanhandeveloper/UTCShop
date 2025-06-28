@@ -31,6 +31,7 @@ const Category = () => {
   }, [pageIndex, pageSize, totalCount]);
 
   const fetchCategories = async () => {
+    setSelectedIds([]);
     const res = await categoryAPI.fetchCategories(pageIndex, pageSize);
     setCategories(res.data);
     setPageIndex(res.pageIndex);

@@ -19,11 +19,6 @@ public class GetCategoriesQueryHandler(ICategoryQuery categoryQuery) : IQueryHan
 
         var categoryDtos = result.data.Adapt<List<CategoryDto>>();
 
-        foreach (var categoryDto in categoryDtos)
-        {
-
-        }
-
         return new PaginatedResult<CategoryDto>(pageIndex, pageSize, totalCount, categoryDtos);
     }
 }

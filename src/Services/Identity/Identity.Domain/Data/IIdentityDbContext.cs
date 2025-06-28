@@ -5,8 +5,9 @@ namespace Identity.Domain.Data;
 public interface IIdentityDbContext
 {
     DbSet<UserEntity> Users { get; }
-    DbSet<RoleEntity> Roles { get; }
+    DbSet<UserRoleEntity> Roles { get; }
     DbSet<RefreshTokenEntity> RefreshTokens { get; }
+    DbSet<AccountEntity> Accounts { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellation);
 }

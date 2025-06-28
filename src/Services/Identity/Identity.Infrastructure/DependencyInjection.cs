@@ -37,14 +37,17 @@ public static class DependencyInjection
 
         #endregion
         services.AddScoped<IUserQuery, UserQuery>();
-        services.AddScoped<IRoleQuery, RoleQuery>();
+        services.AddScoped<IUserRoleQuery, UserRoleQuery>();
         services.AddScoped<IRefreshTokenQuery, RefreshTokenQuery>();
+        services.AddScoped<IAccountQuery, AccountQuery>();
+
         #region repositories
 
         #endregion
         services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<IRoleRepository, RoleRepository>();
+        services.AddScoped<IUserRoleRepository, UserRoleRepository>();
         services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+        services.AddScoped<IAccountRepository, AccountRepository>();
         #region unitOfWork
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         #endregion

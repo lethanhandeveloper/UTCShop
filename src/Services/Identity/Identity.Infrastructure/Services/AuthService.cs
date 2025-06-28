@@ -1,4 +1,5 @@
-﻿using Identity.Application.Interfaces;
+﻿using BuildingBlocks.Enums;
+using Identity.Application.Interfaces;
 using Identity.Domain.Data;
 using Identity.Domain.Entities;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +21,7 @@ public class AuthService : IAuthService
         _configuration = configuration;
     }
 
-    public async Task<UserEntity> GenerateAccessToken(UserEntity user, List<RoleEntity> roles)
+    public string GenerateAccessToken(AccountEntity user, List<RoleType> roles)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_configuration["JWT:SecretKey"]);
@@ -28,10 +29,9 @@ public class AuthService : IAuthService
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.Name)
         };
 
-        claims.AddRange(roles.Select(r => new Claim(ClaimTypes.Role, r.Type.ToString())));
+        claims.AddRange(roles.Select(r => new Claim(ClaimTypes.Role, r.ToString())));
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {
@@ -48,10 +48,10 @@ public class AuthService : IAuthService
         //user.Token = tokenHandler.WriteToken(token);
         //user.IsActive = true;
 
-        user.AccessToken = tokenHandler.WriteToken(accessToken);
-        user.RefreshToken = GenerateRefreshToken();
+        //user.AccessToken = tokenHandler.WriteToken(accessToken);
+        //user.RefreshToken = GenerateRefreshToken();
 
-        return user;
+        return tokenHandler.WriteToken(accessToken);
     }
 
     public string GenerateRefreshToken()

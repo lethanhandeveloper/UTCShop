@@ -4,18 +4,17 @@ using BuildingBlocks.Enums;
 using Identity.Application.Dtos;
 using Identity.Application.Interfaces;
 using Identity.Application.Interfaces.Queries;
-using Identity.Domain.Entities;
 using Mapster;
 
 namespace Identity.Application.Modules.User.Commands.Login;
 public class LoginUserCommandHandler : ICommandHandler<LoginUserCommand, ApiResponse<UserDto>>
 {
     private readonly IUserQuery _userQuery;
-    private readonly IRoleQuery _roleQuery;
+    private readonly IUserRoleQuery _roleQuery;
     private readonly IAuthService _authService;
     private IUnitOfWork _unitOfWork;
 
-    public LoginUserCommandHandler(IUserQuery userQuery, IAuthService authService, IUnitOfWork unitOfWork, IRoleQuery roleQuery)
+    public LoginUserCommandHandler(IUserQuery userQuery, IAuthService authService, IUnitOfWork unitOfWork, IUserRoleQuery roleQuery)
     {
         _userQuery = userQuery;
         _authService = authService;
@@ -26,16 +25,16 @@ public class LoginUserCommandHandler : ICommandHandler<LoginUserCommand, ApiResp
     public async Task<ApiResponse<UserDto>> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {
         var user = await _userQuery.GetByUserName(request.Email);
-        if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.HashPassword))
-        {
-            return new ApiResponse<UserDto>
-            {
-                Success = false,
-                Data = null,
-                Message = "Username or password is incorrect",
-                StatusCode = HttpStatusCodeEnum.BadRequest
-            };
-        }
+        //if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.HashPassword))
+        //{
+        //    return new ApiResponse<UserDto>
+        //    {
+        //        Success = false,
+        //        Data = null,
+        //        Message = "Username or password is incorrect",
+        //        StatusCode = HttpStatusCodeEnum.BadRequest
+        //    };
+        //}
 
         var role = await _roleQuery.GetByUserIdAsync(user.Id);
 
@@ -50,16 +49,16 @@ public class LoginUserCommandHandler : ICommandHandler<LoginUserCommand, ApiResp
             };
         }
 
-        user = await _authService.GenerateAccessToken(user, role);
+        //user = await _authService.GenerateAccessToken(user, role);
 
-        var refreshToken = new RefreshTokenEntity
-        {
-            Token = user.RefreshToken,
-            Expire = DateTime.UtcNow.AddDays(3),
-            UserId = user.Id
-        };
+        //var refreshToken = new RefreshTokenEntity
+        //{
+        //    Token = user.RefreshToken,
+        //    Expire = DateTime.UtcNow.AddDays(3),
+        //    UserId = user.Id
+        //};
 
-        await _unitOfWork._refreshTokenRepository.CreateAsync(refreshToken, cancellationToken);
+        //await _unitOfWork._refreshTokenRepository.CreateAsync(refreshToken, cancellationToken);
 
         await _unitOfWork.SaveChangeAsync(cancellationToken);
 

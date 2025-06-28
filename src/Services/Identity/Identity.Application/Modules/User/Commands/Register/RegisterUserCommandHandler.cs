@@ -19,7 +19,7 @@ public class RegisterUserCommandHandler : ICommandHandler<RegisterUserCommand, U
         {
             Name = request.Name,
             Email = request.Email,
-            HashPassword = BCrypt.Net.BCrypt.HashPassword(request.Password),
+            //HashPassword = BCrypt.Net.BCrypt.HashPassword(request.Password),
             Age = request.Age,
             Addresses = request.Addresses
         };

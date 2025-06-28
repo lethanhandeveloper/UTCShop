@@ -10,7 +10,11 @@ const Auth = () => {
 
   const onFinish = async (values) => {
     setIsLoadingLoginButton(true);
-    const res = await authAPI.loginAdmin(values.email, values.password);
+    const res = await authAPI.login(
+      values.email,
+      values.email,
+      values.password,
+    );
     if (res.data) {
       navigate("/dashboard");
     }

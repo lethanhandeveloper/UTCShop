@@ -1,8 +1,10 @@
 ﻿using BuildingBlocks.Dtos;
 using BuildingBlocks.Enums;
 using BuildingBlocks.Exception;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
 
@@ -26,6 +28,8 @@ public class ApiResultExceptionAttribute : ExceptionFilterAttribute
     public override void OnException(ExceptionContext context)
     {
         //_logger.LogError(context.Exception.ToString());
+        var env = (IWebHostEnvironment)context.HttpContext.RequestServices.GetService(typeof(IWebHostEnvironment));
+
         var exception = context.Exception;
         var (message, statusCode) = exception switch
         {
@@ -34,8 +38,13 @@ public class ApiResultExceptionAttribute : ExceptionFilterAttribute
             ValidationException => (exception.Message, HttpStatusCodeEnum.BadRequest),
             UnauthorizedException => (exception.Message, HttpStatusCodeEnum.Unauthorized),
 
-            _ => ("Internal server error", HttpStatusCodeEnum.InternalServerError)
+            _ => (exception.InnerException.ToString(), HttpStatusCodeEnum.InternalServerError)
         };
+
+        if (!env.IsDevelopment() && statusCode == HttpStatusCodeEnum.InternalServerError)
+        {
+            message = "Internal server error";
+        }
 
         context.Result = new ObjectResult(new ApiResponse<object>
         {
