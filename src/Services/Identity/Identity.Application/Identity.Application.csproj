@@ -13,9 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\Account\Create\" />
+    <Folder Include="Modules\Account\Queries\" />
+    <Folder Include="Modules\Admin\Queries\" />
     <Folder Include="Modules\User\Commands\CreateAccount\" />
-    <Folder Include="Modules\User\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

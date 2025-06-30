@@ -5,9 +5,13 @@ const API_BASE = "/api";
 const API_PREFIX = SERVICE_PATH + API_BASE;
 
 const authAPI = {
-  loginAdmin: (email, password) => {
-    const URL_BACKEND = `${API_PREFIX}/admin/login`;
-    const bodyFormData = { Email: email, Password: password };
+  login: (username, email, password) => {
+    const URL_BACKEND = `${API_PREFIX}/account/login`;
+    const bodyFormData = {
+      UserName: username,
+      Email: email,
+      Password: password,
+    };
 
     return axios.post(URL_BACKEND, bodyFormData);
   },
@@ -16,8 +20,8 @@ const authAPI = {
 
     return axios.post(URL_BACKEND);
   },
-  getAdminInfo: () => {
-    const URL_BACKEND = `${API_PREFIX}/admin/getadmininfo`;
+  getCustomerInfo: () => {
+    const URL_BACKEND = `${API_PREFIX}/customer/getcustomerinfo`;
 
     return axios.get(URL_BACKEND);
   },

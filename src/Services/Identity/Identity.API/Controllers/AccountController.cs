@@ -1,11 +1,12 @@
 ﻿using BuildingBlocks.Attribute;
+using BuildingBlocks.Controllers;
 using BuildingBlocks.Dtos;
 using Identity.Application.Dtos;
 using Identity.Application.Modules.Account.Commands.Login;
 using Identity.Application.Modules.Account.Commands.Register;
+using Identity.Application.Modules.Account.Commands.RevokeRefreshToken.Login;
 using Identity.Application.Modules.User.Commands.Login;
 using Mapster;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Identity.API.Controllers;
@@ -13,20 +14,13 @@ namespace Identity.API.Controllers;
 [ApiController]
 [ApiResultException]
 [Route("api/[controller]")]
-public class AccountController : Controller
+public class AccountController : BaseController
 {
-    IMediator _mediator;
-
-    public AccountController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
     [HttpPost("Register")]
     public async Task<UserAccountDto> Register(UserAccountDto request)
     {
         var command = request.Adapt<RegisterCommand>();
-        var results = await _mediator.Send(command);
+        var results = await Dispatcher.Send(command);
         return results;
     }
 
@@ -34,7 +28,7 @@ public class AccountController : Controller
     public async Task<ApiResponse<UserAccountDto>> Login(UserAccountDto request)
     {
         var command = request.Adapt<LoginCommand>();
-        var results = await _mediator.Send(command);
+        var results = await Dispatcher.Send(command);
 
         AttachTokenToResponse(results.Data.AccessToken, results.Data.RefreshToken);
         return results;
@@ -50,8 +44,43 @@ public class AccountController : Controller
             RefreshToken = refreshToken
         };
 
-        var results = await _mediator.Send(command);
+        var results = await Dispatcher.Send(command);
         AttachTokenToResponse(results.Data.AccessToken, results.Data.RefreshToken);
+        return results;
+    }
+
+    [HttpGet("RevokeToken")]
+    public async Task<ApiResponse<bool>> RevokeRefreshToken()
+    {
+        var accessToken = Request.Cookies["accessToken"];
+        var refreshToken = Request.Cookies["refreshToken"];
+
+        var command = new RevokeRefreshTokenCommand
+        {
+            RefreshToken = refreshToken
+        };
+
+        var results = await Dispatcher.Send(command);
+
+        long unixTimeSeconds = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        var expires = DateTimeOffset.FromUnixTimeSeconds(unixTimeSeconds);
+
+        Response.Cookies.Append("accessToken", accessToken, new CookieOptions
+        {
+            HttpOnly = true,
+            Secure = true,
+            SameSite = SameSiteMode.None,
+            Expires = expires
+        });
+
+        Response.Cookies.Append("refreshToken", refreshToken, new CookieOptions
+        {
+            HttpOnly = true,
+            Secure = true,
+            SameSite = SameSiteMode.None,
+            Expires = expires
+        });
+
         return results;
     }
 

@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.Attribute;
+using BuildingBlocks.Controllers;
 using BuildingBlocks.Pagination;
 using BuildingBlocks.Services.CurrentUser;
 using Microsoft.AspNetCore.Mvc;
@@ -15,14 +16,12 @@ namespace Product.API.Controllers;
 [ApiController]
 [ApiResultException]
 [Route("api/[controller]")]
-public class ProductController : Controller
+public class ProductController : BaseController
 {
-    IMediator _mediator;
     ICurrentAccountService _currentUserService;
 
-    public ProductController(IMediator mediator, ICurrentAccountService currentUserService)
+    public ProductController(ICurrentAccountService currentUserService)
     {
-        _mediator = mediator;
         _currentUserService = currentUserService;
     }
 
@@ -35,7 +34,7 @@ public class ProductController : Controller
         .Select(c => c.Value)
         .ToList();
         var query = new GetProductsQuery(request);
-        var results = await _mediator.Send(query);
+        var results = await Dispatcher.Send(query);
         return results;
     }
 
@@ -43,7 +42,7 @@ public class ProductController : Controller
     public async Task<Guid> Create([FromBody] ProductDto request)
     {
         var command = new CreateProductCommand(request);
-        var results = await _mediator.Send(command);
+        var results = await Dispatcher.Send(command);
         return results.Id;
     }
 
@@ -51,7 +50,7 @@ public class ProductController : Controller
     public async Task<Guid> Update([FromBody] ProductDto request)
     {
         var command = new UpdateProductCommand(request);
-        var results = await _mediator.Send(command);
+        var results = await Dispatcher.Send(command);
         return results.Id;
     }
 
@@ -59,13 +58,13 @@ public class ProductController : Controller
     public async Task<List<Guid>> Delete(List<Guid> Ids)
     {
         var command = new DeleteCategoryCommand(Ids);
-        var results = await _mediator.Send(command);
+        var results = await Dispatcher.Send(command);
         return results.Ids;
     }
 
     [HttpGet("{Id}")]
     public async Task<ProductDto> GetById(Guid Id)
     {
-        return await _mediator.Send(new GetProductByIdQuery(Id));
+        return await Dispatcher.Send(new GetProductByIdQuery(Id));
     }
 }

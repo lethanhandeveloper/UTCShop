@@ -2,14 +2,17 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authAPI from "../../services/api/authAPI";
 
 const initialState = {
-  userInfo: null,
-  isLoadingPrivatePage: true,
+  userInfo: {
+    fullname: "",
+  },
+  isLoggedIn: false,
 };
 
-export const getAdminInfo = createAsyncThunk(
-  "auth/getAdminInfo",
+export const getCustomerInfo = createAsyncThunk(
+  "auth/getCustomerInfo",
   async (payload, thunkAPI) => {
-    const res = await authAPI.getAdminInfo();
+    debugger;
+    const res = await authAPI.getCustomerInfo();
 
     return res;
   },
@@ -18,28 +21,13 @@ export const getAdminInfo = createAsyncThunk(
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    // clickAllCheckBox: (state) => {
-    //     state.productTableData.isAllCheckBoxClicked = !state.productTableData.isAllCheckBoxClicked;
-    //     if(state.productTableData.isAllCheckBoxClicked){
-    //         state.productTableData.selectedIds = state.productTableData.data.map(p => p.id);
-    //         state.isDisabledDeleteButton = false;
-    //     }else{
-    //         state.productTableData.selectedIds = [];
-    //         state.isDisabledDeleteButton = true;
-    //     }
-    // }
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getAdminInfo.fulfilled, (state, action) => {
+    builder.addCase(getCustomerInfo.fulfilled, (state, action) => {
       state.userInfo = action.payload;
-      state.isLoadingPrivatePage = false;
+      state.isLoggedIn = true;
     });
   },
 });
-
-// export const {
-
-// } = authSlice.actions;
 
 export default authSlice.reducer;

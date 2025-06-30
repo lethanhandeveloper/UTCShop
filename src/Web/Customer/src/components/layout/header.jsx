@@ -1,12 +1,17 @@
 import { Link } from "react-router-dom";
 import DropdownMenu from "../menu/dropdownmenu";
 import HorizontalMenu from "../menu/horizontalmenu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { UserOutlined } from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { getCustomerInfo } from "../../redux/auth/auth.slice";
 
 const AppHeader = () => {
   const [isCartPreviewOpen, setIsCartPreviewOpen] = useState(false);
+  const userInfo = useSelector((state) => state.auth.userInfo);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   return (
     <header>
       <div className="full-layer-outer-header">
@@ -62,36 +67,43 @@ const AppHeader = () => {
                 </ul>
               </li>
               <li>
-                <a>
-                  <UserOutlined /> Lê Thành An
-                  <i className="fas fa-chevron-down u-s-m-l-9" />
-                </a>
-                <ul className="g-dropdown" style={{ width: 200 }}>
-                  <li>
-                    <a href="cart.html">
-                      <i className="fas fa-cog u-s-m-r-9" />
-                      Giỏ hàng
-                    </a>
-                  </li>
-                  <li>
-                    <a href="wishlist.html">
-                      <i className="far fa-heart u-s-m-r-9" />
-                      Sản phẩm yêu thích
-                    </a>
-                  </li>
-                  <li>
-                    <a href="checkout.html">
-                      <i className="far fa-check-circle u-s-m-r-9" />
-                      Thanh toán
-                    </a>
-                  </li>
-                  <li>
-                    <a href="account.html">
-                      <i className="fas fa-sign-in-alt u-s-m-r-9" />
-                      Đăng nhập / Đăng ký
-                    </a>
-                  </li>
-                </ul>
+                {isLoggedIn ? (
+                  <a>
+                    <UserOutlined /> {userInfo.name}
+                    <i className="fas fa-chevron-down u-s-m-l-9" />
+                  </a>
+                ) : (
+                  <Link to={"account/login"}>Đăng nhập / Đăng ký</Link>
+                )}
+
+                {isLoggedIn && (
+                  <ul className="g-dropdown" style={{ width: 200 }}>
+                    <li>
+                      <a href="cart.html">
+                        <i className="fas fa-cog u-s-m-r-9" />
+                        Giỏ hàng
+                      </a>
+                    </li>
+                    <li>
+                      <a href="wishlist.html">
+                        <i className="far fa-heart u-s-m-r-9" />
+                        Sản phẩm yêu thích
+                      </a>
+                    </li>
+                    <li>
+                      <a href="checkout.html">
+                        <i className="far fa-check-circle u-s-m-r-9" />
+                        Thanh toán
+                      </a>
+                    </li>
+                    <li>
+                      <Link to={"account/login"}>
+                        <i className="fas fa-sign-in-alt u-s-m-r-9" />
+                        Đăng xuất
+                      </Link>
+                    </li>
+                  </ul>
+                )}
               </li>
             </ul>
           </nav>

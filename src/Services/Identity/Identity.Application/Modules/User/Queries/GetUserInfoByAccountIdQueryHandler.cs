@@ -2,10 +2,10 @@
 using Identity.Application.Dtos;
 using Identity.Application.Interfaces.Queries;
 
-namespace Identity.Application.Modules.Admin.Queries;
-public class GetAdminInfoQueryHandler(IUserQuery userQuery, IAccountQuery accountQuery) : IQueryHandler<GetAdminInfoByIdQuery, UserDto>
+namespace Identity.Application.Modules.User.Queries;
+public class GetUserInfoByAccountIdQueryHandler(IUserQuery userQuery, IAccountQuery accountQuery) : IQueryHandler<GetUserInfoByAccountIdQuery, UserDto>
 {
-    public async Task<UserDto> Handle(GetAdminInfoByIdQuery request, CancellationToken cancellationToken)
+    public async Task<UserDto> Handle(GetUserInfoByAccountIdQuery request, CancellationToken cancellationToken)
     {
         var account = await accountQuery.GetByIdAsync(request.Id);
         var user = await userQuery.GetByIdAsync(account.UserId);
