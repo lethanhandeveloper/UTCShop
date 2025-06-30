@@ -2,4 +2,6 @@
 **/obj/
 **/out/
 **/.vs/
+**/logs/
+**/FileStorage/
 src/.vs/
