@@ -62,6 +62,7 @@ public static class Extensions
                 }
             };
         });
+
         return services;
     }
 }

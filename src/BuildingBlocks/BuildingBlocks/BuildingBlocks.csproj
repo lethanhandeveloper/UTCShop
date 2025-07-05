@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="BaseControllers\" />
+    <Folder Include="Cache\" />
   </ItemGroup>
 
 </Project>

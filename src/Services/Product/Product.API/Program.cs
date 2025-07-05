@@ -5,6 +5,7 @@ using Mapster;
 using Microsoft.OpenApi.Models;
 using Product.API.Extensions;
 using Product.Application;
+using Product.Grpc.Services;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,8 @@ builder.Configuration
     .AddEnvironmentVariables();
 
 builder.Services.AddMessageBroker(builder.Configuration);
+builder.Services.AddGrpc();
+
 
 builder.AddServiceDefaults();
 
@@ -79,6 +82,9 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
+
+app.MapGrpcService<GetProductInfoService>();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -1,4 +1,7 @@
 ﻿using BuildingBlock.CQRS;
+using BuildingBlocks.Messaging.Events;
+using Mapster;
+using MassTransit;
 using Product.Application.Interfaces;
 using Product.Domain.Modules.Product.Entities;
 
@@ -6,10 +9,12 @@ namespace Product.Application.Modules.Product.Commands.Update;
 public class UpdateProductCommandHandler : ICommandHandler<UpdateProductCommand, UpdateProductResult>
 {
     IUnitOfWork _unitOfWork;
+    IPublishEndpoint _publishEndpoint;
 
-    public UpdateProductCommandHandler(IUnitOfWork unitOfWork)
+    public UpdateProductCommandHandler(IUnitOfWork unitOfWork, IPublishEndpoint publishEndpoint)
     {
         _unitOfWork = unitOfWork;
+        _publishEndpoint = publishEndpoint;
     }
 
     public async Task<UpdateProductResult> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
@@ -21,6 +26,11 @@ public class UpdateProductCommandHandler : ICommandHandler<UpdateProductCommand,
 
         await _unitOfWork._productRepository.UpdateAsync(product, cancellationToken);
         await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+        var productCreatedEvent = product.Adapt<ProductUpdatedEvent>();
+
+        await _publishEndpoint.Publish(productCreatedEvent, cancellationToken);
+
         return new UpdateProductResult(product.Id);
     }
 }
