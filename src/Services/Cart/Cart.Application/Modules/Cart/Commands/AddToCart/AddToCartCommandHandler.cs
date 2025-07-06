@@ -32,14 +32,14 @@ public class AddToCartCommandHandler : ICommandHandler<AddToCartCommand, AddToCa
             {
                 Id = Guid.NewGuid(),
                 CustomerId = request.cart.CustomerId,
-                TotalPrice = request.cart.Items.Select(x => x.Price).Sum()
+                TotalPrice = (int)request.cart.Items.Select(x => x.Price).Sum()
             };
 
             await _unitOfWork._cartRepository.CreateAsync(cart, cancellationToken);
         }
         else
         {
-            cart.TotalPrice = request.cart.Items.Select(x => x.Price).Sum();
+            cart.TotalPrice = (int)request.cart.Items.Select(x => x.Price).Sum();
             await _unitOfWork._cartRepository.UpdateAsync(cart, cancellationToken);
         }
 

@@ -10,15 +10,18 @@ namespace Product.Infrastructure;
 public class ProductDBContext : DbContext, IProductDbContext
 {
     private readonly ICurrentAccountService _currentUserService;
+    private readonly AuditingSaveChangesInterceptor _auditingInterceptor;
 
-    public ProductDBContext(DbContextOptions<ProductDBContext> options) : base(options)
+    public ProductDBContext(DbContextOptions<ProductDBContext> options, AuditingSaveChangesInterceptor auditingInterceptor) : base(options)
     {
+        _auditingInterceptor=auditingInterceptor;
+
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
-        optionsBuilder.AddInterceptors(new AuditingSaveChangesInterceptor());
+        optionsBuilder.AddInterceptors(_auditingInterceptor);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

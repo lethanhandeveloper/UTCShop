@@ -1,4 +1,5 @@
-﻿using BuildingBlocks.Dtos;
+﻿using BuildingBlocks.BaseDBDataAccess.Interceptors;
+using BuildingBlocks.Dtos;
 using BuildingBlocks.Enums;
 using BuildingBlocks.Services.CurrentUser;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -62,6 +63,8 @@ public static class Extensions
                 }
             };
         });
+
+        services.AddScoped<AuditingSaveChangesInterceptor>();
 
         return services;
     }

@@ -9,11 +9,17 @@ using Microsoft.Extensions.DependencyInjection;
 namespace BuildingBlocks.BaseDBDataAccess.Interceptors;
 public class AuditingSaveChangesInterceptor : SaveChangesInterceptor
 {
+    private readonly ICurrentAccountService? _currentAccountService;
+
+    public AuditingSaveChangesInterceptor(ICurrentAccountService? currentAccountService = null)
+    {
+        _currentAccountService = currentAccountService;
+    }
+
     public override async ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = default)
     {
         var dbContext = eventData.Context;
         var httpContextAccessor = dbContext.GetService<IHttpContextAccessor>();
-        var currentAccountService = httpContextAccessor?.HttpContext?.RequestServices.GetService<ICurrentAccountService>();
 
         foreach (var entry in dbContext.ChangeTracker.Entries().Where(
             e => e.State == EntityState.Added
@@ -24,15 +30,15 @@ public class AuditingSaveChangesInterceptor : SaveChangesInterceptor
                 if (entry.State == EntityState.Added)
                 {
                     auditable.CreatedAt = DateTime.UtcNow;
-                    auditable.CreatedBy = currentAccountService.AccountId;
+                    auditable.CreatedBy = _currentAccountService.AccountId;
                     auditable.LastUpdatedAt = DateTime.UtcNow;
-                    auditable.LastUpdatedBy = currentAccountService.AccountId;
+                    auditable.LastUpdatedBy = _currentAccountService.AccountId;
                     auditable.IsDeleted = false;
                 }
                 else if (entry.State == EntityState.Modified)
                 {
                     auditable.LastUpdatedAt = DateTime.UtcNow;
-                    auditable.LastUpdatedBy = currentAccountService.AccountId;
+                    auditable.LastUpdatedBy = _currentAccountService.AccountId;
                 }
             }
         }

@@ -12,14 +12,18 @@ public class IdentityDbContext : DbContext, IIdentityDbContext
     public DbSet<AccountEntity> Accounts => Set<AccountEntity>();
     public DbSet<RefreshTokenEntity> RefreshTokens => Set<RefreshTokenEntity>();
 
-    public IdentityDbContext(DbContextOptions<IdentityDbContext> options) : base(options)
+    private readonly AuditingSaveChangesInterceptor _auditingInterceptor;
+
+    public IdentityDbContext(DbContextOptions<IdentityDbContext> options, AuditingSaveChangesInterceptor auditingInterceptor) : base(options)
     {
+        _auditingInterceptor=auditingInterceptor;
+
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
-        optionsBuilder.AddInterceptors(new AuditingSaveChangesInterceptor());
+        optionsBuilder.AddInterceptors(_auditingInterceptor);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

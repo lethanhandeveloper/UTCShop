@@ -20,9 +20,9 @@ public class UpdateProductCommandHandler : ICommandHandler<UpdateProductCommand,
     public async Task<UpdateProductResult> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
     {
         var product = ProductEntity.Create(command.Product.Name,
-            command.Product.Price, command.Product.ImageUrl, command.Product.Description, command.Product.CategoryId);
+            command.Product.Price.Value, command.Product.ImageUrl, command.Product.Description, command.Product.CategoryId.Value);
 
-        product.Id = command.Product.Id;
+        product.Id = command.Product.Id.Value;
 
         await _unitOfWork._productRepository.UpdateAsync(product, cancellationToken);
         await _unitOfWork.SaveChangeAsync(cancellationToken);

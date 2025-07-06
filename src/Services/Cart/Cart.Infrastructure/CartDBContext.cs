@@ -7,14 +7,16 @@ using System.Reflection;
 namespace Cart.Infrastructure;
 public class CartDBContext : DbContext, ICartDbContext
 {
-    public CartDBContext(DbContextOptions options) : base(options)
+    public CartDBContext(DbContextOptions options, AuditingSaveChangesInterceptor auditingInterceptor) : base(options)
     {
+        _auditingInterceptor=auditingInterceptor;
+
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
-        optionsBuilder.AddInterceptors(new AuditingSaveChangesInterceptor());
+        optionsBuilder.AddInterceptors(_auditingInterceptor);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -25,4 +27,6 @@ public class CartDBContext : DbContext, ICartDbContext
 
     public DbSet<CartEntity> Carts => Set<CartEntity>();
     public DbSet<CartItemEntity> CartItems => Set<CartItemEntity>();
+
+    private readonly AuditingSaveChangesInterceptor _auditingInterceptor;
 }

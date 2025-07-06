@@ -25,13 +25,13 @@ public class CreateProductCommandHandler : ICommandHandler<CreateProductCommand,
             throw new ValidationException("Id format is not valid.");
         }
 
-        if (!await _categoryQuery.IsLeafCategory(command.Product.CategoryId))
+        if (!await _categoryQuery.IsLeafCategory(command.Product.CategoryId.Value))
         {
             throw new ValidationException("CategoryId is not valid.");
         }
 
         var product = ProductEntity.Create(command.Product.Name,
-            command.Product.Price, command.Product.ImageUrl, command.Product.Description, command.Product.CategoryId);
+            command.Product.Price.Value, command.Product.ImageUrl, command.Product.Description, command.Product.CategoryId.Value);
 
         await _unitOfWork._productRepository.CreateAsync(product, cancellationToken);
         await _unitOfWork.SaveChangeAsync(cancellationToken);
