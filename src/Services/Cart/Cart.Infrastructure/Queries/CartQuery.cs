@@ -16,6 +16,6 @@ public class CartQuery : BaseQuery<CartEntity>, ICartQuery
 
     public async Task<CartEntity> GetCartByCustomerId(Guid id)
     {
-        return await _dbContext.Carts.Where(x => x.CustomerId == id).FirstOrDefaultAsync();
+        return await _dbContext.Carts.Where(x => x.CustomerId == id).Include(x => x.CartItems).FirstOrDefaultAsync();
     }
 }

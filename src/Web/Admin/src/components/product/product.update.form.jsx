@@ -1,5 +1,13 @@
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { Drawer, Image, Input, Modal, notification, Upload, Button } from "antd";
+import {
+  Drawer,
+  Image,
+  Input,
+  Modal,
+  notification,
+  Upload,
+  Button,
+} from "antd";
 import { useState } from "react";
 import utilApi from "../../services/api/fileAPI";
 import productAPI from "../../services/api/productAPI";
@@ -63,11 +71,6 @@ const ProductUpdateForm = () => {
     setPrice("");
     setDescription("");
     setThumbnail(null);
-
-    notification.success({
-      title: "Success",
-      message: "Success",
-    });
 
     dispatch(toggleProductUpdateForm());
   };

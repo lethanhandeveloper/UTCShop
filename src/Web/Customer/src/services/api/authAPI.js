@@ -5,18 +5,19 @@ const API_BASE = "/api";
 const API_PREFIX = SERVICE_PATH + API_BASE;
 
 const authAPI = {
-  login: (username, email, password) => {
+  login: (username, email, password, roleType) => {
     const URL_BACKEND = `${API_PREFIX}/account/login`;
     const bodyFormData = {
       UserName: username,
       Email: email,
       Password: password,
+      RoleType: roleType,
     };
 
     return axios.post(URL_BACKEND, bodyFormData);
   },
   refreshToken: () => {
-    const URL_BACKEND = `${API_PREFIX}/admin/refreshtoken`;
+    const URL_BACKEND = `${API_PREFIX}/account/refreshtoken`;
 
     return axios.post(URL_BACKEND);
   },

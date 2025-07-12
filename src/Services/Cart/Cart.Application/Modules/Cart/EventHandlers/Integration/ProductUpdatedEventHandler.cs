@@ -20,7 +20,9 @@ public class ProductUpdatedEventHandler : IConsumer<ProductUpdatedEvent>
         var cartItemDto = new CartItemDto
         {
             ProductId = message.Id,
+            Name = message.Name,
             Price = (decimal)message.Price,
+            ImageUrl = message.ImageUrl,
         };
 
         var updateCommand = new UpdateByProductIdCommand(cartItemDto);

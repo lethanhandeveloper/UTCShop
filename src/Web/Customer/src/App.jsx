@@ -11,6 +11,7 @@ function App() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   useEffect(() => {
+    debugger;
     if (isLoggedIn) {
       dispatch(getCustomerInfo());
     }

@@ -1,4 +1,4 @@
-import { Button, Spin } from "antd";
+import { Button, message, notification, Spin } from "antd";
 import BreadCrumb from "../../layout/breadcrumb";
 import { useState } from "react";
 import authAPI from "../../../services/api/authAPI";
@@ -14,9 +14,13 @@ function LoginAndSignUp() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    var res = await authAPI.login(userName, userName, passWord);
-    await dispatch(getCustomerInfo());
-    navigate("/");
+    var res = await authAPI.login(userName, userName, passWord, 2);
+    if (res.success) {
+      await dispatch(getCustomerInfo());
+      navigate("/");
+    } else {
+      message.error(res.message);
+    }
   };
 
   return (
@@ -99,6 +103,18 @@ function LoginAndSignUp() {
                 <form>
                   <div className="u-s-m-b-30">
                     <label htmlFor="user-name">
+                      Full Name
+                      <span className="astk">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="user-name"
+                      className="text-field"
+                      placeholder="Nguyen Van A"
+                    />
+                  </div>
+                  <div className="u-s-m-b-30">
+                    <label htmlFor="user-name">
                       Username
                       <span className="astk">*</span>
                     </label>
@@ -106,7 +122,7 @@ function LoginAndSignUp() {
                       type="text"
                       id="user-name"
                       className="text-field"
-                      placeholder="Username"
+                      placeholder="nguyenvana"
                     />
                   </div>
                   <div className="u-s-m-b-30">
@@ -118,7 +134,7 @@ function LoginAndSignUp() {
                       type="text"
                       id="email"
                       className="text-field"
-                      placeholder="Email"
+                      placeholder="Nguyenvana@gmail.com"
                     />
                   </div>
                   <div className="u-s-m-b-30">
@@ -133,6 +149,34 @@ function LoginAndSignUp() {
                       value={passWord}
                       onChange={(e) => setPassword(e.value)}
                       placeholder="Password"
+                    />
+                  </div>
+                  <div className="u-s-m-b-30">
+                    <label htmlFor="password">
+                      Age
+                      <span className="astk">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      id="password"
+                      className="text-field"
+                      value={passWord}
+                      onChange={(e) => setPassword(e.value)}
+                      placeholder="18"
+                    />
+                  </div>
+                  <div className="u-s-m-b-30">
+                    <label htmlFor="password">
+                      Address
+                      <span className="astk">*</span>
+                    </label>
+                    <input
+                      type="textarea"
+                      id="password"
+                      className="text-field"
+                      value={passWord}
+                      onChange={(e) => setPassword(e.value)}
+                      placeholder="Quan 1, Thanh Pho Ho Chi Minh"
                     />
                   </div>
                   <div className="u-s-m-b-30">

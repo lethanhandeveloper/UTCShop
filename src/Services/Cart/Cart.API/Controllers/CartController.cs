@@ -6,6 +6,7 @@ using Cart.Application.Dtos;
 using Cart.Application.Modules.Cart.Commands.AddToCart;
 using Cart.Application.Modules.Cart.Commands.Update;
 using Cart.Application.Modules.Cart.Queries.GetCategories;
+using Cart.Domain.Modules.Cart.DomainEvent;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,10 +26,10 @@ public class CartController : BaseController
         _currentAccountService = currentAccountService;
     }
 
-    [HttpPost("Get")]
+    [HttpGet("Get")]
     public async Task<CartDto> Get()
     {
-        var query = new GetCartByCustomerId(new CartDto
+        var query = new GetCartByCustomerIdQuery(new CartDto
         {
             CustomerId = Guid.Parse(_currentAccountService.AccountId.ToString())
         });
@@ -53,6 +54,15 @@ public class CartController : BaseController
         var command = new UpdateCartCommand(request);
         var results = await Dispatcher.Send(command);
         return results.Id;
+    }
+
+    [HttpGet("testPublishEvent")]
+    [AllowAnonymous]
+    public async Task<Guid> Test()
+    {
+
+        await Dispatcher.Publish(new CartItemUpdatedEvent());
+        return Guid.Empty;
     }
 
 }

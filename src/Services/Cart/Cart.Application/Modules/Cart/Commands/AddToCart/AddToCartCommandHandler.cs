@@ -24,22 +24,34 @@ public class AddToCartCommandHandler : ICommandHandler<AddToCartCommand, AddToCa
 
     public async Task<AddToCartResult> Handle(AddToCartCommand request, CancellationToken cancellationToken)
     {
-        var cart = await _cartQuery.GetCartByCustomerId(request.cart.CustomerId);
+        ProductRequest productRequest = new ProductRequest
+        {
+            Id = request.cart.Items[0].ProductId.ToString(),
+        };
+
+        var productInfo = await _productProtoService.GetProductInfoAsync(productRequest);
+
+        if (productInfo == null)
+        {
+            throw new BadRequestException("ProductId is not valid");
+        }
+
+        var cart = await _cartQuery.GetCartByCustomerId(request.cart.CustomerId.Value);
 
         if (cart == null)
         {
             cart = new CartEntity
             {
                 Id = Guid.NewGuid(),
-                CustomerId = request.cart.CustomerId,
-                TotalPrice = (int)request.cart.Items.Select(x => x.Price).Sum()
+                CustomerId = request.cart.CustomerId.Value,
+                TotalPrice = Int32.Parse(productInfo.Price),
             };
 
             await _unitOfWork._cartRepository.CreateAsync(cart, cancellationToken);
         }
         else
         {
-            cart.TotalPrice = (int)request.cart.Items.Select(x => x.Price).Sum();
+            cart.TotalPrice += Int32.Parse(productInfo.Price);
             await _unitOfWork._cartRepository.UpdateAsync(cart, cancellationToken);
         }
 
@@ -49,21 +61,10 @@ public class AddToCartCommandHandler : ICommandHandler<AddToCartCommand, AddToCa
 
             if (cartItem == null)
             {
-                ProductRequest productRequest = new ProductRequest
-                {
-                    Id = item.ProductId.ToString(),
-                };
-
-                var productInfo = await _productProtoService.GetProductInfoAsync(productRequest);
-
-                if (productInfo == null)
-                {
-                    throw new BadRequestException("ProductId is not valid");
-                }
-
                 cartItem = new CartItemEntity
                 {
                     ProductId = item.ProductId,
+                    Name = productInfo.Name,
                     CartId = cart.Id,
                     Price = Int32.Parse(productInfo.Price),
                     Quantity = item.Quantity,
@@ -76,6 +77,7 @@ public class AddToCartCommandHandler : ICommandHandler<AddToCartCommand, AddToCa
                 if (item.Quantity > 0)
                 {
                     cartItem.Quantity += item.Quantity;
+                    cartItem.Price += Int32.Parse(productInfo.Price);
                     await _unitOfWork._cartItemRepository.UpdateAsync(cartItem, cancellationToken);
                 }
                 else

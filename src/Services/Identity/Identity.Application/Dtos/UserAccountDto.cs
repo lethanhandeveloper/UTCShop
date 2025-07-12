@@ -14,4 +14,5 @@ public class UserAccountDto
     public List<Address>? Addresses { get; set; }
     public AccountStatus AccountStatus { get; set; }
     public AccountType AccountType { get; set; }
+    public RoleType RoleType { get; set; }
 }

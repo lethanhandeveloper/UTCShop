@@ -14,7 +14,7 @@ public class ProductDBContext : DbContext, IProductDbContext
 
     public ProductDBContext(DbContextOptions<ProductDBContext> options, AuditingSaveChangesInterceptor auditingInterceptor) : base(options)
     {
-        _auditingInterceptor=auditingInterceptor;
+        _auditingInterceptor = auditingInterceptor;
 
     }
 

@@ -35,6 +35,24 @@ public class LoginCommandHandler : ICommandHandler<LoginCommand, ApiResponse<Use
 
         var roles = await _userRoleQuery.GetByUserIdAsync(account.Id);
 
+        var isRoleValid = false;
+
+        if (roles != null)
+        {
+            foreach (var role in roles)
+            {
+                if (role.Type == request.RoleType)
+                {
+                    isRoleValid = true;
+                }
+            }
+        }
+
+        if (!isRoleValid)
+        {
+            throw new UnauthorizedException("Username or password is incorrect");
+        }
+
         var accessToken = _authService.GenerateAccessToken(account, roles.Select(r => r.Type).ToList());
         var refreshTokenValue = _authService.GenerateRefreshToken();
 

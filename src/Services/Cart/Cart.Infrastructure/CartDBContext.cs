@@ -9,7 +9,7 @@ public class CartDBContext : DbContext, ICartDbContext
 {
     public CartDBContext(DbContextOptions options, AuditingSaveChangesInterceptor auditingInterceptor) : base(options)
     {
-        _auditingInterceptor=auditingInterceptor;
+        _auditingInterceptor = auditingInterceptor;
 
     }
 

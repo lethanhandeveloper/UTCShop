@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using BuildingBlocks.Cache;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 //using Product.Grpc;
 using System.Reflection;
@@ -29,6 +30,13 @@ public static class DependencyInjection
             };
 
             return handler;
+        });
+
+        services.AddScoped<IBaseCacheService, BaseCacheService>();
+
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = configuration.GetConnectionString("Redis");
         });
 
         return services;

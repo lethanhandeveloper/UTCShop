@@ -1,8 +1,10 @@
 using BuildingBlocks.Messaging.MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using Refit;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using Util.API.Controllers;
 using Util.API.DBContext;
 using Util.API.Services;
 
@@ -33,6 +35,18 @@ builder.Services.AddDbContext<UtilDBContext>((sp, options) =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("Database"));
 });
+
+builder.Services.AddRefitClient<ILocationApi>()
+    .ConfigureHttpClient(c =>
+    {
+        c.BaseAddress = new Uri("https://provinces.open-api.vn/api");
+    }).ConfigurePrimaryHttpMessageHandler(() =>
+    {
+        return new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+        };
+    });
 
 var app = builder.Build();
 

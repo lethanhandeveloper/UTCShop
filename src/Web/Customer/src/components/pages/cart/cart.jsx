@@ -1,6 +1,17 @@
+import { useEffect } from "react";
 import BreadCrumb from "../../layout/breadcrumb";
+import cartAPI from "../../../services/api/cartAPI";
 
 function Cart() {
+  useEffect(() => {
+    fetchCart();
+  }, []);
+
+  const fetchCart = async () => {
+    debugger;
+    var cart = await cartAPI.fetchCart();
+  };
+
   return (
     <>
       <BreadCrumb />

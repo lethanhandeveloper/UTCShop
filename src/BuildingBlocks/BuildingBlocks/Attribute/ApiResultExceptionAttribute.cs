@@ -4,7 +4,6 @@ using BuildingBlocks.Exception;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
 
@@ -41,10 +40,10 @@ public class ApiResultExceptionAttribute : ExceptionFilterAttribute
             _ => (exception.InnerException.ToString(), HttpStatusCodeEnum.InternalServerError)
         };
 
-        if (!env.IsDevelopment() && statusCode == HttpStatusCodeEnum.InternalServerError)
-        {
-            message = "Internal server error";
-        }
+        //if (!env.IsDevelopment() && statusCode == HttpStatusCodeEnum.InternalServerError)
+        //{
+        //    message = "Internal server error";
+        //}
 
         context.Result = new ObjectResult(new ApiResponse<object>
         {

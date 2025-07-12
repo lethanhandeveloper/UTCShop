@@ -1,5 +1,5 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, message, notification } from "antd";
 import { useState } from "react";
 import authAPI from "../../services/api/authAPI";
 import { useNavigate } from "react-router-dom";
@@ -14,10 +14,16 @@ const Auth = () => {
       values.email,
       values.email,
       values.password,
+      1,
     );
+    debugger;
+
     if (res.data) {
       navigate("/dashboard");
+    } else {
+      message.info(res.message);
     }
+
     setIsLoadingLoginButton(false);
   };
 
