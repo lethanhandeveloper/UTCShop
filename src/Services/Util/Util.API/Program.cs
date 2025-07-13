@@ -1,11 +1,13 @@
 using BuildingBlocks.Messaging.MassTransit;
+using BuildingBlocks.Services;
+using BuildingBlocks.Utils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Refit;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using Util.API.Controllers;
 using Util.API.DBContext;
+using Util.API.ExternalAPIs;
 using Util.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,12 +18,7 @@ string currentPath = Directory.GetCurrentDirectory();
 string basePath = Regex.Match(currentPath, @".*?src").Value;
 
 
-builder.Configuration
-    .SetBasePath(basePath)
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddEnvironmentVariables();
-
-
+builder.Configuration.SetAppSettingLocation(SystemPathBuilder.GetBasePath());
 builder.Services.AddTransient<IFileService, FileService>();
 
 builder.Services.AddMessageBroker(builder.Configuration, Assembly.GetExecutingAssembly());
@@ -35,6 +32,8 @@ builder.Services.AddDbContext<UtilDBContext>((sp, options) =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("Database"));
 });
+
+builder.Services.AddScoped<ILocationService, LocationService>();
 
 builder.Services.AddRefitClient<ILocationApi>()
     .ConfigureHttpClient(c =>
@@ -73,5 +72,11 @@ app.UseStaticFiles(new StaticFileOptions
     ),
     RequestPath = "/files"
 });
+
+//using (var scope = app.Services.CreateScope())
+//{
+//    var dbContext = scope.ServiceProvider.GetRequiredService<UtilDBContext>();
+//    await dbContext.Database.MigrateAsync();
+//}
 
 app.Run();

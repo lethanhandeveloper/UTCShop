@@ -1,5 +1,6 @@
 using BuildingBlocks.Messaging.MassTransit;
 using BuildingBlocks.Services;
+using BuildingBlocks.Utils;
 using Cart.Application.Modules.Cart.EventHandlers.Integration;
 using Cart.Infrastructure;
 using Microsoft.OpenApi.Models;
@@ -58,6 +59,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+builder.Configuration.SetAppSettingLocation(SystemPathBuilder.GetBasePath());
 builder.Services.AddInfrastructureServices(builder.Configuration).AddApplicationServices(builder.Configuration);
 
 builder.Services.AddMessageBroker(configuration: builder.Configuration, typeof(ProductUpdatedEventHandler).Assembly);
@@ -84,5 +86,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 //app.MapGrpcService<ProductProtoService>();
+
+//using (var scope = app.Services.CreateScope())
+//{
+//    var dbContext = scope.ServiceProvider.GetRequiredService<CartDBContext>();
+//    await dbContext.Database.MigrateAsync();
+//}
 
 app.Run();

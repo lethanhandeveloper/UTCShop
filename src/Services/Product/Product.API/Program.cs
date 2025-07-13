@@ -16,10 +16,7 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 
-builder.Configuration
-    .SetBasePath(SystemPathBuilder.GetBasePath())
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddEnvironmentVariables();
+builder.Configuration.SetAppSettingLocation(SystemPathBuilder.GetBasePath());
 
 builder.Services.AddMessageBroker(builder.Configuration);
 builder.Services.AddGrpc();
@@ -106,5 +103,12 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.UseCors("AllowFrontend");
+
+
+//using (var scope = app.Services.CreateScope())
+//{
+//    var dbContext = scope.ServiceProvider.GetRequiredService<ProductDBContext>();
+//    await dbContext.Database.MigrateAsync();
+//}
 
 app.Run();
