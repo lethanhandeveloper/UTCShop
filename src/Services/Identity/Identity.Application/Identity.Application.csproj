@@ -16,6 +16,7 @@
     <Folder Include="Modules\Account\Queries\" />
     <Folder Include="Modules\Admin\Queries\" />
     <Folder Include="Modules\User\Commands\CreateAccount\" />
+    <Folder Include="Modules\User\EventHandlers\Domain\" />
   </ItemGroup>
 
   <ItemGroup>

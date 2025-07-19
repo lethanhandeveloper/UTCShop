@@ -1,6 +1,9 @@
 ﻿using BuildingBlocks.DomainAbtractions;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cart.Domain.Modules.Cart.Entities;
+
+[Table("Cart", Schema = "Cart")]
 public class CartEntity : Aggregate<Guid>
 {
     public Guid CustomerId { get; set; }

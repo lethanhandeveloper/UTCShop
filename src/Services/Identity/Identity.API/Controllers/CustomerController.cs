@@ -41,4 +41,14 @@ public class CustomerController : BaseController
         var results = await Dispatcher.Send(command);
         return results;
     }
+
+    [Authorize(Roles = nameof(RoleType.Customer))]
+    [HttpGet("ChangeInfo")]
+    public async Task<UserDto> ChangeInfo()
+    {
+        string accountId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var command = new GetUserInfoByAccountIdQuery(Guid.Parse(accountId));
+        var results = await Dispatcher.Send(command);
+        return results;
+    }
 }
