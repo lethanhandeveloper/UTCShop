@@ -74,7 +74,7 @@ public static class Extensions
     {
         return configurationBuilder
         .SetBasePath(SystemPathBuilder.GetBasePath())
-        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
         .AddEnvironmentVariables();
     }
 }
