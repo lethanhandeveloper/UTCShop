@@ -2,9 +2,8 @@
 
 namespace Util.API.Entities;
 
-public class SystemConfigurationEntity : Entity<SystemConfigurationEntity>
+public class SystemConfigurationEntity : Entity<Guid>
 {
-    public Guid Id { get; set; }
     public string Name { get; set; }
     [Column(TypeName = "jsonb")]
     public List<object> Value { get; set; }

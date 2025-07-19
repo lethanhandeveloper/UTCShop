@@ -170,6 +170,26 @@ function LoginAndSignUp() {
                       Address
                       <span className="astk">*</span>
                     </label>
+                    {/* <input
+                      type="textarea"
+                      id="password"
+                      className="text-field"
+                      value={passWord}
+                      onChange={(e) => setPassword(e.value)}
+                      placeholder="Quan 1, Thanh Pho Ho Chi Minh"
+                    /> */}
+                    <select className="text-field">
+                      <option>AAA</option>
+                      <option>AAA</option>
+                      <option>AAA</option>
+                      <option>AAA</option>
+                    </select>
+                  </div>
+                  <div className="u-s-m-b-30">
+                    <label htmlFor="password">
+                      Address
+                      <span className="astk">*</span>
+                    </label>
                     <input
                       type="textarea"
                       id="password"

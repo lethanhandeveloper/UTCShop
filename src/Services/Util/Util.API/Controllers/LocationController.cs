@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Refit;
+using Util.API.Services;
 
 namespace Util.API.Controllers;
 
@@ -8,24 +8,22 @@ namespace Util.API.Controllers;
 public class LocationController : Controller
 {
 
-    private readonly ILocationApi _myApi;
+    private readonly ILocationService _locationService;
 
-    public LocationController(ILocationApi myApi)
+    public LocationController(ILocationService locationService)
     {
-        _myApi = myApi;
+        _locationService=locationService;
     }
 
-    [HttpGet("{dept}")]
-    public async Task<IActionResult> Get(int dept)
+    //[HttpGet("{dept}")]
+    //public async Task<bool> Get(int dept)
+    //{
+    //    return await _locationService.GetLocationAsync(dept);
+    //}
+
+    [HttpGet]
+    public async Task<bool> SyncLocation()
     {
-        var user = await _myApi.GetLocationAsync(dept);
-        return Ok(user);
+        return await _locationService.SyncLocation();
     }
-}
-
-
-public interface ILocationApi
-{
-    [Get("/")]
-    Task<List<dynamic>> GetLocationAsync([Query] int? depth);
 }

@@ -12,10 +12,7 @@ builder.Services.AddDefaultServices(builder.Configuration);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Configuration
-    .SetBasePath(SystemPathBuilder.GetBasePath())
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddEnvironmentVariables();
+builder.Configuration.SetAppSettingLocation(SystemPathBuilder.GetBasePath());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -117,5 +114,11 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//using (var scope = app.Services.CreateScope())
+//{
+//    var dbContext = scope.ServiceProvider.GetRequiredService<IdentityDbContext>();
+//    await dbContext.Database.MigrateAsync();
+//}
 
 app.Run();
