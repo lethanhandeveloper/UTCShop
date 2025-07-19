@@ -1,6 +1,5 @@
 using BuildingBlocks.Messaging.MassTransit;
 using BuildingBlocks.Services;
-using BuildingBlocks.Utils;
 using Mapster;
 using Microsoft.OpenApi.Models;
 using Product.API.Extensions;
@@ -16,7 +15,7 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 
-builder.Configuration.SetAppSettingLocation(SystemPathBuilder.GetBasePath());
+//builder.Configuration.SetAppSettingLocation(SystemPathBuilder.GetBasePath());
 
 builder.Services.AddMessageBroker(builder.Configuration);
 builder.Services.AddGrpc();
