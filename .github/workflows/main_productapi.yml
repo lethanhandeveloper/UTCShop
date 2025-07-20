@@ -7,9 +7,9 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
-  paths:
+     paths:
       - 'src/Services/Product/**'
+  workflow_dispatch:
 
 jobs:
   build:
