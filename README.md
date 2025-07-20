@@ -39,7 +39,7 @@ Whether you're building a startup store or an enterprise-grade shopping platform
 
 ## 🌐 Live Demo
 
-👉 Coming soon: [Live Demo Link Here](#)
+👉 Administration Portal: [Live Demo Link Here](https://victorious-bush-0eb2d2100.2.azurestaticapps.net)
 
 ---
 
