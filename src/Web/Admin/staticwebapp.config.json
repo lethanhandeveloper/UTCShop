@@ -1,9 +1,11 @@
 {
-  "routes": [
-    {
-      "route": "/*",
-      "rewrite": "/index.html",
-      "exclude": ["/assets/*", "/images/*", "/favicon.ico"]
-    }
-  ]
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [
+      "/assets/*",
+      "/images/*",
+      "/favicon.ico",
+      "/manifest.json"
+    ]
+  }
 }
