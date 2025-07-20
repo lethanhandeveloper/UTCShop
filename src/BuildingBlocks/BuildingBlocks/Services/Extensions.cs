@@ -2,7 +2,6 @@
 using BuildingBlocks.Dtos;
 using BuildingBlocks.Enums;
 using BuildingBlocks.Services.CurrentUser;
-using BuildingBlocks.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -73,7 +72,7 @@ public static class Extensions
     public static IConfigurationBuilder SetAppSettingLocation(this IConfigurationBuilder configurationBuilder, string basePath)
     {
         return configurationBuilder
-        .SetBasePath(SystemPathBuilder.GetBasePath())
+        .SetBasePath(basePath)
         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
         .AddEnvironmentVariables();
     }
