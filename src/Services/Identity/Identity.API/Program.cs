@@ -12,6 +12,7 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 builder.AddServiceDefaults();
+builder.Host.UseSerilog();
 
 builder.Services.AddDefaultServices(builder.Configuration);
 // Add services to the container.
