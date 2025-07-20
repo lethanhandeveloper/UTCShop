@@ -49,12 +49,6 @@ Whether you're building a startup store or an enterprise-grade shopping platform
 
 ---
 
-## 📸 Screenshots
-
-> *(Optional section — Add some images or animated GIFs of your UI for more appeal)*
-
----
-
 ## 🤝 Contributing
 
 We welcome contributions! If you'd like to improve UTCShop, feel free to fork the repository, submit a pull request, or open an issue.
