@@ -1,4 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
+var test = builder.Configuration.GetSection("ReverseProxy");
 builder.Services.AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 
