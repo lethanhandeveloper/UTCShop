@@ -1,5 +1,4 @@
 using BuildingBlocks.Services;
-using BuildingBlocks.Utils;
 using Identity.Application;
 using Identity.Infrastructure;
 using Microsoft.OpenApi.Models;
@@ -12,7 +11,7 @@ builder.Services.AddDefaultServices(builder.Configuration);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Configuration.SetAppSettingLocation(SystemPathBuilder.GetBasePath());
+builder.Configuration.SetAppSettingLocation(AppContext.BaseDirectory);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
