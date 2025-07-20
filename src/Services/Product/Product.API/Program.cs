@@ -1,3 +1,4 @@
+using BuildingBlocks.Messaging.MassTransit;
 using BuildingBlocks.Services;
 using Mapster;
 using Microsoft.OpenApi.Models;
@@ -13,10 +14,11 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
+Console.WriteLine("ENVCHECK: " + builder.Environment.EnvironmentName);
 
-//builder.Configuration.SetAppSettingLocation(SystemPathBuilder.GetBasePath());
+builder.Configuration.SetAppSettingLocation(AppContext.BaseDirectory);
 
-//builder.Services.AddMessageBroker(builder.Configuration);
+builder.Services.AddMessageBroker(builder.Configuration);
 builder.Services.AddGrpc();
 
 
