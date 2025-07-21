@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -70,11 +71,16 @@ public static class Extensions
         return services;
     }
 
-    public static IConfigurationBuilder SetAppSettingLocation(this IConfigurationBuilder configurationBuilder, string basePath)
+    public static IConfigurationBuilder SetAppSettingLocation(this IConfigurationBuilder configurationBuilder, string basePath, IHostEnvironment env)
     {
-        return configurationBuilder
-        .SetBasePath(SystemPathBuilder.GetBasePath())
-        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-        .AddEnvironmentVariables();
+        if (env.IsDevelopment())
+        {
+            return configurationBuilder
+            .SetBasePath(SystemPathBuilder.GetBasePath())
+            .AddJsonFile("appsettings.Development.json", optional: false, reloadOnChange: true)
+            .AddEnvironmentVariables();
+        }
+
+        return configurationBuilder;
     }
 }

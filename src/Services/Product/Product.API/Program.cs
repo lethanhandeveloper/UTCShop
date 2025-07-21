@@ -16,10 +16,13 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 
-builder.Configuration.SetAppSettingLocation(SystemPathBuilder.GetBasePath());
+builder.Configuration.SetAppSettingLocation(SystemPathBuilder.GetBasePath(), builder.Environment);
 
 builder.Services.AddMessageBroker(builder.Configuration);
-builder.Services.AddGrpc();
+builder.Services.AddGrpc(options =>
+{
+    options.EnableDetailedErrors = true;
+});
 
 
 builder.AddServiceDefaults();

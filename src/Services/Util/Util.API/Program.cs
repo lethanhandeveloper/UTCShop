@@ -18,7 +18,7 @@ string currentPath = Directory.GetCurrentDirectory();
 string basePath = Regex.Match(currentPath, @".*?src").Value;
 
 
-builder.Configuration.SetAppSettingLocation(SystemPathBuilder.GetBasePath());
+builder.Configuration.SetAppSettingLocation(SystemPathBuilder.GetBasePath(), builder.Environment);
 builder.Services.AddTransient<IFileService, FileService>();
 
 builder.Services.AddMessageBroker(builder.Configuration, Assembly.GetExecutingAssembly());

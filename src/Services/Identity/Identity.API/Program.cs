@@ -12,7 +12,7 @@ builder.Services.AddDefaultServices(builder.Configuration);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Configuration.SetAppSettingLocation(SystemPathBuilder.GetBasePath());
+builder.Configuration.SetAppSettingLocation(SystemPathBuilder.GetBasePath(), builder.Environment);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
