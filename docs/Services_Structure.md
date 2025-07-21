@@ -1,44 +1,46 @@
----
+🚀 Service Project Architecture
 
-## 🚀 Project Layers
-
-### API Project
-- **Controllers**: Contains API controllers handling HTTP requests.
-- **Extensions**: Contains extension methods for configuration (e.g. AutoMapper).
-
-### Application Project
-- **Dtos**: Data Transfer Objects for communication between controllers and business logic.
-- **Interfaces**
-  - **Queries**: Interfaces for data queries.
-  - **Repositories**: Interfaces for repositories.
-  - **IUnitOfWork**: Manages repository interfaces for transactions.
-- **Modules**
-  - **Commands**: CQRS commands for data modifications.
-  - **Queries**: CQRS queries for retrieving data.
-- **Validators**: FluentValidation classes for DTO validation.
-- **DependencyInjection.cs**: Registers Application services to the DI container.
-
-### Domain Project
-- **Data**
-  - `I<Entity>DbContext.cs`: Shared DbContext interface.
-- **Modules**
-  - **Entities**: Domain entities.
-- **ValueObject**: Immutable value objects representing domain concepts.
-
-### Infrastructure Project
-- **Configurations**: EF Core entity configurations.
-- **Migrations**: Generated database migration files.
-- **Queries**: Implements application query interfaces.
-- **Repositories**: Implements application repository interfaces.
-- **DependencyInjection.cs**: Registers database, DbContext, queries, repositories, Unit of Work.
-- **DbContext.cs**: Implements the domain DbContext interface, declares DbSets.
-
----
-
-## 💡 Key Features
-
-- Clean separation of concerns between API, Application, Domain, and Infrastructure.
-- CQRS pattern with Commands and Queries for clear read/write separation.
-- Easy testing and mocking through interfaces.
-- FluentValidation for input validation.
-- Entity Framework Core integration.
+Service
+├── API
+│ ├── Controllers # API controllers handling HTTP requests
+│ └── Extensions # Extension methods for configuration (e.g. Mapster)
+│
+├── Application
+│ ├── Dtos # Data Transfer Objects
+│ ├── Interfaces
+│ │ ├── Queries # Query interfaces
+│ │ ├── Repositories # Repository interfaces
+│ │ └── IUnitOfWork.cs # Unit of Work interface
+│ ├── Modules
+│ │ ├── Commands # CQRS commands (write operations)
+│ │ ├── Queries # CQRS queries (read operations)
+│ │ └── EventHandler
+│ │ ├── Domain # Domain event handlers
+│ │ └── Integration # Integration event handlers
+│ ├── Validators # FluentValidation classes for DTOs
+│ └── DependencyInjection.cs # Registers Application services into DI container
+│
+├── Domain
+│ ├── Data
+│ │ └── I<Entity>DbContext.cs # Shared DbContext interface
+│ ├── Modules
+│ │ ├── Entities # Domain entities
+│ │ └── Events
+│ │ └── DomainEvents # Domain event definitions
+│ └── ValueObject # Immutable value objects
+│
+├── Infrastructure
+│ ├── Configurations # EF Core configurations
+│ ├── Migrations # EF Core migration files
+│ ├── Queries # Query interface implementations
+│ ├── Repositories # Repository interface implementations
+│ ├── DependencyInjection.cs # Registers Infrastructure services, DbContext
+│ └── DbContext.cs # Concrete DbContext implementation
+│
+└── Integration
+├── Events
+│ └── IntegrationEvents # Integration event definitions
+├── EventBus
+│ ├── IEventBus.cs # Event bus interface
+│ └── Implementations # Event bus implementations (e.g. RabbitMQ)
+└── DependencyInjection.cs # Registers Integration services and event bus
