@@ -2,7 +2,8 @@ import axios from "./axios.customize";
 
 const SERVICE_PATH = "/identity-service";
 const API_BASE = "/api";
-const API_PREFIX = SERVICE_PATH + API_BASE;
+//const API_PREFIX = SERVICE_PATH + API_BASE;
+const API_PREFIX = API_BASE;
 
 const authAPI = {
   login: (username = "", email, password, roleType) => {
