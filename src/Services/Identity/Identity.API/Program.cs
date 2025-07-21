@@ -1,18 +1,24 @@
 using BuildingBlocks.Services;
-using BuildingBlocks.Utils;
 using Identity.Application;
 using Identity.Infrastructure;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug()
+    .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
 builder.AddServiceDefaults();
+builder.Host.UseSerilog();
 
 builder.Services.AddDefaultServices(builder.Configuration);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Configuration.SetAppSettingLocation(SystemPathBuilder.GetBasePath(), builder.Environment);
+builder.Configuration.SetAppSettingLocation(AppContext.BaseDirectory, builder.Environment);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>

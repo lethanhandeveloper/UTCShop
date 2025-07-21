@@ -4,6 +4,7 @@ using BuildingBlocks.Exception;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
 
@@ -17,16 +18,13 @@ public class ApiResultExceptionAttribute : ExceptionFilterAttribute
 
     public ApiResultExceptionAttribute()
     {
-    }
 
-    public ApiResultExceptionAttribute(ILogger<ApiResultExceptionAttribute> logger)
-    {
-        _logger = logger;
     }
 
     public override void OnException(ExceptionContext context)
     {
-        //_logger.LogError(context.Exception.ToString());
+        var _logger = context.HttpContext.RequestServices.GetService<ILogger<ApiResultExceptionAttribute>>();
+        _logger?.LogError(context.Exception.ToString());
         var env = (IWebHostEnvironment)context.HttpContext.RequestServices.GetService(typeof(IWebHostEnvironment));
 
         var exception = context.Exception;
@@ -37,7 +35,7 @@ public class ApiResultExceptionAttribute : ExceptionFilterAttribute
             ValidationException => (exception.Message, HttpStatusCodeEnum.BadRequest),
             UnauthorizedException => (exception.Message, HttpStatusCodeEnum.Unauthorized),
 
-            _ => (exception.InnerException.ToString(), HttpStatusCodeEnum.InternalServerError)
+            _ => ("Internal server error", HttpStatusCodeEnum.InternalServerError)
         };
 
         //if (!env.IsDevelopment() && statusCode == HttpStatusCodeEnum.InternalServerError)

@@ -2,7 +2,6 @@
 using BuildingBlocks.Dtos;
 using BuildingBlocks.Enums;
 using BuildingBlocks.Services.CurrentUser;
-using BuildingBlocks.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
