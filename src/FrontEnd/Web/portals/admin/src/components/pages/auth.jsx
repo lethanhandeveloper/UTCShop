@@ -153,7 +153,7 @@ const Auth = () => {
             onMouseLeave={(e) => (e.target.style.backgroundColor = "#ff7f00")}
             loading={isLoadingLoginButton}
           >
-            Log in
+            Log in test
           </Button>
         </Form.Item>
       </Form>
