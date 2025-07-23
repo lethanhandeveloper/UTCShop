@@ -15,5 +15,6 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, "dist/admin"),
     emptyOutDir: true,
+    assetsDir: 'assets'
   },
 });
