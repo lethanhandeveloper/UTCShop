@@ -7,6 +7,7 @@ export default defineConfig({
   root: path.resolve(__dirname, "portals/admin"),
   plugins: [react()],
   publicDir: path.resolve(__dirname, "portals/admin/public"),
+  base: '/',
   server: {
     port: 8001,
     strictPort: true,
@@ -14,5 +15,6 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, "dist/admin"),
     emptyOutDir: true,
+    assetsDir: 'assets'
   },
 });
