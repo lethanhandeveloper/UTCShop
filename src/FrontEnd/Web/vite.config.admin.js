@@ -7,7 +7,7 @@ export default defineConfig({
   root: path.resolve(__dirname, "portals/admin"),
   plugins: [react()],
   publicDir: path.resolve(__dirname, "portals/admin/public"),
-  base: '/',
+  base: './',
   server: {
     port: 8001,
     strictPort: true,
