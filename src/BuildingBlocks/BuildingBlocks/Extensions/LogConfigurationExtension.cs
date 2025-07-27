@@ -18,7 +18,7 @@ public static class LogConfigurationExtension
             .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(builder.Configuration.GetValue<string>("ElasticSearchForLogging:Uri")))
             {
                 AutoRegisterTemplate = true,
-                IndexFormat = $"{prefixIndexFormat}-{0:yyyy.MM.dd}",
+                IndexFormat = $"identitysvc-{DateTime.UtcNow:yyyy.MM.dd}",
                 ModifyConnectionSettings = x => x.BasicAuthentication(builder.Configuration.GetValue<string>("ElasticSearchForLogging:User"), builder.Configuration.GetValue<string>("ElasticSearchForLogging:Password")),
             })
             .Enrich.FromLogContext()

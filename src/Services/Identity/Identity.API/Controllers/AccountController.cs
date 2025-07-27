@@ -34,7 +34,7 @@ public class AccountController : BaseController
     [HttpPost("Login")]
     public async Task<ApiResponse<UserAccountDto>> Login(UserAccountDto request)
     {
-        _logger.LogInformation("Login request received for user:", request.UserName);
+        _logger.LogInformation("Login request received for user: {username}", request.UserName);
         var command = request.Adapt<LoginCommand>();
         var results = await Dispatcher.Send(command);
 
