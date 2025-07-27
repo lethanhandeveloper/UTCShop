@@ -16,6 +16,13 @@ namespace Identity.API.Controllers;
 [Route("api/[controller]")]
 public class AccountController : BaseController
 {
+    private readonly ILogger<AccountController> _logger;
+
+    public AccountController(ILogger<AccountController> logger)
+    {
+        _logger = logger;
+    }
+
     [HttpPost("Register")]
     public async Task<UserAccountDto> Register(UserAccountDto request)
     {
@@ -27,6 +34,7 @@ public class AccountController : BaseController
     [HttpPost("Login")]
     public async Task<ApiResponse<UserAccountDto>> Login(UserAccountDto request)
     {
+        _logger.LogInformation("Login request received for user:", request.UserName);
         var command = request.Adapt<LoginCommand>();
         var results = await Dispatcher.Send(command);
 

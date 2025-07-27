@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => {
     root: path.resolve(__dirname, "portals/customer"),
     plugins: [react()],
     publicDir: path.resolve(__dirname, "portals/customer/public"),
+    envDir: path.resolve(__dirname),
     server: {
       port: 8002,
       strictPort: true,
@@ -16,12 +17,7 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: path.resolve(__dirname, "dist/customer"),
       emptyOutDir: true,
-    },
-    define: {
-      "import.meta.env.VITE_BACKEND_URL": JSON.stringify(env.VITE_BACKEND_URL),
-      "import.meta.env.VITE_SERVER_FILE_URL": JSON.stringify(
-        env.VITE_SERVER_FILE_URL
-      ),
-    },
+      assetsDir: "assets"
+    }
   };
 });
