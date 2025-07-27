@@ -1,12 +1,16 @@
+using BuildingBlocks.Extensions;
 using BuildingBlocks.Messaging.MassTransit;
 using BuildingBlocks.Services;
-using BuildingBlocks.Utils;
 using Cart.Application.Modules.Cart.EventHandlers.Integration;
 using Cart.Infrastructure;
 using Microsoft.OpenApi.Models;
 using Product.Application;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.SetAppSettingLocation(AppContext.BaseDirectory, builder.Environment);
+
+builder.ConfigureSerilog("cartservice");
 
 builder.AddServiceDefaults();
 builder.Services.AddDefaultServices(builder.Configuration);
@@ -59,7 +63,6 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-builder.Configuration.SetAppSettingLocation(SystemPathBuilder.GetBasePath(), builder.Environment);
 builder.Services.AddInfrastructureServices(builder.Configuration).AddApplicationServices(builder.Configuration);
 
 builder.Services.AddMessageBroker(configuration: builder.Configuration, typeof(ProductUpdatedEventHandler).Assembly);

@@ -1,4 +1,11 @@
+using BuildingBlocks.Extensions;
+using BuildingBlocks.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.SetAppSettingLocation(AppContext.BaseDirectory, builder.Environment);
+
+builder.ConfigureSerilog("inventoryservice");
 
 builder.AddServiceDefaults();
 
@@ -19,7 +26,7 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", () =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
+    var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (
             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),

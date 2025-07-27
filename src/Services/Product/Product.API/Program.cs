@@ -1,3 +1,4 @@
+using BuildingBlocks.Extensions;
 using BuildingBlocks.Messaging.MassTransit;
 using BuildingBlocks.Services;
 using Mapster;
@@ -5,17 +6,12 @@ using Microsoft.OpenApi.Models;
 using Product.API.Extensions;
 using Product.Application;
 using Product.Grpc.Services;
-using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-Log.Logger = new LoggerConfiguration()
-    .MinimumLevel.Debug()
-    .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day)
-    .CreateLogger();
-
-
 builder.Configuration.SetAppSettingLocation(AppContext.BaseDirectory, builder.Environment);
+
+builder.ConfigureSerilog("productservice");
 
 builder.Services.AddMessageBroker(builder.Configuration);
 builder.Services.AddGrpc(options =>
@@ -25,8 +21,6 @@ builder.Services.AddGrpc(options =>
 
 
 builder.AddServiceDefaults();
-
-builder.Host.UseSerilog();
 
 var assembly = typeof(Program).Assembly;
 
