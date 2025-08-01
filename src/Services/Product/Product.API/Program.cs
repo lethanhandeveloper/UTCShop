@@ -13,6 +13,11 @@ builder.Configuration.SetAppSettingLocation(AppContext.BaseDirectory, builder.En
 
 builder.ConfigureSerilog("productservice");
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ConfigureEndpointDefaults(lo => lo.Protocols = HttpProtocols.Http1AndHttp2);
+});
+
 builder.Services.AddMessageBroker(builder.Configuration);
 builder.Services.AddGrpc(options =>
 {
