@@ -35,6 +35,7 @@ jobs:
         uses: azure/container-apps-deploy-action@v2
         with:
           appSourcePath: ${{ github.workspace }}
+          dockerfilePath: 'devops/ProductAPIDockerfile'
           _dockerfilePathKey_: _dockerfilePath_
           _targetLabelKey_: _targetLabel_
           registryUrl: utcshop.azurecr.io
@@ -45,5 +46,6 @@ jobs:
           imageToBuild: utcshop.azurecr.io/productapi:${{ github.sha }}
           _buildArgumentsKey_: |
             _buildArgumentsValues_
+
 
 
