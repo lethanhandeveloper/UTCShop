@@ -82,7 +82,8 @@ var app = builder.Build();
 
 app.MapDefaultEndpoints();
 
-app.MapGrpcService<GetProductInfoService>();
+app.UseGrpcWeb();
+app.MapGrpcService<GetProductInfoService>().EnableGrpcWeb();
 
 
 // Configure the HTTP request pipeline.
@@ -114,3 +115,4 @@ app.UseCors("AllowFrontend");
 //}
 
 app.Run();
+
