@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     permissions:
       contents: read #This is required for actions/checkout
 
@@ -39,7 +39,7 @@ jobs:
           path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: build
     permissions:
       id-token: write #This is required for requesting the JWT
@@ -54,9 +54,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_E5FC5832D4724176B1E60F98178041EC }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C01259EC1B1F49C8A0871C77C0DB4944 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_5A17A48097F348FBA9515B74901D3F23 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_C3E66ADA92CE4D058186ACBAB6DEA1B3 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_7BC16633F7C9413C96FAA0DF4F9D1BA3 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_1F037346015248E4B49A9547294E6B9B }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
