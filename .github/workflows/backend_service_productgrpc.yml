@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy BackEnd Service - Product API
+name: Build and deploy BackEnd Service - Product Grpc
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
     paths:
       - 'src/Services/Product/**'
-      - '!src/Services/Product/Product.Grpc/**'
+      - '!src/Services/Product/Product.API/**'
   workflow_dispatch:
 
 jobs:
@@ -27,10 +27,10 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build src/Services/Product/Product.API/Product.API.csproj --configuration Release
+        run: dotnet build src/Services/Product/Product.Grpc/Product.Grpc.csproj --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish "src/Services/Product/Product.API/Product.API.csproj" -c Release -o "${{ env.DOTNET_ROOT }}/myapp"
+        run: dotnet publish "src/Services/Product/Product.Grpc/Product.Grpc.csproj" -c Release -o "${{ env.DOTNET_ROOT }}/myapp"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -54,16 +54,16 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_342AC539B28F477DBC8FAE7D24C88566 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B3457556291B49A9B231533145A1D0DA }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_C660EC0E54A947EF82683CE8D8B462A8 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_E5FC5832D4724176B1E60F98178041EC }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C01259EC1B1F49C8A0871C77C0DB4944 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_5A17A48097F348FBA9515B74901D3F23 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'productapi'
+          app-name: 'productgrpc'
           slot-name: 'Production'
           package: .
-          
 
+          

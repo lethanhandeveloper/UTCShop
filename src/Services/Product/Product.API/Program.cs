@@ -25,7 +25,6 @@ builder.Services.AddGrpc(options =>
     options.EnableDetailedErrors = true;
 });
 
-
 builder.AddServiceDefaults();
 
 var assembly = typeof(Program).Assembly;
@@ -115,4 +114,5 @@ app.UseCors("AllowFrontend");
 //}
 
 app.Run();
+
 
