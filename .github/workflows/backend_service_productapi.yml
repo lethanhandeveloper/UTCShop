@@ -9,6 +9,7 @@ on:
       - main
     paths:
       - 'src/Services/Product/**'
+      - '!src/Services/Product/Product.Grpc/**'
   workflow_dispatch:
 
 jobs:
@@ -65,3 +66,4 @@ jobs:
           slot-name: 'Production'
           package: .
           
+
