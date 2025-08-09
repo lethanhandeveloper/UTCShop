@@ -44,3 +44,12 @@ Service
 │ ├── IEventBus.cs # Event bus interface
 │ └── Implementations # Event bus implementations (e.g. RabbitMQ)
 └── DependencyInjection.cs # Registers Integration services and event bus
+
+
+## 🏗 Dependency Rule
+
+[Presentation/API] → [Application] → [Domain]  
+         ↓  
+   [Infrastructure] ──→ [Application]  
+         ↓  
+      [Domain]  
