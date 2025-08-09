@@ -16,26 +16,4 @@ builder.AddProject<Projects.Product_Grpc>("product-grpc");
 
 builder.AddProject<Projects.Storage_API>("storage-api");
 
-//builder.AddProject<Projects.BackGroundJob>("backgroundjob");
-
-//builder.AddProject<Projects.Configuration_API>("configuration-api");
-
-//builder.AddProject<Projects.BackGroundJob>("backgroundjob");
-
-//builder.AddProject<Projects.Inventory_Infrastructure>("inventory-infrastructure");
-
-//builder.AddProject<Projects.BackGroundJob>("backgroundjob");
-
-builder.AddProject<Projects.Product_Grpc>("product-grpc");
-
-//builder.AddProject<Projects.BackGroundJob>("backgroundjob");
-
-//builder.AddProject<Projects.Configuration_API>("configuration-api");
-
-//builder.AddProject<Projects.BackGroundJob>("backgroundjob");
-
-//builder.AddProject<Projects.Inventory_Infrastructure>("inventory-infrastructure");
-
-//builder.AddProject<Projects.BackGroundJob>("backgroundjob");
-
 builder.Build().Run();
