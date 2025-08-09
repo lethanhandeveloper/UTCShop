@@ -4,8 +4,8 @@ using BuildingBlocks.Pagination;
 using BuildingBlocks.Services.CurrentUser;
 using Microsoft.AspNetCore.Mvc;
 using Product.Application.Dtos;
-using Product.Application.Modules.Category.Commands.Delete;
 using Product.Application.Modules.Product.Commands.Create;
+using Product.Application.Modules.Product.Commands.Delete;
 using Product.Application.Modules.Product.Commands.Update;
 using Product.Application.Modules.Product.Queries.GetProducts;
 using Product.Application.Modules.Queries.GetProductById;
@@ -57,7 +57,7 @@ public class ProductController : BaseController
     [HttpDelete("Delete")]
     public async Task<List<Guid>> Delete(List<Guid> Ids)
     {
-        var command = new DeleteCategoryCommand(Ids);
+        var command = new DeleteProductCommand(Ids);
         var results = await Dispatcher.Send(command);
         return results.Ids;
     }

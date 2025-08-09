@@ -21,8 +21,8 @@
     <ProjectReference Include="..\..\Services\Inventory\Inventory.API\Inventory.API.csproj" />
     <ProjectReference Include="..\..\Services\Product\Product.API\Product.API.csproj" />
     <ProjectReference Include="..\..\Services\Product\Product.Grpc\Product.Grpc.csproj" />
+    <ProjectReference Include="..\..\Services\Storage\Storage.API\Storage.API.csproj" />
     <ProjectReference Include="..\..\Services\Util\Util.API\Util.API.csproj" />
-    <ProjectReference Include="..\..\Storage.API\Storage.API.csproj" />
   </ItemGroup>
 
 </Project>
