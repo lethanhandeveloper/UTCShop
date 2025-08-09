@@ -78,12 +78,7 @@ const ProductTable = ({ isCheckedClickAllCheckBox }) => {
       title: "Hinh anh",
       dataIndex: "image",
       render: (_, record, index) => {
-        return (
-          <Image
-            src={`${import.meta.env.VITE_SERVER_FILE_URL}/${record.imageUrl}`}
-            style={{ width: "3em" }}
-          />
-        );
+        return <Image src={record.imageUrl} style={{ width: "3em" }} />;
       },
     },
     {

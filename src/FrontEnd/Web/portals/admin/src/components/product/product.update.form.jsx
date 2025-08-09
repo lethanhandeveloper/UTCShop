@@ -87,7 +87,7 @@ const ProductUpdateForm = () => {
   return (
     <Drawer
       width={720}
-      title="Chinh sua danh muc"
+      title="Chỉnh sửa sản phẩm"
       maskClosable={false}
       open={isOpenedProductUpdateForm}
       destroyOnClose={true}

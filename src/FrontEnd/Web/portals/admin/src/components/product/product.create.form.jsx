@@ -50,23 +50,21 @@ const ProductCreateForm = () => {
 
   useEffect(() => {
     handleFetchLeafCategory();
-  }, [])
+  }, []);
 
   const handleFetchLeafCategory = async () => {
     const res = await categoryAPI.fetchLeafCategory();
     const arrOptions = [];
-    res.map(item => {
+    res.map((item) => {
       arrOptions.push({
         value: item.id,
         label: item.name,
-        desc: item.name
-      },
-    )
+        desc: item.name,
+      });
 
-    setCategoryOptions(arrOptions);
-
-    })
-  }
+      setCategoryOptions(arrOptions);
+    });
+  };
 
   const handleChangeThumbnailImage = (info) => {
     if (info.file.status === "uploading") {
@@ -87,7 +85,14 @@ const ProductCreateForm = () => {
 
   const handleSubmitForm = async () => {
     const res = await fileAPI.upload(thumbnail);
-    await productAPI.createProduct(name, price, res.data, description, selectedCategoryIds[0]);
+
+    await productAPI.createProduct(
+      name,
+      price,
+      res.imageUrl,
+      description,
+      selectedCategoryIds[0],
+    );
 
     dispatch(fetchProducts({ pageIndex, pageSize }));
 
@@ -158,8 +163,7 @@ const ProductCreateForm = () => {
       </div>
       <div>
         <span>Thuoc danh muc</span>
-        {
-          categoryOptions.length > 0 &&
+        {categoryOptions.length > 0 && (
           <Select
             mode="multiple"
             style={{ width: "100%" }}
@@ -176,7 +180,7 @@ const ProductCreateForm = () => {
               </Space>
             )}
           />
-        }
+        )}
       </div>
       <Button
         style={{ marginTop: "2em", float: "right" }}
