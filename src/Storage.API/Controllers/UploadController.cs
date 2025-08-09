@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Storage.API.Services;
+﻿using BuildingBlocks.Services.FileStorage;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Storage.API.Controllers;
 
@@ -7,17 +7,17 @@ namespace Storage.API.Controllers;
 [Route("api/[controller]")]
 public class UploadController : ControllerBase
 {
-    private readonly AzureBlobService _blobService;
+    private readonly IFileStorage _fileStorage;
 
-    public UploadController(AzureBlobService blobService)
+    public UploadController(IFileStorage fileStorage)
     {
-        _blobService = blobService;
+        _fileStorage = fileStorage;
     }
 
     [HttpPost("image")]
     public async Task<IActionResult> UploadImage([FromForm] IFormFile file)
     {
-        var url = await _blobService.UploadImageAsync(file);
+        var url = await _fileStorage.UploadImageAsync(file);
         return Ok(new { imageUrl = url });
     }
 }

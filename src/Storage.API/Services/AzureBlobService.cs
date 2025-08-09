@@ -1,9 +1,10 @@
 ﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using BuildingBlocks.Services.FileStorage;
 
 namespace Storage.API.Services;
 
-public class AzureBlobService
+public class AzureBlobService : IFileStorage
 {
     private readonly string _connectionString = "DefaultEndpointsProtocol=https;AccountName=utcshopstorage;AccountKey=KDKFOYLeRoMwU4Z81O70FbCeN2sruSZallfIVFhwgPXEQlFg+nFl02hXGKJ52Lf7FOSJQ5r0N6df+AStGtPr0A==;EndpointSuffix=core.windows.net";
     private readonly string _containerName = "product";
