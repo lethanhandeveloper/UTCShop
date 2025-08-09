@@ -1,5 +1,6 @@
 🚀 Service Project Architecture
 
+```plaintext
 Service
 ├── API
 │   ├── Controllers             # API controllers handling HTTP requests
@@ -44,7 +45,7 @@ Service
     │   ├── IEventBus.cs       # Event bus interface
     │   └── Implementations    # Event bus implementations (e.g. RabbitMQ)
     └── DependencyInjection.cs # Registers Integration services and event bus
-
+```
 
 ## 🏗 Dependency Rule
 
