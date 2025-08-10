@@ -1,5 +1,11 @@
 ﻿using BuildingBlocks.Attribute;
 using BuildingBlocks.Controllers;
+using BuildingBlocks.Pagination;
+using Configuration.Application.Dtos;
+using Configuration.Application.Modules.Location.Commands;
+using Configuration.Application.Modules.Location.Queries;
+using Configuration.Application.Modules.Location.Queries.GetAllProvinces;
+using Configuration.Application.Modules.Location.Queries.GetPaginatedProvinces;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -16,18 +22,35 @@ public class LocationController : BaseController
 
     }
 
-    //[HttpGet("Get")]
-    //public async Task<CartDto> Get()
-    //{
-    //    var query = new GetCartByCustomerIdQuery(new CartDto
-    //    {
-    //        CustomerId = Guid.Parse(_currentAccountService.AccountId.ToString())
-    //    });
+    [HttpGet("province/{id}")]
+    public async Task<List<ProvinceDto>> GetById(Guid Id)
+    {
+        return await Dispatcher.Send(new GetProvinceByIdQuery(Id));
+    }
 
-    //    var res = await Dispatcher.Send(query);
-    //    return res;
-    //}
+    [HttpPost("province/paginate")]
+    public async Task<PaginatedResult<ProvinceDto>> GetPaginatedProvinces([FromBody] PaginationRequest request)
+    {
+        return await Dispatcher.Send(new GetPaginatedProvincesQuery(request));
+    }
 
 
+    [HttpGet("province/all")]
+    public async Task<List<ProvinceDto>> GetAllProvinces()
+    {
+        return await Dispatcher.Send(new GetAllProvincesQuery());
+    }
+
+    [HttpGet("district/province/{Id}")]
+    public async Task<List<DistrictDto>> GetDistrictByProvinceId(Guid Id)
+    {
+        return await Dispatcher.Send(new GetDistrictsByProvinceIdQuery(Id));
+    }
+
+    [HttpGet("sync")]
+    public async Task<bool> SyncLocation()
+    {
+        return await Dispatcher.Send(new SyncLocationCommand());
+    }
 
 }

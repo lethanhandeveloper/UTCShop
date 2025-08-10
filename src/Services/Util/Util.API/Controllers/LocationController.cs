@@ -12,7 +12,7 @@ public class LocationController : Controller
 
     public LocationController(ILocationService locationService)
     {
-        _locationService=locationService;
+        _locationService = locationService;
     }
 
     //[HttpGet("{dept}")]
@@ -21,7 +21,7 @@ public class LocationController : Controller
     //    return await _locationService.GetLocationAsync(dept);
     //}
 
-    [HttpGet]
+    [HttpGet("sync")]
     public async Task<bool> SyncLocation()
     {
         return await _locationService.SyncLocation();

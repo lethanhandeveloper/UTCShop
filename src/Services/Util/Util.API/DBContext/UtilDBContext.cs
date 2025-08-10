@@ -5,13 +5,13 @@ namespace Util.API.DBContext;
 using System.Reflection;
 using Util.API.Entities;
 
-public class ConfigurationDBContext : DbContext
+public class UtilDBContext : DbContext
 {
     public DbSet<SystemConfigurationEntity> SystemConfigurations { get; set; }
     public DbSet<ProvinceEntity> Provinces { get; set; }
     public DbSet<DistrictEntity> Districts { get; set; }
     public DbSet<WardEntity> Wards { get; set; }
-    public ConfigurationDBContext(DbContextOptions<ConfigurationDBContext> options) : base(options)
+    public UtilDBContext(DbContextOptions<UtilDBContext> options) : base(options)
     {
 
     }

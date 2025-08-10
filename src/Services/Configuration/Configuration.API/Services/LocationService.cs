@@ -1,11 +1,15 @@
-﻿namespace Configuration.API.Services;
+﻿using Configuration.Domain.Data;
+using Configuration.Domain.Modules.Location.Entities;
+using Configuration.Infrastructure.Services.ExternalServices.Location.Refit.APIInterfaces;
+
+namespace Configuration.API.Services;
 
 public class LocationService : ILocationService
 {
     private readonly ILocationApi _locationApi;
-    private readonly UtilDBContext _dbContext;
+    private readonly IConfigurationDbContext _dbContext;
 
-    public LocationService(ILocationApi locationApi, UtilDBContext dbContext)
+    public LocationService(ILocationApi locationApi, IConfigurationDbContext dbContext)
     {
         _locationApi = locationApi;
         _dbContext = dbContext;

@@ -1,4 +1,4 @@
-﻿namespace Configuration.Domain.Modules.Entities;
+﻿namespace Configuration.Domain.Modules.Location.Entities;
 
 public class ProvinceEntity : Entity<Guid>
 {

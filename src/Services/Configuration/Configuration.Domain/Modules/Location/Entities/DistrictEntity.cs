@@ -1,4 +1,4 @@
-﻿namespace Util.API.Entities;
+﻿namespace Configuration.Domain.Modules.Location.Entities;
 
 public class DistrictEntity : Entity<Guid>
 {

@@ -1,8 +1,10 @@
 import {
   AppstoreAddOutlined,
   DesktopOutlined,
+  EnvironmentOutlined,
   PieChartOutlined,
   ProductOutlined,
+  SettingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
@@ -67,18 +69,13 @@ const AppSideBar = ({ isSideBarCollapsed }) => {
       getItem("Bill", "6"),
       getItem("Alex", "7"),
     ]),
-    getItem("Configuration", "sub2", <UserOutlined />, [
-      getItem("Role", "8"),
-      getItem("Bill", "9"),
-      getItem("Alex", "10"),
-    ]),
-    getItem("Comment", "sub2", <UserOutlined />, [
-      getItem("Role", "8"),
-      getItem("Bill", "9"),
-      getItem("Alex", "10"),
-    ]),
-    // getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    // getItem('Files', '9', <FileOutlined />),
+    getItem("Configuration", "sub2", <SettingOutlined />, [
+      getItem("Location", "sub2-1", <EnvironmentOutlined />, [
+        getItem(<Link to="/location/province">Province</Link>, "8"),
+        getItem(<Link to="/location/district">District</Link>, "9"),
+        getItem(<Link to="/location/ward">Ward</Link>, "10"),
+      ]),
+]),
   ];
 
   return (

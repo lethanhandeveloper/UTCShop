@@ -30,6 +30,13 @@ public class BaseQuery<T> : IBaseQuery<T> where T : class
         return await query.Where(expression).ToListAsync();
     }
 
+    public async Task<IEnumerable<T>> GetAllByIdAsync(Guid Id)
+    {
+        var query = _dbSet.AsQueryable();
+        var expression = ExpressionBuilder.BuildPredicate<T>("Id", Id, ComparisionOperator.Equals);
+        return await _dbSet.Where(expression).ToListAsync();
+    }
+
     public async Task<T> GetByIdAsync(Guid Id)
     {
         var query = _dbSet.AsQueryable();

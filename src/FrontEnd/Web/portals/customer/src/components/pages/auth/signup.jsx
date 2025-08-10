@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import configurationAPI from "../../../services/api/configurationAPI";
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -16,6 +17,9 @@ const Register = () => {
     },
   });
 
+  const [provinces, setProvinces] = useState([]);
+  const [districts, setDistricts] = useState([]);
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -31,6 +35,20 @@ const Register = () => {
     e.preventDefault();
     console.log(form);
   };
+
+  useEffect(() => {
+    fetchProvinces();
+  }, [])
+
+  const fetchProvinces = async () => {
+    let provinces = await configurationAPI.fetchAllProvinces();
+    setProvinces(provinces);
+  }
+
+  const reloadDistrict = async (id) => {
+    let districts = await configurationAPI.fetchDistrictsByProvinceId(id);
+    setDistricts(districts);
+  }
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
@@ -106,12 +124,20 @@ const Register = () => {
                 <select
                   name="provinceName"
                   value={form.address.provinceName}
-                  onChange={handleAddressChange}
+                  onChange={(e) => {
+                    handleAddressChange(e);
+                    reloadDistrict(e.target.value);
+                  }}
                   className="w-full px-3 py-2 border rounded-md text-sm"
                 >
                   <option value="">Select Province</option>
-                  <option value="Hanoi">Hanoi</option>
-                  <option value="HCMC">Ho Chi Minh City</option>
+                  {
+                    provinces.map(province => {
+                      return (
+                        <option value={province.id}>{province.name}</option>
+                      )
+                    })
+                  }
                 </select>
               </div>
               <div>
@@ -122,9 +148,13 @@ const Register = () => {
                   onChange={handleAddressChange}
                   className="w-full px-3 py-2 border rounded-md text-sm"
                 >
-                  <option value="">Select District</option>
-                  <option value="District 1">District 1</option>
-                  <option value="District 2">District 2</option>
+                  {
+                    districts.map(district => {
+                      return(
+                        <option value={district.id}>{district.name}</option>
+                      )
+                    })
+                  }
                 </select>
               </div>
               <div>

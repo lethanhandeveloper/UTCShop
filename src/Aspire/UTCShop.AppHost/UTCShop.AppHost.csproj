@@ -17,6 +17,7 @@
     <ProjectReference Include="..\..\ApiGateWays\YarpApiGateWay\YarpApiGateWay.csproj" />
     <ProjectReference Include="..\..\BackgroundJobs\BackGroundJob\BackgroundJob.csproj" />
     <ProjectReference Include="..\..\Services\Cart\Cart.API\Cart.API.csproj" />
+    <ProjectReference Include="..\..\Services\Configuration\Configuration.API\Configuration.API.csproj" />
     <ProjectReference Include="..\..\Services\Identity\Identity.API\Identity.API.csproj" />
     <ProjectReference Include="..\..\Services\Inventory\Inventory.API\Inventory.API.csproj" />
     <ProjectReference Include="..\..\Services\Product\Product.API\Product.API.csproj" />
